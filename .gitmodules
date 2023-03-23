@@ -1,3 +1,12 @@
 [submodule "deps/git-subrepo"]
 	path = deps/git-subrepo
 	url = https://github.com/ingydotnet/git-subrepo.git
+[submodule "modules/mod-ah-bot"]
+	path = modules/mod-ah-bot
+	url = git@github.com:azerothcore/mod-ah-bot.git
+[submodule "modules/mod-eluna"]
+	path = modules/mod-eluna
+	url = git@github.com:azerothcore/mod-eluna.git
+[submodule "modules/mod-autobalance"]
+	path = modules/mod-autobalance
+	url = git@github.com:azerothcore/mod-autobalance.git

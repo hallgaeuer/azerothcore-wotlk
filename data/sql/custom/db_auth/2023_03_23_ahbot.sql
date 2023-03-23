@@ -1,0 +1,3 @@
+INSERT IGNORE INTO acore_auth.account
+(id, username, salt, verifier, session_key, totp_secret, email, reg_mail, joindate, last_ip, last_attempt_ip, failed_logins, locked, lock_country, last_login, online, expansion, mutetime, mutereason, muteby, locale, os, recruiter, totaltime)
+VALUES(2, 'AHBOT', 0x80E4EB29B01DC0C324245A2DFF2EE4D4EB613DBF8AAADB15963A3B7EAE5BDB1F, 0xA5C97947FBED353913EC82E97530249DD56BA64F1F52647ECE9BB0AADA58B024, 0x220EFDE8E462B38E9733807DE09248B63160477473740461FD0CFF9A96F25AC3ADD35D5C8B9F974D, NULL, '', '', '2023-03-23 22:11:26', '127.0.0.1', '127.0.0.1', 0, 0, '00', '2023-03-23 22:11:49', 0, 2, 0, '', '', 0, 'Win', 0, 4);

@@ -10,3 +10,6 @@
 [submodule "modules/mod-autobalance"]
 	path = modules/mod-autobalance
 	url = git@github.com:azerothcore/mod-autobalance.git
+[submodule "modules/mod-skip-dk-starting-area"]
+	path = modules/mod-skip-dk-starting-area
+	url = git@github.com:azerothcore/mod-skip-dk-starting-area.git

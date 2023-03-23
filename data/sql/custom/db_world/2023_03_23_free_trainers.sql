@@ -1,0 +1,1 @@
+UPDATE npc_trainer SET MoneyCost = 0;

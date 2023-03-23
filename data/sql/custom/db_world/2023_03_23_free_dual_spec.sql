@@ -1,0 +1,1 @@
+UPDATE gossip_menu_option SET BoxMoney = 0 WHERE ActionMenuID  = "10373";

@@ -13,3 +13,6 @@
 [submodule "modules/mod-skip-dk-starting-area"]
 	path = modules/mod-skip-dk-starting-area
 	url = git@github.com:hallgaeuer/mod-skip-dk-starting-area.git
+[submodule "modules/mod-learn-spells"]
+	path = modules/mod-learn-spells
+	url = git@github.com:azerothcore/mod-learn-spells.git

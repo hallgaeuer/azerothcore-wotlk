@@ -16,6 +16,9 @@
 !/var/ccache/.gitkeep
 /env/dist/*
 !/env/dist/.gitkeep
+!/env/dist/bin/
+/env/dist/bin/*
+!/env/dist/bin/lua_scripts
 /env/user/*
 /env/docker/*
 !/env/docker/bin/.gitkeep

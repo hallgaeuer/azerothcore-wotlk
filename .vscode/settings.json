@@ -114,9 +114,11 @@
         "xtree": "cpp",
         "xutility": "cpp",
         "*.ipp": "cpp",
-        "resumable": "cpp"
+        "resumable": "cpp",
+        "*.ext": "lua"
     },
     "deno.enable": true,
     "deno.path": "deps/deno/bin/deno",
-    "deno.lint": true
+    "deno.lint": true,
+    "cmake.configureOnOpen": false
 }

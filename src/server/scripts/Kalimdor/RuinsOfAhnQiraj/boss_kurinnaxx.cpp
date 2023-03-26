@@ -110,7 +110,7 @@ struct boss_kurinnaxx : public BossAI
             switch (eventId)
             {
                 case EVENT_MORTAL_WOUND:
-                    DoCastVictim(SPELL_MORTAL_WOUND);
+                    //DoCastVictim(SPELL_MORTAL_WOUND);
                     events.ScheduleEvent(EVENT_MORTAL_WOUND, 8s, 10s);
                     break;
                 case EVENT_SAND_TRAP:

@@ -2,6 +2,7 @@
 # AzerothCore
 #
 
+/.vscode
 /conf/*
 !/conf/dist
 !/modules/*

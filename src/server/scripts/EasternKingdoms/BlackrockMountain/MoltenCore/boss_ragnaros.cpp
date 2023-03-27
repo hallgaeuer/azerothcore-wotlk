@@ -528,7 +528,7 @@ class spell_ragnaros_lava_burst_randomizer : public SpellScript
     }
 };
 
-constexpr std::array<uint32, 8> RagnarosSoFSpells = { SPELL_SUMMON_SON_OF_FLAME_A, SPELL_SUMMON_SON_OF_FLAME_B, SPELL_SUMMON_SON_OF_FLAME_C, SPELL_SUMMON_SON_OF_FLAME_D, SPELL_SUMMON_SON_OF_FLAME_E, SPELL_SUMMON_SON_OF_FLAME_F, SPELL_SUMMON_SON_OF_FLAME_G, SPELL_SUMMON_SON_OF_FLAME_H };
+constexpr std::array<uint32, 3> RagnarosSoFSpells = { SPELL_SUMMON_SON_OF_FLAME_A, SPELL_SUMMON_SON_OF_FLAME_B, SPELL_SUMMON_SON_OF_FLAME_C };
 
 // 21108 - Summon Sons of Flame (server side)
 class spell_ragnaros_summon_sons_of_flame : public SpellScript

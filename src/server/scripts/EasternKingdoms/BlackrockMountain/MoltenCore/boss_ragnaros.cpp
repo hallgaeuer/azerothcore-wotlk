@@ -388,7 +388,7 @@ public:
                     }
                     case EVENT_MIGHT_OF_RAGNAROS:
                     {
-                        if (Unit* target = SelectTarget(SelectTargetMethod::Random, 0, [](Unit const* target)
+                        if (Unit* target = SelectTarget(SelectTargetMethod::Random, 1, [](Unit const* target)
                         {
                             return target->IsPlayer() && target->getPowerType() == POWER_MANA;
                         }))

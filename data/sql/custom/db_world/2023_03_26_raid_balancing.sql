@@ -1,26 +1,31 @@
-TRUNCATE mod_quickbalance_modifier;
-insert into mod_quickbalance_modifier (Map, Creature, DamageModifier, HealthModifier, ManaModifier, ArmorModifier, Comment)
+TRUNCATE mod_quickbalance_modifier_map;
+insert into acore_world.mod_quickbalance_modifier_map (Map, Difficulty, DamageModifier, HealthModifier, ManaModifier, ArmorModifier, Comment)
 values  (309, 0, 0.7, 0.6, 1, 1, 'Zul Gurub'),
         (409, 0, 0.95, 0.4, 1, 1, 'Molten Core'),
-        (409, 11502, 0.55, 0.2, 1, 1, 'Molten Core - Ragnaros'),
-        (409, 11661, 0.3, 0.4, 1, 1, 'Molten Core - Flamewaker (Gehennas)'),
-        (409, 11662, 0.3, 0.6, 1, 1, 'Molten Core - Flamewaker Priest (Sulfuron)'),
-        (409, 11663, 0.35, 0.7, 1, 1, 'Molten Core - Flamewaker Healer (Majordomo)'),
-        (409, 11664, 0.3, 0.7, 1, 1, 'Molten Core - Flamewaker Elite (Majordomo)'),
-        (409, 11666, 0.6, 0.3, 1, 1, 'Molten Core - Firewalker'),
-        (409, 11667, 0.6, 0.3, 1, 1, 'Molten Core - Flameguard'),
-        (409, 11671, 0.65, 0.35, 1, 1, 'Molten Core - Core Hound (Groups)'),
-        (409, 11672, 0.3, 0.3, 1, 1, 'Molten Core - Core Rager (Golemagg)'),
-        (409, 11982, 0.75, 0.3, 1, 1, 'Molten Core - Magmadar'),
-        (409, 11988, 0.8, 0.3, 1, 1, 'Molten Core - Golemagg'),
-        (409, 12056, 0.6, 0.3, 1, 1, 'Molten Core - Baron Geddon'),
-        (409, 12076, 0.7, 0.3, 1, 1, 'Molten Core - Lava Elemental'),
-        (409, 12099, 0.3, 0.3, 1, 1, 'Molten Core - Firesworn (Garr)'),
-        (409, 12143, 0.5, 0.5, 1, 1, 'Molten Core - Son of Flame (Ragnaros)'),
-        (409, 12259, 0.6, 0.5, 1, 1, 'Molten Core - Gehennas'),
         (469, 0, 0.7, 0.2, 1, 1, 'BWL'),
         (509, 0, 0.7, 0.4, 1, 1, 'AQ20'),
-        (531, 0, 0.7, 0.2, 1, 1, 'AQ40');
+        (531, 0, 0.7, 0.2, 1, 1, 'AQ40'),
+        (533, 0, 1, 0.5, 1, 1, 'Naxxramas 10'),
+        (533, 1, 1, 0.2, 1, 1, 'Naxxramas 25');
+
+TRUNCATE mod_quickbalance_modifier_creature;
+insert into mod_quickbalance_modifier_creature (CreatureEntry, Difficulty, DamageModifier, HealthModifier, ManaModifier, ArmorModifier, Comment)
+values  (11502, 0, 0.55, 0.2, 1, 1, 'Molten Core - Ragnaros'),
+        (11661, 0, 0.3, 0.4, 1, 1, 'Molten Core - Flamewaker (Gehennas)'),
+        (11662, 0, 0.3, 0.6, 1, 1, 'Molten Core - Flamewaker Priest (Sulfuron)'),
+        (11663, 0, 0.35, 0.7, 1, 1, 'Molten Core - Flamewaker Healer (Majordomo)'),
+        (11664, 0, 0.3, 0.7, 1, 1, 'Molten Core - Flamewaker Elite (Majordomo)'),
+        (11666, 0, 0.6, 0.3, 1, 1, 'Molten Core - Firewalker'),
+        (11667, 0, 0.6, 0.3, 1, 1, 'Molten Core - Flameguard'),
+        (11671, 0, 0.65, 0.35, 1, 1, 'Molten Core - Core Hound (Groups)'),
+        (11672, 0, 0.3, 0.3, 1, 1, 'Molten Core - Core Rager (Golemagg)'),
+        (11982, 0, 0.75, 0.3, 1, 1, 'Molten Core - Magmadar'),
+        (11988, 0, 0.8, 0.3, 1, 1, 'Molten Core - Golemagg'),
+        (12056, 0, 0.5, 0.3, 1, 1, 'Molten Core - Baron Geddon'),
+        (12076, 0, 0.7, 0.3, 1, 1, 'Molten Core - Lava Elemental'),
+        (12099, 0, 0.3, 0.3, 1, 1, 'Molten Core - Firesworn (Garr)'),
+        (12143, 0, 0.5, 0.5, 1, 1, 'Molten Core - Son of Flame (Ragnaros)'),
+        (12259, 0, 0.6, 0.5, 1, 1, 'Molten Core - Gehennas');
 
 /* Deactivate some creatures in MC */
 UPDATE creature SET phaseMask = 16384 WHERE guid IN(

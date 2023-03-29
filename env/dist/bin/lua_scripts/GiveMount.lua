@@ -6,9 +6,11 @@ local FACTION_HORDE = 1;
 
 local function OnPlayerFirstLogin(event, player)
     if (player:GetTeam() == FACTION_ALLIANCE) then
-        player:AddItem(44225)
+        player:AddItem(44225) -- Reins of the Armored Brown Bear (Alliance)
+        player:AddItem(25473) -- Swift Blue Gryphon
     else
-        player:AddItem(44226)
+        player:AddItem(44226) -- Reins of the Armored Brown Bear Horde
+        player:AddItem(25477) -- Swift Red Windrider
     end
 end
 

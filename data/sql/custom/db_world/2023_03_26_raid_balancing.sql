@@ -1,3 +1,4 @@
+TRUNCATE mod_quickbalance_modifier;
 insert into mod_quickbalance_modifier (Map, Creature, DamageModifier, HealthModifier, ManaModifier, ArmorModifier, Comment)
 values  (309, 0, 0.7, 0.6, 1, 1, 'Zul Gurub'),
         (409, 0, 0.95, 0.4, 1, 1, 'Molten Core'),

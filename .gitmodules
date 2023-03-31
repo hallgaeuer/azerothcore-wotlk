@@ -12,7 +12,7 @@
 	url = git@github.com:hallgaeuer/mod-skip-dk-starting-area.git
 [submodule "modules/mod-learn-spells"]
 	path = modules/mod-learn-spells
-	url = git@github.com:azerothcore/mod-learn-spells.git
+	url = git@github.com:hallgaeuer/mod-learn-spells.git
 [submodule "modules/mod-quickbalance"]
 	path = modules/mod-quickbalance
 	url = git@github.com:hallgaeuer/mod-quickbalance.git

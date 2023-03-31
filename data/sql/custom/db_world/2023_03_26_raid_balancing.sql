@@ -25,10 +25,10 @@ values  (11502, 0, 0.55, 0.2, 1, 1, 'Molten Core - Ragnaros'),
         (12076, 0, 0.7, 0.3, 1, 1, 'Molten Core - Lava Elemental'),
         (12099, 0, 0.3, 0.3, 1, 1, 'Molten Core - Firesworn (Garr)'),
         (12143, 0, 0.5, 0.5, 1, 1, 'Molten Core - Son of Flame (Ragnaros)'),
-        (12259, 0, 0.6, 0.5, 1, 1, 'Molten Core - Gehennas')
-        (16290, 0, 0.4, 0.5, 1, 1, 'Naxxramas 10 - Grobbulus Fallout Slime')
+        (12259, 0, 0.6, 0.5, 1, 1, 'Molten Core - Gehennas'),
+        (16290, 0, 0.4, 0.5, 1, 1, 'Naxxramas 10 - Grobbulus Fallout Slime'),
         (16360, 0, 0.5, 0.25, 1, 1, 'Naxxramas 10 - Gluth Zombie'),
-        (16011, 0, 0.75, 0.5, 1, 1, 'Naxxramas 10 - Loatheb');;
+        (16011, 0, 0.75, 0.5, 1, 1, 'Naxxramas 10 - Loatheb');
 
 TRUNCATE mod_quickbalance_modifier_spell
 insert into acore_world.mod_quickbalance_modifier_spell (Spell, DamageModifier, Comment)

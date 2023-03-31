@@ -30,7 +30,7 @@ values  (11502, 0, 0.55, 0.2, 1, 1, 'Molten Core - Ragnaros'),
         (16360, 0, 0.5, 0.25, 1, 1, 'Naxxramas 10 - Gluth Zombie'),
         (16011, 0, 0.75, 0.5, 1, 1, 'Naxxramas 10 - Loatheb');
 
-TRUNCATE mod_quickbalance_modifier_spell
+TRUNCATE mod_quickbalance_modifier_spell;
 insert into acore_world.mod_quickbalance_modifier_spell (Spell, DamageModifier, Comment)
 values  (41926, 0.5, 'Naxxramas 10 - Patchwerk - Hateful Strike');
 

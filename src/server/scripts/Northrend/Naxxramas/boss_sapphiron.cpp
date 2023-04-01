@@ -266,7 +266,7 @@ public:
                     events.Repeat(10s);
                     return;
                 case EVENT_LIFE_DRAIN:
-                    me->CastCustomSpell(RAID_MODE(SPELL_LIFE_DRAIN_10, SPELL_LIFE_DRAIN_25), SPELLVALUE_MAX_TARGETS, RAID_MODE(2, 5), me, false);
+                    me->CastCustomSpell(RAID_MODE(SPELL_LIFE_DRAIN_10, SPELL_LIFE_DRAIN_25), SPELLVALUE_MAX_TARGETS, RAID_MODE(1, 2), me, false);
                     events.Repeat(24s);
                     return;
                 case EVENT_BLIZZARD:

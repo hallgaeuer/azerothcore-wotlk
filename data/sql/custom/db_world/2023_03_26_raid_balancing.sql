@@ -28,7 +28,9 @@ values  (11502, 0, 0.55, 0.2, 1, 1, 'Molten Core - Ragnaros'),
         (12259, 0, 0.6, 0.5, 1, 1, 'Molten Core - Gehennas'),
         (16290, 0, 0.4, 0.5, 1, 1, 'Naxxramas 10 - Grobbulus Fallout Slime'),
         (16360, 0, 0.5, 0.25, 1, 1, 'Naxxramas 10 - Gluth Zombie'),
-        (16011, 0, 0.75, 0.5, 1, 1, 'Naxxramas 10 - Loatheb');
+        (16011, 0, 0.75, 0.5, 1, 1, 'Naxxramas 10 - Loatheb'),
+        (15989, 0, 0.8, 0.5, 1, 1, 'Naxxramas 10 - Sapphiron')
+;
 
 TRUNCATE mod_quickbalance_modifier_spell;
 insert into acore_world.mod_quickbalance_modifier_spell (Spell, DamageModifier, Comment)

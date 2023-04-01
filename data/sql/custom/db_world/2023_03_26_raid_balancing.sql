@@ -29,12 +29,26 @@ values  (11502, 0, 0.55, 0.2, 1, 1, 'Molten Core - Ragnaros'),
         (16290, 0, 0.4, 0.5, 1, 1, 'Naxxramas 10 - Grobbulus Fallout Slime'),
         (16360, 0, 0.5, 0.25, 1, 1, 'Naxxramas 10 - Gluth Zombie'),
         (16011, 0, 0.75, 0.5, 1, 1, 'Naxxramas 10 - Loatheb'),
-        (15989, 0, 0.8, 0.5, 1, 1, 'Naxxramas 10 - Sapphiron')
+        (15989, 0, 0.8, 0.5, 1, 1, 'Naxxramas 10 - Sapphiron'),
+        (16506, 0, 0.25, 0.5, 1, 1, 'Naxxramas 10 - Faerlina Worshipper'),
+        (15953, 0, 0.8, 0.5, 1, 1, 'Naxxramas 10 - Faerlina'),
+        (15929, 0, 0.25, 0.4, 1, 1, 'Naxxramas 10 - Stalagg'),
+        (15930, 0, 0.25, 0.4, 1, 1, 'Naxxramas 10 - Feugen'),
+        (15990, 0, 0.8, 0.5, 1, 1, 'Naxxramas 10 - Kel Thuzad'),
+        (16441, 0, 0.7, 0.5, 1, 1, 'Naxxramas 10 - Kel Thuzad - Guardian of Icecrown'),
+        (30549, 0, 0.4, 0.5, 1, 1, 'Naxxramas 10 - Four Horsemen - Baron Rivendare'),
+        (16064, 0, 0.4, 0.5, 1, 1, 'Naxxramas 10 - Four Horsemen - Thane'),
+        (16063, 0, 0.7, 0.5, 1, 1, 'Naxxramas 10 - Four Horsemen - Sir Zeliak'),
+        (16065, 0, 0.7, 0.5, 1, 1, 'Naxxramas 10 - Four Horsemen - Lady Blaumeux')
 ;
 
 TRUNCATE mod_quickbalance_modifier_spell;
 insert into acore_world.mod_quickbalance_modifier_spell (Spell, DamageModifier, Comment)
-values  (41926, 0.5, 'Naxxramas 10 - Patchwerk - Hateful Strike');
+values
+    (41926, 0.5, 'Naxxramas 10 - Patchwerk - Hateful Strike'),
+    (28478, 0.6, 'Naxxramas 10 - Kel Thuzad - Frost Bolt'),
+    (27808, 0.5, 'Naxxramas 10 - Kel Thuzad - Frost Blast')
+;
 
 /* Deactivate some creatures in MC */
 UPDATE creature SET phaseMask = 16384 WHERE guid IN(

@@ -31,3 +31,8 @@ INSERT INTO creature (guid, id1, id2, id3, map, zoneId, areaId, spawnMask, phase
 /* Reagents */
 DELETE FROM creature WHERE guid = 5000557;
 INSERT INTO creature (guid, id1, id2, id3, map, zoneId, areaId, spawnMask, phaseMask, equipment_id, position_x, position_y, position_z, orientation, spawntimesecs, wander_distance, currentwaypoint, curhealth, curmana, MovementType, npcflag, unit_flags, dynamicflags, ScriptName, VerifiedBuild) VALUES (5000557, 28714, 0, 0, 571, 0, 0, 1, 1, 0, 5787.18, 482.429, 657.604, 5.55754, 300, 0, 0, 8508, 7981, 0, 0, 0, 0, '', null);
+
+/* Ammo */
+DELETE FROM creature WHERE guid = 5000575;
+insert into creature (guid, id1, id2, id3, map, zoneId, areaId, spawnMask, phaseMask, equipment_id, position_x, position_y, position_z, orientation, spawntimesecs, wander_distance, currentwaypoint, curhealth, curmana, MovementType, npcflag, unit_flags, dynamicflags, ScriptName, VerifiedBuild)
+values  (5000575, 29493, 0, 0, 571, 0, 0, 1, 1, 0, 5788.28, 483.771, 657.606, 5.59828, 300, 0, 0, 10635, 0, 0, 0, 0, 0, '', null);

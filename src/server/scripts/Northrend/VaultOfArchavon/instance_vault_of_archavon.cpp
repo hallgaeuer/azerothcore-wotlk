@@ -69,6 +69,9 @@ public:
 
         void Update(uint32 diff) override
         {
+            // Disable all Wintergrasp checks
+            return;
+
             checkTimer += diff;
             if (checkTimer >= 60000)
             {

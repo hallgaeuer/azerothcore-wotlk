@@ -282,6 +282,7 @@ public:
             _didFirstFlyPhase = false;
             _isBelow20Pct = false;
             _isThirdPhase = false;
+            _isLanding = false;
             _bombCount = 0;
             _mysticBuffetStack = 0;
             _Reset();
@@ -365,8 +366,10 @@ public:
 
         void DoAction(int32 action) override
         {
-            if (action == ACTION_START_FROSTWYRM)
+            if (action == ACTION_START_FROSTWYRM && !_isLanding)
             {
+                _isLanding = true;
+
                 if (TempSummon* summon = me->ToTempSummon())
                     summon->SetTempSummonType(TEMPSUMMON_DEAD_DESPAWN);
 
@@ -672,6 +675,7 @@ public:
         bool _isBelow20Pct;
         bool _isThirdPhase;
         bool _isInAirPhase;
+        bool _isLanding;
     };
 
     CreatureAI* GetAI(Creature* creature) const override
@@ -1704,7 +1708,7 @@ public:
                 if (Creature* rimefang = ObjectAccessor::GetCreature(*player, instance->GetGuidData(DATA_RIMEFANG)))
                     rimefang->AI()->DoAction(ACTION_START_FROSTWYRM);
 
-            if (!instance->GetData(DATA_SINDRAGOSA_FROSTWYRMS))
+            if (!instance->GetData(DATA_SINDRAGOSA_FROSTWYRMS) && instance->GetBossState(DATA_SINDRAGOSA) != IN_PROGRESS)
             {
                 player->GetMap()->LoadGrid(SindragosaSpawnPos.GetPositionX(), SindragosaSpawnPos.GetPositionY());
                 if (Creature* sindragosa = ObjectAccessor::GetCreature(*player, instance->GetGuidData(DATA_SINDRAGOSA)))

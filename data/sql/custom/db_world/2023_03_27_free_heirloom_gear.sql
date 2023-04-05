@@ -33,7 +33,7 @@ WHERE `entry` IN (
     );
 
 /* Spawn vendor at Krasus Landing */
-INSERT
-IGNORE INTO creature
+DELETE FROM creature WHERE guid = 5000551;
+INSERT INTO creature
     (guid, id1, id2, id3, map, zoneId, areaId, spawnMask, phaseMask, equipment_id, position_x, position_y, position_z, orientation, spawntimesecs, wander_distance, currentwaypoint, curhealth, curmana, MovementType, npcflag, unit_flags, dynamicflags, ScriptName, VerifiedBuild) VALUES
     (5000551, 35507, 0, 0, 571, 0, 0, 1, 1, 1, 5788.47, 483.833, 657.605, 5.49383, 300, 0, 0, 10080, 8814, 0, 0, 0, 0, '', null);

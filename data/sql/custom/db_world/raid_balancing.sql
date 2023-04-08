@@ -1,5 +1,4 @@
-TRUNCATE mod_quickbalance_modifier_map;
-insert into mod_quickbalance_modifier_map (Map, Difficulty, DamageModifier, HealthModifier, ManaModifier, ArmorModifier, Comment)
+REPLACE INTO mod_quickbalance_modifier_map (Map, Difficulty, DamageModifier, HealthModifier, ManaModifier, ArmorModifier, Comment)
 values  (509, 0, 0.7, 0.4, 1, 1, 'AQ20'),
         (531, 0, 0.7, 0.2, 1, 1, 'AQ40'),
         (469, 0, 0.7, 0.2, 1, 1, 'BWL'),
@@ -9,11 +8,11 @@ values  (509, 0, 0.7, 0.4, 1, 1, 'AQ20'),
         (615, 0, 1, 0.5, 1, 1, 'Obsidian Sanctum 10'),
         (615, 1, 1, 0.2, 1, 1, 'Obsidian Sanctum 25'),
         (309, 0, 0.7, 0.6, 1, 1, 'Zul Gurub'),
-        (624, 0, 1, 0.5, 1, 1, 'Vault of Archavon 10');
+        (624, 0, 1, 0.5, 1, 1, 'Vault of Archavon 10'),
+        (616, 0, 0.8, 0.5, 1, 1, 'Eye of Eternity 10')
 ;
 
-TRUNCATE mod_quickbalance_modifier_creature;
-insert into mod_quickbalance_modifier_creature (CreatureEntry, Difficulty, DamageModifier, HealthModifier, ManaModifier, ArmorModifier, Comment)
+REPLACE into mod_quickbalance_modifier_creature (CreatureEntry, Difficulty, DamageModifier, HealthModifier, ManaModifier, ArmorModifier, Comment)
 values  (12056, 0, 0.5, 0.3, 1, 1, 'Molten Core - Baron Geddon'),
         (11671, 0, 0.65, 0.35, 1, 1, 'Molten Core - Core Hound (Groups)'),
         (11672, 0, 0.3, 0.3, 1, 1, 'Molten Core - Core Rager (Golemagg)'),
@@ -33,10 +32,10 @@ values  (12056, 0, 0.5, 0.3, 1, 1, 'Molten Core - Baron Geddon'),
         (15953, 0, 0.8, 0.5, 1, 1, 'Naxxramas 10 - Faerlina'),
         (16506, 0, 0.25, 0.5, 1, 1, 'Naxxramas 10 - Faerlina Worshipper'),
         (15930, 0, 0.25, 0.4, 1, 1, 'Naxxramas 10 - Feugen'),
-        (30549, 0, 0.4, 0.5, 1, 1, 'Naxxramas 10 - Four Horsemen - Baron Rivendare'),
-        (16065, 0, 0.7, 0.5, 1, 1, 'Naxxramas 10 - Four Horsemen - Lady Blaumeux'),
-        (16063, 0, 0.7, 0.5, 1, 1, 'Naxxramas 10 - Four Horsemen - Sir Zeliak'),
-        (16064, 0, 0.4, 0.5, 1, 1, 'Naxxramas 10 - Four Horsemen - Thane'),
+        (30549, 0, 0.35, 0.5, 1, 1, 'Naxxramas 10 - Four Horsemen - Baron Rivendare'),
+        (16065, 0, 0.5, 0.5, 1, 1, 'Naxxramas 10 - Four Horsemen - Lady Blaumeux'),
+        (16063, 0, 0.5, 0.5, 1, 1, 'Naxxramas 10 - Four Horsemen - Sir Zeliak'),
+        (16064, 0, 0.35, 0.5, 1, 1, 'Naxxramas 10 - Four Horsemen - Thane'),
         (16360, 0, 0.5, 0.25, 1, 1, 'Naxxramas 10 - Gluth Zombie'),
         (16290, 0, 0.4, 0.5, 1, 1, 'Naxxramas 10 - Grobbulus Fallout Slime'),
         (15990, 0, 0.8, 0.5, 1, 1, 'Naxxramas 10 - Kel Thuzad'),
@@ -45,11 +44,14 @@ values  (12056, 0, 0.5, 0.3, 1, 1, 'Molten Core - Baron Geddon'),
         (15989, 0, 0.8, 0.5, 1, 1, 'Naxxramas 10 - Sapphiron'),
         (15929, 0, 0.25, 0.4, 1, 1, 'Naxxramas 10 - Stalagg'),
         (31219, 0, 0.5, 0.5, 1, 1, 'Obsidian Sanctum 10 - Acolyte of Vesperon'),
-        (28860, 0, 0.8, 0.5, 1, 1, 'Obsidian Sanctum 10 - Sartharion')
+        (28860, 0, 0.8, 0.5, 1, 1, 'Obsidian Sanctum 10 - Sartharion'),
+        (28859, 0, 0.7, 0.5, 1, 1, 'Eye of Eternity 10 - Malygos'),
+        (30249, 0, 0.4, 0.35, 1, 1, 'Eye of Eternity 10 - Scion of Eternity'),
+        (30245, 0, 0.6, 0.35, 1, 1, 'Eye of Eternity 10 - Nexus Lord'),
+        (30161, 0, 1, 1, 1, 1, 'Eye of Eternity 10 - Wyrmrest Skytalon (Phase 3 Friendly)')
 ;
 
-TRUNCATE mod_quickbalance_modifier_spell;
-insert into mod_quickbalance_modifier_spell (Spell, DamageModifier, Comment)
+REPLACE INTO mod_quickbalance_modifier_spell (Spell, DamageModifier, Comment)
 values  (27808, 0.5, 'Naxxramas 10 - Kel Thuzad - Frost Blast'),
         (28478, 0.65, 'Naxxramas 10 - Kel Thuzad - Frost Bolt'),
         (41926, 0.5, 'Naxxramas 10 - Patchwerk - Hateful Strike'),

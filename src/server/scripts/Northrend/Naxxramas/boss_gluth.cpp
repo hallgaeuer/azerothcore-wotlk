@@ -192,7 +192,7 @@ public:
                     events.Repeat(22s);
                     break;
                 case EVENT_MORTAL_WOUND:
-                    //me->CastSpell(me->GetVictim(), SPELL_MORTAL_WOUND, false);
+                    me->CastSpell(me->GetVictim(), SPELL_MORTAL_WOUND, false);
                     events.Repeat(10s);
                     break;
                 case EVENT_DECIMATE:

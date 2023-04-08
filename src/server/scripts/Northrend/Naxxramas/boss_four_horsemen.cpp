@@ -334,7 +334,7 @@ public:
             switch (events.ExecuteEvent())
             {
                 case EVENT_MARK_CAST:
-                    //me->CastSpell(me, TABLE_SPELL_MARK[horsemanId], false);
+                    me->CastSpell(me, TABLE_SPELL_MARK[horsemanId], false);
                     events.Repeat((me->GetEntry() == NPC_LADY_BLAUMEUX || me->GetEntry() == NPC_SIR_ZELIEK) ? 15s : 12s);
                     return;
                 case EVENT_BERSERK:

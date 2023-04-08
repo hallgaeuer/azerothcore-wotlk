@@ -162,7 +162,7 @@ class boss_archavon : public CreatureScript
                         break;
                     }
                     case EVENT_IMPALE:
-                        //DoCastVictim(RAID_MODE(SPELL_IMPALE_10, SPELL_IMPALE_25));
+                        DoCastVictim(RAID_MODE(SPELL_IMPALE_10, SPELL_IMPALE_25));
                         break;
                     case EVENT_BERSERK:
                         DoCast(me, SPELL_BERSERK, true);

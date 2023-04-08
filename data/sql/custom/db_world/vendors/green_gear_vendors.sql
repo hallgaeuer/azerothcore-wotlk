@@ -73,9 +73,9 @@ INSERT INTO npc_vendor (entry, slot, item)
 SELECT @vendorId, InventoryType, entry FROM item_template WHERE (ItemLevel = 174 AND RandomSuffix = 0 AND Quality = 2 AND InventoryType IN (2, 11, 12) AND entry NOT IN (43648)) OR (entry IN (39482));
 
 /*----------------------------------------------*/
-/* Remove buy and sellprices of all those items */
+/* Remove buy and sellprices of all those items AND require level 80 for them */
 /*----------------------------------------------*/
-UPDATE item_template SET SellPrice = 1, BuyPrice = 0 WHERE (ItemLevel = 174 AND RandomSuffix = 0 AND Quality = 2) OR (entry IN (39482));
+UPDATE item_template SET SellPrice = 1, BuyPrice = 0, RequiredLevel = 80 WHERE (ItemLevel = 174 AND RandomSuffix = 0 AND Quality = 2) OR (entry IN (39482));
 
 /* Spawn in Dalaran Krasus Landing */
 DELETE FROM creature WHERE guid BETWEEN 5000567 AND 5000572;

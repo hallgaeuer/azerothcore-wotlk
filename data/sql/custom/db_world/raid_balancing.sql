@@ -51,8 +51,10 @@ values  (12056, 0, 0.5, 0.3, 1, 1, 'Molten Core - Baron Geddon'),
 TRUNCATE mod_quickbalance_modifier_spell;
 insert into mod_quickbalance_modifier_spell (Spell, DamageModifier, Comment)
 values  (27808, 0.5, 'Naxxramas 10 - Kel Thuzad - Frost Blast'),
-        (28478, 0.6, 'Naxxramas 10 - Kel Thuzad - Frost Bolt'),
-        (41926, 0.5, 'Naxxramas 10 - Patchwerk - Hateful Strike');
+        (28478, 0.65, 'Naxxramas 10 - Kel Thuzad - Frost Bolt'),
+        (41926, 0.5, 'Naxxramas 10 - Patchwerk - Hateful Strike'),
+        (28836, 0.1, 'Naxxramas - Four Horseman - Mark Damage')
+;
 
 /* Deactivate some creatures in MC */
 UPDATE creature SET phaseMask = 16384 WHERE guid IN(

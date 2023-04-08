@@ -1,3 +1,4 @@
+/* Depends on Stygian Mall creature_templates */
 DELETE FROM creature WHERE guid BETWEEN 5000534 AND 5000543;
 insert into creature (guid, id1, id2, id3, map, zoneId, areaId, spawnMask, phaseMask, equipment_id, position_x, position_y, position_z, orientation, spawntimesecs, wander_distance, currentwaypoint, curhealth, curmana, MovementType, npcflag, unit_flags, dynamicflags, ScriptName, VerifiedBuild)
 values  (5000543, 601526, 0, 0, 571, 0, 0, 1, 1, 0, 5782.14, 476.046, 657.843, 5.68707, 300, 0, 0, 5342, 0, 0, 0, 0, 0, '', null),

@@ -72,18 +72,8 @@ DELETE FROM npc_vendor WHERE entry = @vendorId;
 INSERT INTO npc_vendor (entry, slot, item)
 SELECT @vendorId, InventoryType, entry FROM item_template WHERE (ItemLevel = 174 AND RandomSuffix = 0 AND Quality = 2 AND InventoryType IN (2, 11, 12) AND entry NOT IN (43648)) OR (entry IN (39482));
 
-/*----------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 /* Remove buy and sellprices of all those items AND require level 80 for them */
-/*----------------------------------------------*/
-UPDATE item_template SET SellPrice = 1, BuyPrice = 0, RequiredLevel = 80 WHERE (ItemLevel = 174 AND RandomSuffix = 0 AND Quality = 2) OR (entry IN (39482));
-
-/* Spawn in Dalaran Krasus Landing */
-DELETE FROM creature WHERE guid BETWEEN 5000567 AND 5000572;
-insert into creature (guid, id1, id2, id3, map, zoneId, areaId, spawnMask, phaseMask, equipment_id, position_x, position_y, position_z, orientation, spawntimesecs, wander_distance, currentwaypoint, curhealth, curmana, MovementType, npcflag, unit_flags, dynamicflags, ScriptName, VerifiedBuild)
-values
-        (5000572, @start + 5, 0, 0, 571, 0, 0, 1, 1, 0, 5787.51, 449.478, 658.782, 0.103625, 300, 0, 0, 5342, 0, 0, 0, 0, 0, '', null),
-        (5000571, @start + 4, 0, 0, 571, 0, 0, 1, 1, 0, 5787.69, 451.196, 658.783, 6.12371, 300, 0, 0, 5342, 0, 0, 0, 0, 0, '', null),
-        (5000570, @start + 3, 0, 0, 571, 0, 0, 1, 1, 0, 5787.99, 452.869, 658.783, 6.07829, 300, 0, 0, 5342, 0, 0, 0, 0, 0, '', null),
-        (5000569, @start + 2, 0, 0, 571, 0, 0, 1, 1, 0, 5788.35, 454.627, 658.783, 6.07829, 300, 0, 0, 5342, 0, 0, 0, 0, 0, '', null),
-        (5000568, @start + 1, 0, 0, 571, 0, 0, 1, 1, 0, 5788.73, 456.448, 658.783, 6.07829, 300, 0, 0, 5342, 0, 0, 0, 0, 0, '', null),
-        (5000567, @start, 0, 0, 571, 0, 0, 1, 1, 0, 5789.11, 458.26, 658.783, 6.07829, 300, 0, 0, 5342, 0, 0, 0, 0, 0, '', null);
+/* Also make them not disenchantable                                          */
+/*----------------------------------------------------------------------------*/
+UPDATE item_template SET SellPrice = 1, BuyPrice = 0, RequiredLevel = 80, DisenchantID = 0 WHERE (ItemLevel = 174 AND RandomSuffix = 0 AND Quality = 2) OR (entry IN (39482));

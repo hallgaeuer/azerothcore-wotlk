@@ -1,0 +1,3 @@
+DELETE FROM `creature` WHERE (`id1` = 9000000);
+INSERT INTO `creature` (`guid`, `id1`, `id2`, `id3`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`) VALUES
+(5000531, 9000000, 0, 0, 571, 0, 0, 1, 1, 0, 5811.54, 414.231, 657.587, 1.57701, 300, 0, 0, 5342, 0, 0, 0, 0, 0, '', NULL);

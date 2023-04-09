@@ -34,7 +34,7 @@ values  (@vendorId, 0, 0, 0, 0, 0, 2029, 0, 0, 0, 'Gear Vendor', 'Leather armor'
 
 DELETE FROM npc_vendor WHERE entry = @vendorId;
 INSERT INTO npc_vendor (entry, slot, item)
-SELECT @vendorId, InventoryType, entry FROM item_template WHERE ItemLevel = 174 AND RandomSuffix = 0 AND Quality = 2 AND AllowableClass IN (-1, 32767, 262143) AND AllowableRace = -1 AND class = 4 AND subclass = 2;
+SELECT @vendorId, InventoryType, entry FROM item_template WHERE ItemLevel = 174 AND RandomSuffix = 0 AND Quality = 2 AND AllowableClass IN (-1, 32767, 262143) AND AllowableRace = -1 AND class = 4 AND subclass = 2 AND entry NOT IN (43895, 42875);
 
 /*------------------------------*/
 /* Green cloth armor vendor */
@@ -46,7 +46,7 @@ values  (@vendorId, 0, 0, 0, 0, 0, 2029, 0, 0, 0, 'Gear Vendor', 'Cloth armor an
 
 DELETE FROM npc_vendor WHERE entry = @vendorId;
 INSERT INTO npc_vendor (entry, slot, item)
-SELECT @vendorId, InventoryType, entry FROM item_template WHERE ItemLevel = 174 AND RandomSuffix = 0 AND Quality = 2 AND AllowableClass IN (-1, 32767, 262143) AND AllowableRace = -1 AND class = 4 AND subclass = 1;
+SELECT @vendorId, InventoryType, entry FROM item_template WHERE ItemLevel = 174 AND RandomSuffix = 0 AND Quality = 2 AND AllowableClass IN (-1, 32767, 262143) AND AllowableRace = -1 AND class = 4 AND subclass = 1 AND entry NOT IN (43878);
 
 /*------------------------------*/
 /* Green weapon vendor */

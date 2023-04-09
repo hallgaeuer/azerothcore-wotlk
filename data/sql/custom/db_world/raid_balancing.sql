@@ -9,7 +9,11 @@ values  (509, 0, 0.7, 0.4, 1, 1, 'AQ20'),
         (615, 1, 1, 0.2, 1, 1, 'Obsidian Sanctum 25'),
         (309, 0, 0.7, 0.6, 1, 1, 'Zul Gurub'),
         (624, 0, 1, 0.5, 1, 1, 'Vault of Archavon 10'),
-        (616, 0, 0.8, 0.5, 1, 1, 'Eye of Eternity 10')
+        (624, 1, 1, 0.2, 1, 1, 'Vault of Archavon 25'),
+        (616, 0, 0.8, 0.5, 1, 1, 'Eye of Eternity 10'),
+        (616, 1, 0.8, 0.2, 1, 1, 'Eye of Eternity 25'),
+        (603, 0, 1, 0.5, 1, 1, 'Ulduar 10'),
+        (603, 1, 1, 0.2, 1, 1, 'Ulduar 25')
 ;
 
 REPLACE into mod_quickbalance_modifier_creature (CreatureEntry, Difficulty, DamageModifier, HealthModifier, ManaModifier, ArmorModifier, Comment)
@@ -48,7 +52,9 @@ values  (12056, 0, 0.5, 0.3, 1, 1, 'Molten Core - Baron Geddon'),
         (28859, 0, 0.7, 0.5, 1, 1, 'Eye of Eternity 10 - Malygos'),
         (30249, 0, 0.4, 0.35, 1, 1, 'Eye of Eternity 10 - Scion of Eternity'),
         (30245, 0, 0.6, 0.35, 1, 1, 'Eye of Eternity 10 - Nexus Lord'),
-        (30161, 0, 1, 1, 1, 1, 'Eye of Eternity 10 - Wyrmrest Skytalon (Phase 3 Friendly)')
+        (30161, 0, 1, 1, 1, 1, 'Eye of Eternity 10 - Wyrmrest Skytalon (Phase 3 Friendly)'),
+        (33121, 0, 0.9, 0.5, 1, 1, 'Ulduar 10 - Ignis'),
+        (33121, 0, 0.5, 0.5, 1, 1, 'Ulduar 10 - Ignis - Iron Construct')
 ;
 
 REPLACE INTO mod_quickbalance_modifier_spell (Spell, DamageModifier, Comment)
@@ -106,3 +112,9 @@ INSERT IGNORE INTO spell_dbc (`ID`,`Category`,`DispelType`,`Mechanic`,`Attribute
 VALUES (20533,0,0,0,384,1024,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,101,0,0,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1,0,0,7,0,0,75,0,0,0,0,0,712,0,0,0,0,0,22,0,0,15,0,0,13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,795,0,11,0,0,'Intense Heat','','','','','','','','','','','','','','','',16712190,'','','','','','','','','','','','','','','','',16712188,'','','','','','','','','','','','','','','','',16712188,'','','','','','','','','','','','','','','','',16712188,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,4,0,0,0,0.10000000149011612,0,0,0,0);
 /* Update to reduce damage */
 UPDATE spell_dbc SET EffectBasePoints_1 = 500 WHERE ID = 20533;
+
+/* Half Ulduar Tower HP */
+UPDATE gameobject_template SET Data0 = 15000, Data5 = 15000 WHERE entry IN (194370, 194371, 194375,194377);
+/* Half Ulduar Storm Beacon HP */
+UPDATE gameobject_template SET Data5 = 10000 WHERE entry IN (194398,194399,194400,194401,194402,194403,194404,194405,194406,194407,194408,194409,194410,194411,194412,194413,194414,194506);
+UPDATE gameobject_template SET Data0 = 9999 WHERE entry IN (194415);

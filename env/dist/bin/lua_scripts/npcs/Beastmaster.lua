@@ -1,3 +1,5 @@
+-- Beastmaster NPC (Hunter Pets)
+
 local Beastmaster = {
     entry = 9000000, -- Beastmaster entry.
     maxObj = 13, -- 13 = Max amt. of menu objects.

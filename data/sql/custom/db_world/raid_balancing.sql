@@ -33,6 +33,7 @@ values  (12056, 0, 0.5, 0.3, 1, 1, 'Molten Core - Baron Geddon'),
         (11982, 0, 0.75, 0.3, 1, 1, 'Molten Core - Magmadar'),
         (11502, 0, 0.55, 0.2, 1, 1, 'Molten Core - Ragnaros'),
         (12143, 0, 0.5, 0.5, 1, 1, 'Molten Core - Son of Flame (Ragnaros)'),
+        (16028, 0, 0.8, 0.5, 1, 1, 'Naxxramas 10 - Patchwerk'),
         (15953, 0, 0.8, 0.5, 1, 1, 'Naxxramas 10 - Faerlina'),
         (16506, 0, 0.25, 0.5, 1, 1, 'Naxxramas 10 - Faerlina Worshipper'),
         (15930, 0, 0.25, 0.4, 1, 1, 'Naxxramas 10 - Feugen'),
@@ -60,7 +61,7 @@ values  (12056, 0, 0.5, 0.3, 1, 1, 'Molten Core - Baron Geddon'),
 REPLACE INTO mod_quickbalance_modifier_spell (Spell, DamageModifier, Comment)
 values  (27808, 0.5, 'Naxxramas 10 - Kel Thuzad - Frost Blast'),
         (28478, 0.65, 'Naxxramas 10 - Kel Thuzad - Frost Bolt'),
-        (41926, 0.5, 'Naxxramas 10 - Patchwerk - Hateful Strike'),
+        (41926, 0.1, 'Naxxramas 10 - Patchwerk - Hateful Strike'),
         (28836, 0.1, 'Naxxramas - Four Horseman - Mark Damage')
 ;
 

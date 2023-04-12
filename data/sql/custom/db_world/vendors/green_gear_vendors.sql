@@ -10,7 +10,7 @@ values  (@vendorId, 0, 0, 0, 0, 0, 2029, 0, 0, 0, 'Gear Vendor', 'Plate armor', 
 
 DELETE FROM npc_vendor WHERE entry = @vendorId;
 INSERT INTO npc_vendor (entry, slot, item)
-SELECT @vendorId, InventoryType, entry FROM item_template WHERE ItemLevel = 174 AND RandomSuffix = 0 AND Quality = 2 AND AllowableClass IN (-1, 32767, 262143) AND AllowableRace IN (-1, 2147483647) AND class = 4 AND subclass = 4 AND entry NOT IN (43938, 43848);
+SELECT @vendorId, InventoryType, entry FROM item_template WHERE ItemLevel = 174 AND RandomSuffix = 0 AND Quality = 2 AND AllowableClass IN (-1, 32767, 262143) AND AllowableRace IN (-1, 2147483647) AND class = 4 AND subclass = 4 AND entry NOT IN (43938, 43848, 42885);
 
 /*------------------------------*/
 /* Green mail armor vendor */

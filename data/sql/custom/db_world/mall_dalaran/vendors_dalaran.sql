@@ -14,3 +14,6 @@ values
         (5000569, 9000004, 0, 0, 571, 0, 0, 1, 1, 0, 5788.35, 454.627, 658.783, 6.07829, 300, 0, 0, 5342, 0, 0, 0, 0, 0, '', null),
         (5000568, 9000003, 0, 0, 571, 0, 0, 1, 1, 0, 5788.73, 456.448, 658.783, 6.07829, 300, 0, 0, 5342, 0, 0, 0, 0, 0, '', null),
         (5000567, 9000002, 0, 0, 571, 0, 0, 1, 1, 0, 5789.11, 458.26, 658.783, 6.07829, 300, 0, 0, 5342, 0, 0, 0, 0, 0, '', null);
+
+REPLACE INTO creature (guid, id1, id2, id3, map, zoneId, areaId, spawnMask, phaseMask, equipment_id, position_x, position_y, position_z, orientation, spawntimesecs, wander_distance, currentwaypoint, curhealth, curmana, MovementType, npcflag, unit_flags, dynamicflags, ScriptName, VerifiedBuild)
+values  (5000590, 9000009, 0, 0, 571, 0, 0, 1, 1, 0, 5787.57, 447.779, 658.783, 0.102936, 300, 0, 0, 5342, 0, 0, 0, 0, 0, '', null);

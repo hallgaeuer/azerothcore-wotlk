@@ -17,3 +17,6 @@ values
 
 REPLACE INTO creature (guid, id1, id2, id3, map, zoneId, areaId, spawnMask, phaseMask, equipment_id, position_x, position_y, position_z, orientation, spawntimesecs, wander_distance, currentwaypoint, curhealth, curmana, MovementType, npcflag, unit_flags, dynamicflags, ScriptName, VerifiedBuild)
 values  (5000590, 9000009, 0, 0, 571, 0, 0, 1, 1, 0, 5787.57, 447.779, 658.783, 0.102936, 300, 0, 0, 5342, 0, 0, 0, 0, 0, '', null);
+
+/* Auction Master */
+REPLACE INTO acore_world.creature (guid, id1, id2, id3, map, zoneId, areaId, spawnMask, phaseMask, equipment_id, position_x, position_y, position_z, orientation, spawntimesecs, wander_distance, currentwaypoint, curhealth, curmana, MovementType, npcflag, unit_flags, dynamicflags, ScriptName, VerifiedBuild) values (5000593, 8661, 0, 0, 571, 0, 0, 1, 1, 1, 5849.38, 447.174, 658.816, 3.1244, 300, 0, 0, 6645, 0, 0, 0, 0, 0, '', null);

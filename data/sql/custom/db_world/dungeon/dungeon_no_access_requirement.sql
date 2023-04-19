@@ -1,0 +1,1 @@
+TRUNCATE TABLE dungeon_access_requirements;

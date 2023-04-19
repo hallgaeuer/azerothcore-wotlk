@@ -1,0 +1,1 @@
+UPDATE dungeon_access_template SET min_avg_item_level = 0;

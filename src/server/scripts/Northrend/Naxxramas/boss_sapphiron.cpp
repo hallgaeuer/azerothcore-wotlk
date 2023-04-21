@@ -43,7 +43,6 @@ enum Spells
     SPELL_BERSERK                   = 26662,
 
     // Ice block
-    SPELL_ICEBOLT_CAST              = 28526,
     SPELL_ICEBOLT_TRIGGER           = 28522,
     SPELL_FROST_MISSILE             = 30101,
     SPELL_FROST_EXPLOSION           = 28524,
@@ -100,7 +99,7 @@ public:
         uint8 iceboltCount{};
         uint32 spawnTimer{};
         GuidList blockList;
-        ObjectGuid currentTarget;
+        GuidVector iceboltTargets;
 
         void InitializeAI() override
         {
@@ -131,7 +130,7 @@ public:
             events.Reset();
             iceboltCount = 0;
             spawnTimer = 0;
-            currentTarget.Clear();
+            iceboltTargets.clear();
             blockList.clear();
         }
 
@@ -191,14 +190,6 @@ public:
             if (type == POINT_MOTION_TYPE && id == POINT_CENTER)
             {
                 events.ScheduleEvent(EVENT_FLIGHT_LIFTOFF, 500ms);
-            }
-        }
-
-        void SpellHitTarget(Unit* target, SpellInfo const* spellInfo) override
-        {
-            if (spellInfo->Id == SPELL_ICEBOLT_CAST)
-            {
-                me->CastSpell(target, SPELL_ICEBOLT_TRIGGER, true);
             }
         }
 
@@ -300,69 +291,56 @@ public:
                     me->GetHomePosition(x, y, z, o);
                     me->GetMotionMaster()->MovePoint(POINT_CENTER, x, y, z);
                     return;
-                case EVENT_FLIGHT_LIFTOFF:
+                case EVENT_FLIGHT_LIFTOFF: {
                     Talk(EMOTE_AIR_PHASE);
                     me->GetMotionMaster()->MoveIdle();
                     me->SendMeleeAttackStop(me->GetVictim());
                     me->HandleEmoteCommand(EMOTE_ONESHOT_LIFTOFF);
                     me->SetDisableGravity(true);
-                    currentTarget.Clear();
+                    iceboltTargets.clear();
+                    iceboltCount = RAID_MODE(1, 1);
+
+
+                    Unit *lowestThreatTarget = SelectTarget(SelectTargetMethod::MinThreat, 0, 0.0f, true);
+                    std::list<Unit *> targets;
+                    SelectTargetList(targets, iceboltCount, SelectTargetMethod::Random, 0,
+                                     [lowestThreatTarget](Unit *target) {
+                                         return target && target->IsPlayer() && target != lowestThreatTarget;
+                                     });
+
+                    for (Unit* target : targets)
+                        iceboltTargets.push_back(target->GetGUID());
+
                     events.ScheduleEvent(EVENT_FLIGHT_ICEBOLT, 3s);
-                    iceboltCount = RAID_MODE(2, 3);
+
                     return;
+                }
                 case EVENT_FLIGHT_ICEBOLT:
                     {
-                        if (currentTarget)
-                        {
-                            if (Unit* target = ObjectAccessor::GetUnit(*me, currentTarget))
-                            {
-                                me->SummonGameObject(GO_ICE_BLOCK, target->GetPositionX(), target->GetPositionY(), target->GetPositionZ(), target->GetOrientation(), 0.0f, 0.0f, 0.0f, 0.0f, 0);
+                        if (iceboltTargets.empty()) {
+                            events.ScheduleEvent(EVENT_FLIGHT_BREATH, 2s);
+                        }
+
+                        ObjectGuid target = iceboltTargets.back();
+                        if (Player* pTarget = ObjectAccessor::GetPlayer(*me, target)) {
+                            if (pTarget->IsAlive()) {
+                                me->CastSpell(pTarget, SPELL_ICEBOLT_TRIGGER, false);
+                                me->SummonGameObject(GO_ICE_BLOCK, pTarget->GetPositionX(), pTarget->GetPositionY(), pTarget->GetPositionZ(), pTarget->GetOrientation(), 0.0f, 0.0f, 0.0f, 0.0f, 0);
+
+                                blockList.push_back(target);
                             }
                         }
 
-                        std::vector<Unit*> targets;
-                        auto i = me->GetThreatMgr().GetThreatList().begin();
-                        for (; i != me->GetThreatMgr().GetThreatList().end(); ++i)
-                        {
-                            if ((*i)->getTarget()->GetTypeId() == TYPEID_PLAYER)
-                            {
-                                bool inList = false;
-                                if (!blockList.empty())
-                                {
-                                    for (GuidList::const_iterator itr = blockList.begin(); itr != blockList.end(); ++itr)
-                                    {
-                                        if ((*i)->getTarget()->GetGUID() == *itr)
-                                        {
-                                            inList = true;
-                                            break;
-                                        }
-                                    }
-                                }
-                                if (!inList)
-                                {
-                                    targets.push_back((*i)->getTarget());
-                                }
-                            }
-                        }
+                        iceboltTargets.pop_back();
 
-                        if (!targets.empty() && iceboltCount)
-                        {
-                            auto itr = targets.begin();
-                            advance(itr, urand(0, targets.size() - 1));
-                            me->CastSpell(*itr, SPELL_ICEBOLT_CAST, false);
-                            blockList.push_back((*itr)->GetGUID());
-                            currentTarget = (*itr)->GetGUID();
-                            --iceboltCount;
-                            events.ScheduleEvent(EVENT_FLIGHT_ICEBOLT, (me->GetExactDist(*itr) / 13.0f)*IN_MILLISECONDS);
-                        }
+                        if (iceboltTargets.empty())
+                            events.ScheduleEvent(EVENT_FLIGHT_BREATH, 2s);
                         else
-                        {
-                            events.ScheduleEvent(EVENT_FLIGHT_BREATH, 1s);
-                        }
+                            events.Repeat(3s);
+
                         return;
                     }
                 case EVENT_FLIGHT_BREATH:
-                    currentTarget.Clear();
                     Talk(EMOTE_BREATH);
                     me->CastSpell(me, SPELL_FROST_MISSILE, false);
                     events.ScheduleEvent(EVENT_FLIGHT_SPELL_EXPLOSION, 8500ms);

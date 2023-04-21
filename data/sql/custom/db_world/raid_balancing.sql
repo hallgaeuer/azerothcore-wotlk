@@ -47,9 +47,9 @@ values  (12056, 0, 0.5, 0.3, 1, 1, 'Molten Core - Baron Geddon'),
         (16065, 0, 0.5, 0.5, 1, 1, 'Naxxramas 10 - Four Horsemen - Lady Blaumeux'),
         (16063, 0, 0.5, 0.5, 1, 1, 'Naxxramas 10 - Four Horsemen - Sir Zeliak'),
         (16064, 0, 0.35, 0.5, 1, 1, 'Naxxramas 10 - Four Horsemen - Thane'),
-        (15932, 0, 0.7, 0.5, 1, 1, 'Naxxramas 10 - Gluth'),
+        (15932, 0, 0.8, 0.5, 1, 1, 'Naxxramas 10 - Gluth'),
         (16360, 0, 0.5, 0.4, 1, 1, 'Naxxramas 10 - Gluth Zombie'),
-        (15931, 0, 0.7, 0.5, 1, 1, 'Naxxramas 10 - Grobbulus'),
+        (15931, 0, 0.8, 0.5, 1, 1, 'Naxxramas 10 - Grobbulus'),
         (16290, 0, 0.4, 0.5, 1, 1, 'Naxxramas 10 - Grobbulus Fallout Slime'),
         (15990, 0, 0.8, 0.5, 1, 1, 'Naxxramas 10 - Kel Thuzad'),
         (16441, 0, 0.7, 0.5, 1, 1, 'Naxxramas 10 - Kel Thuzad - Guardian of Icecrown'),
@@ -108,7 +108,7 @@ values  (12018, 0, 1, 11663, 757.364, -1198.31, -118.652, 2.3095, 7, 10000, ''),
 /* Creature  Adjustments */
 /********************************************************/
 /* Reduce movement speed of Gluth zombie by 70% */
-UPDATE `creature_template` SET `speed_walk` = 0.3 WHERE (`entry` = 16360);
+UPDATE `creature_template` SET `speed_run` = 0.255 WHERE (`entry` = 16360);
 
 /********************************************************/
 /* Spell Adjustments */

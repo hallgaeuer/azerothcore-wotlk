@@ -22,6 +22,7 @@ The 25man version of raids can be seen as "challenge modes".
 
 #### Gluth
 * Disabled Mortal Wound
+* Zombie movement speed reduced by 70%
 
 #### Maexxna
 * Web Wrap will not target lowest threat target (usually the healer)

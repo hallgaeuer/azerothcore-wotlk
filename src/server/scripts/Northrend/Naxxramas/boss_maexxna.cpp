@@ -201,14 +201,23 @@ public:
                     Talk(EMOTE_WEB_WRAP);
                     for (uint8 i = 0; i < RAID_MODE(1, 2); ++i)
                     {
-                        if (Unit* target = SelectTarget(SelectTargetMethod::Random, 1, 0, true, true, -SPELL_WEB_WRAP))
+                        // Custom target selection
+                        // - Random target (excluding tank)
+                        // - Exclude lowest threat target, which usually should be healer
+                        Unit* lowestThreatTarget = SelectTarget(SelectTargetMethod::MinThreat, 0, 0.0f, true);
+                        Unit* target = SelectTarget(SelectTargetMethod::Random, 1, [lowestThreatTarget](Unit* target)
+                        {
+                            return target && target->IsPlayer() && target != lowestThreatTarget && !target->HasAura(SPELL_WEB_WRAP);
+                        });
+
+                        if (target)
                         {
                             target->RemoveAura(RAID_MODE(SPELL_WEB_SPRAY_10, SPELL_WEB_SPRAY_25));
                             uint8 pos = urand(0, 2);
                             if (Creature* wrap = me->SummonCreature(NPC_WEB_WRAP, PosWrap[pos].GetPositionX(), PosWrap[pos].GetPositionY(), PosWrap[pos].GetPositionZ(), 0.0f, TEMPSUMMON_TIMED_DESPAWN, 60000))
                             {
-                                wrap->AI()->SetGUID(target->GetGUID());
                                 target->GetMotionMaster()->MoveJump(PosWrap[pos].GetPositionX(), PosWrap[pos].GetPositionY(), PosWrap[pos].GetPositionZ(), 20, 20);
+                                wrap->AI()->SetGUID(target->GetGUID());
                             }
                         }
                     }

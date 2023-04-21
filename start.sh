@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+cd "$(dirname "$0")"
+
 # CHANGE THESE WITH THE CORRECT PATHS
 authserver="./acore.sh run-authserver"
 worldserver="./acore.sh run-worldserver"

@@ -7,6 +7,8 @@
 * Green quality gem vendors
 * Glyph vendors
 * Neutral auctioneer with ahbot
+* Food and drink vendor with free food and potions
+* Buffbot. Summonable via item sold for free by the food and drink vendor
 
 ## General Dungeon / Raid changes
 

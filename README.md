@@ -1,5 +1,32 @@
 # AzerothCore modified for 5 man raids
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Mall in Dalaran (Krasus Landing)](#mall-in-dalaran-krasus-landing)
+- [Class Changes](#class-changes)
+  - [Druid](#druid)
+  - [Shaman](#shaman)
+  - [Priest](#priest)
+  - [Paladin](#paladin)
+  - [Warlock](#warlock)
+- [General Dungeon / Raid changes](#general-dungeon--raid-changes)
+- [Raid Changes](#raid-changes)
+  - [Naxxramas](#naxxramas)
+    - [Anub'Rekhan](#anubrekhan)
+    - [Thaddius](#thaddius)
+    - [Sapphiron](#sapphiron)
+    - [Gluth](#gluth)
+    - [Maexxna](#maexxna)
+  - [Vault of Archavon](#vault-of-archavon)
+      - [Archavon](#archavon)
+  - [Icecrown Citadel](#icecrown-citadel)
+    - [Stinky / Precious](#stinky--precious)
+    - [Festergut](#festergut)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Mall in Dalaran (Krasus Landing)
 
 * Class trainers
@@ -12,10 +39,26 @@
 
 ## Class Changes
 
+### Druid
+
+* Added `Cleanse` spell, only usable in raids
+
+### Shaman
+
+* Added `Cleanse` spell, only usable in raids
+
+### Priest
+
+* Added `Cleanse Spirit` spell, only usable in raids
+
+### Paladin
+
+* Added `Cleanse Spirit` spell, only usable in raids
+
 ### Warlock
 
 * Soul Shards stackable up to 200, unlimited amount
-* Drain Soul creates 10 soul shards instead of 1
+* `Drain Soul` creates 10 soul shards instead of 1
 
 ## General Dungeon / Raid changes
 

@@ -10,6 +10,13 @@
 * Food and drink vendor with free food and potions
 * Buffbot. Summonable via item sold for free by the food and drink vendor
 
+## Class Changes
+
+### Warlock
+
+* Soul Shards stackable up to 200, unlimited amount
+* Drain Soul creates 10 soul shards instead of 1
+
 ## General Dungeon / Raid changes
 
 * Dungeon finder item level requirements removed

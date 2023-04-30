@@ -14,6 +14,9 @@ values
 REPLACE INTO creature (guid, id1, id2, id3, map, zoneId, areaId, spawnMask, phaseMask, equipment_id, position_x, position_y, position_z, orientation, spawntimesecs, wander_distance, currentwaypoint, curhealth, curmana, MovementType, npcflag, unit_flags, dynamicflags, ScriptName, VerifiedBuild)
 values  (5000590, 9000009, 0, 0, 571, 0, 0, 1, 1, 0, 5787.57, 447.779, 658.783, 0.102936, 300, 0, 0, 5342, 0, 0, 0, 0, 0, '', null);
 
+/* Enchantments */
+REPLACE INTO creature (guid, id1, id2, id3, map, zoneId, areaId, spawnMask, phaseMask, equipment_id, position_x, position_y, position_z, orientation, spawntimesecs, wander_distance, currentwaypoint, curhealth, curmana, MovementType, npcflag, unit_flags, dynamicflags, ScriptName, VerifiedBuild) values (5000596, 9000010, 0, 0, 571, 0, 0, 1, 1, 0, 5787.65, 445.983, 658.784, 0.104546, 300, 0, 0, 5342, 0, 0, 0, 0, 0, '', null);
+
 /* Reagents */
 REPLACE INTO creature (guid, id1, id2, id3, map, zoneId, areaId, spawnMask, phaseMask, equipment_id, position_x, position_y, position_z, orientation, spawntimesecs, wander_distance, currentwaypoint, curhealth, curmana, MovementType, npcflag, unit_flags, dynamicflags, ScriptName, VerifiedBuild) VALUES (5000557, 28714, 0, 0, 571, 0, 0, 1, 1, 0, 5787.18, 482.429, 657.604, 5.55754, 300, 0, 0, 8508, 7981, 0, 0, 0, 0, '', null);
 

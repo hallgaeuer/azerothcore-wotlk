@@ -22,7 +22,6 @@
 #include "Common.h"
 #include "GameTime.h"
 #include "GridNotifiers.h"
-#include "InstanceScript.h"
 #include "Log.h"
 #include "ObjectAccessor.h"
 #include "ObjectMgr.h"
@@ -1100,6 +1099,20 @@ void AuraEffect::PeriodicTick(AuraApplication* aurApp, Unit* caster) const
         return;
 
     Unit* target = aurApp->GetTarget();
+
+    // Update serverside orientation of tracking channeled auras on periodic update ticks
+    // exclude players because can turn during channeling and shouldn't desync orientation client/server
+    if (caster && !caster->IsPlayer() && m_spellInfo->IsChanneled() && m_spellInfo->HasAttribute(SPELL_ATTR1_TRACK_TARGET_IN_CHANNEL))
+    {
+        ObjectGuid const channelGuid = caster->GetGuidValue(UNIT_FIELD_CHANNEL_OBJECT);
+        if (!channelGuid.IsEmpty() && channelGuid != caster->GetGUID())
+        {
+            if (WorldObject const* objectTarget = ObjectAccessor::GetWorldObject(*caster, channelGuid))
+            {
+                caster->SetInFront(objectTarget);
+            }
+        }
+    }
 
     switch (GetAuraType())
     {
@@ -5043,11 +5056,6 @@ void AuraEffect::HandleAuraDummy(AuraApplication const* aurApp, uint8 mode, bool
                     if (caster && target->CanHaveThreatList())
                         target->AddThreat(caster, 10.0f);
                     break;
-                case 13139:                                     // net-o-matic
-                    // root to self part of (root_target->charge->root_self sequence
-                    if (caster)
-                        caster->CastSpell(caster, 13138, true, nullptr, this);
-                    break;
                 case 34026:   // kill command
                     {
                         Unit* pet = target->GetGuardianPet();
@@ -6127,14 +6135,6 @@ void AuraEffect::HandlePeriodicTriggerSpellAuraTick(Unit* target, Unit* caster) 
                     GetBase()->GetUnitOwner()->CastSpell(target, triggeredSpellInfo, true, 0, this, GetBase()->GetUnitOwner()->GetGUID());
                     return;
                 }
-            // Slime Spray - temporary here until preventing default effect works again
-            // added on 9.10.2010
-            case 69508:
-                {
-                    if (caster)
-                        caster->CastSpell(target, triggerSpellId, true, nullptr, nullptr, caster->GetGUID());
-                    return;
-                }
             // Trial of the Crusader, Jaraxxus, Spinning Pain Spike
             case 66283:
                 {
@@ -6387,7 +6387,7 @@ void AuraEffect::HandlePeriodicDamageAurasTick(Unit* target, Unit* caster) const
     SpellPeriodicAuraLogInfo pInfo(this, damage, overkill, absorb, resist, 0.0f, crit);
     target->SendPeriodicAuraLog(&pInfo);
 
-    Unit::DealDamage(caster, target, damage, &cleanDamage, DOT, GetSpellInfo()->GetSchoolMask(), GetSpellInfo(), true, false);
+    Unit::DealDamage(caster, target, damage, &cleanDamage, DOT, GetSpellInfo()->GetSchoolMask(), GetSpellInfo(), true);
 
     Unit::ProcDamageAndSpell(caster, target, caster ? procAttacker : 0, procVictim, procEx, damage, BASE_ATTACK, GetSpellInfo(), nullptr, GetEffIndex(), nullptr, &dmgInfo);
 }

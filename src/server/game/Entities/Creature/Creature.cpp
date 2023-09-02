@@ -29,7 +29,6 @@
 #include "GridNotifiers.h"
 #include "Group.h"
 #include "GroupMgr.h"
-#include "InstanceScript.h"
 #include "Log.h"
 #include "LootMgr.h"
 #include "MapMgr.h"
@@ -2444,6 +2443,12 @@ bool Creature::CanAssistTo(Unit const* u, Unit const* enemy, bool checkfaction /
     // only free creature
     if (GetCharmerOrOwnerGUID())
         return false;
+
+    /// @todo: Implement aggro range, detection range and assistance range templates
+    if (m_creatureInfo->HasFlagsExtra(CREATURE_FLAG_EXTRA_IGNORE_ALL_ASSISTANCE_CALLS))
+    {
+        return false;
+    }
 
     // only from same creature faction
     if (checkfaction)

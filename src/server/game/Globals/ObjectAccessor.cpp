@@ -21,10 +21,8 @@
 #include "DynamicObject.h"
 #include "GameObject.h"
 #include "GridNotifiers.h"
-#include "GridNotifiersImpl.h"
 #include "Log.h"
 #include "Map.h"
-#include "MapInstanced.h"
 #include "MapMgr.h"
 #include "ObjectDefines.h"
 #include "ObjectMgr.h"
@@ -210,17 +208,6 @@ Unit* ObjectAccessor::GetUnit(WorldObject const& u, ObjectGuid const guid)
         return GetPet(u, guid);
 
     return GetCreature(u, guid);
-}
-
-Unit* ObjectAccessor::GetUnit(Map const* map, ObjectGuid const guid)
-{
-    if (guid.IsPlayer())
-        return GetPlayer(map, guid);
-
-    if (guid.IsPet())
-        return const_cast<Map*>(map)->GetPet(guid);
-
-    return const_cast<Map*>(map)->GetCreature(guid);
 }
 
 Creature* ObjectAccessor::GetCreature(WorldObject const& u, ObjectGuid const guid)

@@ -16,3 +16,6 @@
 [submodule "modules/mod-quickbalance"]
 	path = modules/mod-quickbalance
 	url = git@github.com:hallgaeuer/mod-quickbalance.git
+[submodule "modules/mod-quick-respawn"]
+	path = modules/mod-quick-respawn
+	url = git@github.com:hallgaeuer/mod-quick-respawn.git

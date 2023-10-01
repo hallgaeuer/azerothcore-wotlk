@@ -2,6 +2,7 @@
 
 local PLAYER_EVENT_ON_FIRST_LOGIN = 30
 local INVENTORY_SLOT_BAG_START = 19
+local GIVE_BAGS = true
 local BAG_ITEM_ID = 41599 -- Frostweave Bag
 
 local itemSets = {}
@@ -84,6 +85,10 @@ local function GiveItems(player)
 end
 
 local function GiveBags(player)
+    if (GIVE_BAGS == false) then
+        return
+    end
+
     for slot = INVENTORY_SLOT_BAG_START, INVENTORY_SLOT_BAG_START + 3, 1 do
         -- Frostweave Bags
         local item = player:AddItem(BAG_ITEM_ID)

@@ -3,6 +3,7 @@
 #
 
 /.vscode
+/.vs
 /conf/*
 !/conf/dist
 !/modules/*

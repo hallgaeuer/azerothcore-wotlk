@@ -19,3 +19,6 @@
 [submodule "modules/mod-quick-respawn"]
 	path = modules/mod-quick-respawn
 	url = git@github.com:hallgaeuer/mod-quick-respawn.git
+[submodule "modules/mod-ptr-template"]
+	path = modules/mod-ptr-template
+	url = git@github.com:heyitsbench/mod-ptr-template.git

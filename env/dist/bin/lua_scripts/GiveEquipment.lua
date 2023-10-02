@@ -1,4 +1,4 @@
--- Gives everybody 4 Frostweave Bags and lvl 60 equipment to start with
+-- Gives everybody 4 Frostweave Bags and other defined equipment
 
 local PLAYER_EVENT_ON_FIRST_LOGIN = 30
 local INVENTORY_SLOT_BAG_START = 19
@@ -28,6 +28,8 @@ items[80][CLASS_PRIEST] = {
 items[80][CLASS_ROGUE] = {
 }
 items[80][CLASS_SHAMAN] = {
+    -- Shaman Totems
+    5175, 5176, 5177, 5178
 }
 items[80][CLASS_WARRIOR] = {
 }

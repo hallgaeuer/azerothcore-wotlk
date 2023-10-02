@@ -163,10 +163,10 @@ values  (@vendorId, 0, 0, 0, 0, 0, 2029, 0, 0, 0, 'Gear Vendor', 'Neck, Rings, T
 
 DELETE FROM npc_vendor WHERE entry = @vendorId;
 INSERT INTO npc_vendor (entry, slot, item)
-SELECT @vendorId, InventoryType, entry FROM item_template WHERE (ItemLevel = 174 AND RandomSuffix = 0 AND Quality = 2 AND InventoryType IN (2, 11, 12) AND entry NOT IN (43648)) OR (entry IN (39482));
+SELECT @vendorId, InventoryType, entry FROM item_template WHERE (ItemLevel = 174 AND RandomSuffix = 0 AND Quality = 2 AND InventoryType IN (2, 11, 12) AND entry NOT IN (43648)) OR (entry IN (39482, 38362, 38363, 38364, 38361, 38367, 38368, 38360, 38365, 38366));
 
 /*----------------------------------------------------------------------------*/
 /* Remove buy and sellprices of all those items AND require level 80 for them */
 /* Also make them not disenchantable                                          */
 /*----------------------------------------------------------------------------*/
-UPDATE item_template SET SellPrice = 1, BuyPrice = 0, RequiredLevel = 80, DisenchantID = 0 WHERE (ItemLevel = 174 AND RandomSuffix = 0 AND Quality = 2) OR (entry IN (39482));
+UPDATE item_template SET SellPrice = 1, BuyPrice = 0, RequiredLevel = 80, DisenchantID = 0 WHERE (ItemLevel = 174 AND RandomSuffix = 0 AND Quality = 2) OR (entry IN (39482, 38362, 38363, 38364, 38361, 38367, 38368, 38360, 38365, 38366));

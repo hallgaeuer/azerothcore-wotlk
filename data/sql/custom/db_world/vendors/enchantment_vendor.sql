@@ -21,6 +21,7 @@ values (@vendorId, 0, 0, 0, 0, 0, 2029, 0, 0, 0, 'Enchantment Vendor', 'Enchantm
 DELETE
 FROM npc_vendor
 WHERE entry = @vendorId;
+
 INSERT INTO npc_vendor (entry, slot, item)
 SELECT @vendorId, 0, entry
 FROM item_template
@@ -28,3 +29,4 @@ WHERE entry BETWEEN 701010 AND 701134
   AND entry NOT IN (701019, 701021, 701024)
   AND name LIKE "Scroll of Enchant%"
   AND name NOT LIKE "Scroll of Enchant Ring%";
+  

@@ -60,6 +60,14 @@
 * Soul Shards stackable up to 200, unlimited amount
 * `Drain Soul` creates 10 soul shards instead of 1
 
+## Mage
+
+* Added `Heroism` / `Bloodlust` spell, only usable in raids
+
+## Hunter
+
+* Added `Heroism` / `Bloodlust` spell, only usable in raids
+
 ## General Dungeon / Raid changes
 
 * Dungeon finder item level requirements removed

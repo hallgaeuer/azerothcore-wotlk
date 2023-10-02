@@ -19,6 +19,18 @@ local raidOnlySpells = {
         ["exceptClasses"] = {
             [CLASS_SHAMAN] = true
         }
+    },
+    -- Heroism (Shaman Spell, given also to mages and hunters)
+    [32182] = {
+        ["exceptClasses"] = {
+            [CLASS_SHAMAN] = true
+        }
+    },
+    -- Bloodlust (Shaman Spell, given also to mages and hunters)
+    [2825] = {
+        ["exceptClasses"] = {
+            [CLASS_SHAMAN] = true
+        }
     }
 }
 

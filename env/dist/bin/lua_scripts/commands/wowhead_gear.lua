@@ -1,14 +1,14 @@
 local wowHead = require ("../libraries/wowHead")
 
 -- Equips the player based on a hash of the wowhead gear planner
--- Usage: .whead <hash>
+-- Usage: .whg <hash>
 -- The chat only allows for 255 characters max, so make sure that your gear planner hash does not exceed that limit.
 -- Warning! Completely replaces items currently equipped. They are GONE after applying this command.
 -- Gems and enchants are present in the hash but are currently not applied. Gems are added to bags, enchants are not used at all yet..
 -- Cannot automatically equip items for which requirements are not met (e.g. profession or reputation requirements). Adds those to the bags instead.
 
 local PLAYER_EVENT_ON_COMMAND = 42
-local COMMAND_NAME = "whead"
+local COMMAND_NAME = "whg"
 
 local Handler = {}
 

@@ -43,7 +43,7 @@ function Beastmaster.GenerateMenu(id, player, unit)
         if t then -- show "i" if only exists in the table
             -- Do not list gossip options with creatures above the players level.
             if(player:GetLevel() >= t["level"]) then
-                player:GossipMenuAddItem(2, "Level: "..t["level"].." - "..t["name"], t["entry"], 1)
+                player:GossipMenuAddItem(2, t["name"], t["entry"], 1)
             end
         end
     end
@@ -66,7 +66,7 @@ function Beastmaster.LoadCache()
     local i = 1;
     local Query;
     
-    Query = WorldDBQuery("SELECT Entry, Name, MaxLevel FROM creature_template WHERE Type=1 AND Type_Flags&1 <> 0 AND Family!=0 AND Name NOT LIKE '%TEST%' ORDER BY MaxLevel ASC;")
+    Query = WorldDBQuery("SELECT Entry, Name, MaxLevel FROM creature_template WHERE Entry IN (26016, 26017, 26019, 26020, 26021, 26024, 26027, 26028, 26029, 26030, 26031, 26032, 26033, 26037, 26038, 33502, 33504, 33505, 33506, 33508, 33510, 33511, 34018, 34019, 34021, 34022, 34024, 34025, 34026, 34027, 34028, 34029);")
     
     if(Query) then
         repeat

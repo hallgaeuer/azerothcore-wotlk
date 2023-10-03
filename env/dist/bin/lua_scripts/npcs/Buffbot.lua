@@ -100,7 +100,12 @@ end
 
 local function OnGossipSelect(event, player, object, sender, intid, code, menu_id)
     if (intid == GOSSIP_ID_BUFF) then
-        Buff(player, object)
+        local group = player:GetGroup()
+        local members = group:GetMembers()
+
+        for key, member in pairs(members) do
+            Buff(member, object)
+        end 
     end
 
     player:GossipComplete()

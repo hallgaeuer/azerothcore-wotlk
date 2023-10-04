@@ -4,6 +4,7 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
+- [General Info](#general-info)
 - [Mall in Dalaran (Krasus Landing)](#mall-in-dalaran-krasus-landing)
 - [Class Changes](#class-changes)
   - [Druid](#druid)
@@ -26,6 +27,11 @@
     - [Festergut](#festergut)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## General Info
+- Cross faction
+- Instant 80
+- No durability loss
 
 ## Mall in Dalaran (Krasus Landing)
 

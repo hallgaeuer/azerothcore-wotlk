@@ -1,0 +1,23 @@
+function Map:HasPlayersInCombat() 
+    local players = self:GetPlayers()
+
+    for key, player in pairs(players) do
+        if (player:IsInCombat()) then
+            return true
+        end
+    end 
+    
+    return false
+end
+
+function Map:HasDeadPlayers() 
+    local players = self:GetPlayers()
+
+    for key, player in pairs(players) do
+        if (player:IsDead()) then
+            return true
+        end
+    end 
+    
+    return false
+end

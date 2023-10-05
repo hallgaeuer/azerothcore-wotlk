@@ -1,73 +1,112 @@
--- Book of Rezzing item: Summons Rezzbot-NPC on use
+-- Book of Rezzing item: Summons Rezbot-NPC on use. Only usable in dungeons and raids.
+-- Rezbot will revive all dead players in the instance after all combat drops. So either after a wipe or after combat where some players died.
 
 local ITEM_ENTRY = 701135
 local NPC_ENTRY = 9000011
-local DESPAWN_TIME_MS = 60000 -- in ms
-local COOLDOWN_S = 60 -- in seconds
+local DESPAWN_TIME_MS = 1800000 -- in ms
 
 local TEMPSUMMON_TIMED_DESPAWN = 3
 local ITEM_EVENT_ON_USE = 2
 local CREATURE_EVENT_ON_ADD = 36
 local CREATURE_EVENT_ON_REMOVE = 37
 local PLAYER_EVENT_ON_KILLED_BY_CREATURE = 8
+local PLAYER_EVENT_ON_LEAVE_COMBAT = 34
 
-local playerToCreatureMap = {}
+local instanceToCreatureMap = {}
 
-function Player:SetRezbotCreature(creature)
-    playerToCreatureMap[tostring(self:GetGUID())] = creature:GetGUID()
+function Map:SetInstanceRezbot(creature)
+    if (creature) then
+        instanceToCreatureMap[tostring(self:GetInstanceId())] = creature:GetGUID()
+    else
+        instanceToCreatureMap[tostring(self:GetInstanceId())] = nil
+    end
 end
 
-function Player:GetRezbotCreature()
-    creatureGUID = playerToCreatureMap[tostring(self:GetGUID())]
+function Map:GetInstanceRezbot()
+    creatureGUID = instanceToCreatureMap[tostring(self:GetInstanceId())]
 
     if (creatureGUID == nil) then
         return nil
     end
 
+    return self:GetWorldObject(creatureGUID)
+end
+
+function Map:RemoveInstanceRezbot()
+    creature = self:GetInstanceRezbot()
+
+    if (creature) then
+        creature:DespawnOrUnsummon()
+    end
+
+    self:SetInstanceRezbot(nil)
+end
+
+function Player:CanSummonRezbot()
     local map = self:GetMap()
-    return map:GetWorldObject(creatureGUID)
+
+    return map:IsDungeon()
 end
 
-local function CanSummon(player)
-    return true
-end
-
-local function OnUse(event, player, item, target)
-    if(CanSummon(player) == false) then 
+local function OnUseRezbotSummonItem(event, player, item, target)
+    if(player:CanSummonRezbot() == false) then 
+        player:SendBroadcastMessage("You can only summon the rezbot in dungeons or raids")
 		return false
 	end
 
     local x, y, z = player:GetRelativePoint(0, 0)
-    local npc = player:SpawnCreature(NPC_ENTRY, x, y, z, 0, TEMPSUMMON_TIMED_DESPAWN, DESPAWN_TIME_MS)
+    local npc = player:SpawnCreature(NPC_ENTRY, x, y, z, player:GetO(), TEMPSUMMON_TIMED_DESPAWN, DESPAWN_TIME_MS)
+    local map = npc:GetMap()
 
-    player:SetRezbotCreature(npc)
+    map:RemoveInstanceRezbot()
+    map:SetInstanceRezbot(npc)
 
     return false
 end
 
-local function Resurrect(creature, player)
-    local playerGUID = player:GetGUID()
+local Rezbot = {}
+function Rezbot.ResurrectAllIfNecessary(creature, player)
+    if (Rezbot.ShouldResurrectSomebody(creature, player)) then
+        Rezbot.ResurrectAll(creature, player)
+    end
+end
 
-    creature:RegisterEvent(function(event, delay, pCall, callbackCreature) 
-        local map = callbackCreature:GetMap()
-        local callbackPlayer = callbackCreature:GetMap():GetWorldObject(playerGUID)
-        if (callbackPlayer) then
-            callbackCreature:CastSpell(callbackPlayer, 25435, true)
+function Rezbot.ResurrectAll(creature, player) 
+    creature:CastSpell(player, 72429)
+end
+
+function Rezbot.ShouldResurrectSomebody(creature, player)
+    local map = creature:GetMap()
+
+    if (creature:IsCasting()) then
+        return false
+    end
+
+    if (map:HasPlayersInCombat()) then
+        return false
+    end
+
+    if (map:HasDeadPlayers() == false) then
+        return false
+    end
+
+    return true
+end
+
+local function OnPlayerLeaveCombat(event, player)
+    -- Delay Rezbot by a second - On Leave Combat might be called before player death state is correctly set
+    player:RegisterEvent(function(event, delay, pCall, closurePlayer) 
+        local creature = closurePlayer:GetMap():GetInstanceRezbot()
+
+        if (creature == nil) then
+            return
         end
+    
+        Rezbot.ResurrectAllIfNecessary(creature, closurePlayer)
     end, 1000, 1)
 end
 
-local function OnPlayerKilled(event, killer, killed)
-    local npc = killed:GetRezbotCreature()
-
-    if (npc == nil) then
-        return
-    end
-
-    Resurrect(npc, killed)
-end
 
 
-
-RegisterItemEvent(ITEM_ENTRY, ITEM_EVENT_ON_USE, OnUse)
-RegisterPlayerEvent(PLAYER_EVENT_ON_KILLED_BY_CREATURE, OnPlayerKilled)
+RegisterItemEvent(ITEM_ENTRY, ITEM_EVENT_ON_USE, OnUseRezbotSummonItem)
+RegisterPlayerEvent(PLAYER_EVENT_ON_LEAVE_COMBAT, OnPlayerLeaveCombat)

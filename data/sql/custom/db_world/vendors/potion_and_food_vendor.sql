@@ -6,6 +6,7 @@ INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entr
 DELETE FROM `npc_vendor` WHERE (`entry` = 9000001);
 INSERT INTO `npc_vendor` (`entry`, `slot`, `item`, `maxcount`, `incrtime`, `ExtendedCost`, `VerifiedBuild`) VALUES
                                     (9000001, 0, 701003, 0, 0, 0, 0), -- Book of Buffing
+                                    (9000001, 1, 701135, 0, 0, 0, 0), -- Book of Rezzing
                                     (9000001, 1, 33447, 0, 0, 0, 0), -- Runic Mana Potion
                                     (9000001, 1, 33448, 0, 0, 0, 0), -- Runic Health Potion
                                     (9000001, 2, 33445, 0, 0, 0, 0), -- Honeymint Tea

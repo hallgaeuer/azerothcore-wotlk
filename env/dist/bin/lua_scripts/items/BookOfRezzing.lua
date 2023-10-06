@@ -1,5 +1,8 @@
 -- Book of Rezzing item: Summons Rezbot-NPC on use. Only usable in dungeons and raids.
 -- Rezbot will revive all dead players in the instance after all combat drops. So either after a wipe or after combat where some players died.
+-- It will also immediately buff revived player with buffbot buffs
+
+local base64 = require ("Buffbot")
 
 local ITEM_ENTRY = 701135
 local NPC_ENTRY = 9000011
@@ -11,6 +14,7 @@ local CREATURE_EVENT_ON_ADD = 36
 local CREATURE_EVENT_ON_REMOVE = 37
 local PLAYER_EVENT_ON_KILLED_BY_CREATURE = 8
 local PLAYER_EVENT_ON_LEAVE_COMBAT = 34
+local PLAYER_EVENT_ON_RESURRECT = 36
 
 local instanceToCreatureMap = {}
 
@@ -106,7 +110,19 @@ local function OnPlayerLeaveCombat(event, player)
     end, 1000, 1)
 end
 
+local function OnPlayerResurrect(event, player)
+    local creature = player:GetMap():GetInstanceRezbot()
+
+    if (creature == nil) then
+        return
+    end
+
+    Buffbot.BuffGroup(creature, player)
+end
+
+
 
 
 RegisterItemEvent(ITEM_ENTRY, ITEM_EVENT_ON_USE, OnUseRezbotSummonItem)
 RegisterPlayerEvent(PLAYER_EVENT_ON_LEAVE_COMBAT, OnPlayerLeaveCombat)
+RegisterPlayerEvent(PLAYER_EVENT_ON_RESURRECT, OnPlayerResurrect)

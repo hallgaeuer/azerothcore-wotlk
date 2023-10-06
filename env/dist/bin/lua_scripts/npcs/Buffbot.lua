@@ -72,24 +72,39 @@ BUFFS_BY_LEVEL[80] = {
     43002 -- Arcane Brilliance (Rank 3)
 } 
 
-
-local function DetermineBuffs(player)
+Buffbot = {}
+function Buffbot.DetermineBuffs(player)
     local level = player:GetLevel()
     local range = (math.floor(level / 10)) * 10
 
     return BUFFS_BY_LEVEL[range]
 end
 
-local function Buff(player, buffNpc)
-    local buffs = DetermineBuffs(player)
+function Buffbot.Buff(creature, player)
+    local buffs = Buffbot.DetermineBuffs(player)
 
     if (buffs == nil) then
         return
     end
 
     for key, buffId in pairs(buffs) do
-        buffNpc:AddAura(buffId, player)
+        creature:AddAura(buffId, player)
     end
+end
+
+function Buffbot.BuffGroup(creature, player)
+    local group = player:GetGroup()
+
+    if (group == nil) then
+        Buffbot.Buff(creature, player)
+        return
+    end
+
+    local members = group:GetMembers()
+
+    for key, member in pairs(members) do
+        Buffbot.Buff(creature, member)
+    end 
 end
 
 local function OnGossipHello(event, player, unit)
@@ -100,12 +115,7 @@ end
 
 local function OnGossipSelect(event, player, object, sender, intid, code, menu_id)
     if (intid == GOSSIP_ID_BUFF) then
-        local group = player:GetGroup()
-        local members = group:GetMembers()
-
-        for key, member in pairs(members) do
-            Buff(member, object)
-        end 
+        Buffbot.BuffGroup(object, player)
     end
 
     player:GossipComplete()

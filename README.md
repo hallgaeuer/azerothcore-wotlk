@@ -99,6 +99,9 @@ Currently done:
 
 ### Naxxramas
 
+#### Noth
+* Only casts 1 curse
+
 #### Anub'Rekhan
 * Reduced movement speed of Anub'Rekhan during Locust Swarm by 80% instead of 40%. This way the tank should still be able to pick up Crypt Guard adds
 

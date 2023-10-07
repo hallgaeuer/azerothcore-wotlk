@@ -7,18 +7,19 @@ local base64 = require ("Buffbot")
 local ITEM_ENTRY = 701135
 local NPC_ENTRY = 9000011
 local DESPAWN_TIME_MS = 1800000 -- in ms
-
 local TEMPSUMMON_TIMED_DESPAWN = 3
+
 local ITEM_EVENT_ON_USE = 2
-local CREATURE_EVENT_ON_ADD = 36
-local CREATURE_EVENT_ON_REMOVE = 37
-local PLAYER_EVENT_ON_KILLED_BY_CREATURE = 8
 local PLAYER_EVENT_ON_LEAVE_COMBAT = 34
 local PLAYER_EVENT_ON_RESURRECT = 36
 
 local instanceToCreatureMap = {}
 
 function Map:SetInstanceRezbot(creature)
+    if (self:IsDungeon() == false) then
+        return
+    end
+
     if (creature) then
         instanceToCreatureMap[tostring(self:GetInstanceId())] = creature:GetGUID()
     else
@@ -27,6 +28,10 @@ function Map:SetInstanceRezbot(creature)
 end
 
 function Map:GetInstanceRezbot()
+    if (self:IsDungeon() == false) then
+        return nil
+    end
+
     creatureGUID = instanceToCreatureMap[tostring(self:GetInstanceId())]
 
     if (creatureGUID == nil) then
@@ -119,9 +124,6 @@ local function OnPlayerResurrect(event, player)
 
     Buffbot.BuffGroup(creature, player)
 end
-
-
-
 
 RegisterItemEvent(ITEM_ENTRY, ITEM_EVENT_ON_USE, OnUseRezbotSummonItem)
 RegisterPlayerEvent(PLAYER_EVENT_ON_LEAVE_COMBAT, OnPlayerLeaveCombat)

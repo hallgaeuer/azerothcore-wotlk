@@ -1,8 +1,11 @@
 -- Buffbot NPC
 
-local NPC_ENTRY = 9000008
-local GOSSIP_ID_BUFF = 1
+local NPC_BUFFBOT_ENTRY = 9000008
+local NPC_BUFFBOT_HELPER_ENTRY = 9000012
 
+local AMOUNT_HELPER_CREATURES = 3
+
+local GOSSIP_ID_BUFF = 1
 local GOSSIP_EVENT_ON_HELLO = 1
 local GOSSIP_EVENT_ON_SELECT = 2
 
@@ -62,9 +65,8 @@ BUFFS_BY_LEVEL[70] = {
 }
 BUFFS_BY_LEVEL[80] = {
     25898, -- Greater Blessing of Kings
-    --Multiple Pally Blessings do not work right now..
-    --48934, -- Greater Blessing of Might 
-    --48938, -- Greater Blessing of Wisdom
+    48934, -- Greater Blessing of Might 
+    48938, -- Greater Blessing of Wisdom
     48162, -- Prayer of Fortitude (Rank 4)
     48470, -- Gift of the Wild (Rank 4)
     48074, -- Prayer of Spirit (Rank 3)
@@ -80,16 +82,53 @@ function Buffbot.DetermineBuffs(player)
     return BUFFS_BY_LEVEL[range]
 end
 
-function Buffbot.Buff(creature, player)
+function Buffbot.Buff(creature, player, helperCreatures)
     local buffs = Buffbot.DetermineBuffs(player)
 
     if (buffs == nil) then
         return
     end
 
-    for key, buffId in pairs(buffs) do
-        creature:AddAura(buffId, player)
+    local helperCreaturesWerePassed = false
+    if (helperCreatures) then
+        helperCreaturesWerePassed = true
     end
+
+    local helperCreatures = helperCreatures or Buffbot.SpawnHelperCreatures(creature, AMOUNT_HELPER_CREATURES)
+    local helperCreatureIndex = 1
+
+    for key, buffId in ipairs(buffs) do
+        local helperCreature = helperCreatures[helperCreatureIndex]
+        helperCreature:AddAura(buffId, player)
+
+        -- Cycle available helperCreatures to use a different one on each iteration. This way exclusive buffs like paladin buffs are applied by different helpercreatures
+        -- Those exclusive buffs should be defined in order in the BUFFS_BY_LEVEL table
+        helperCreatureIndex = helperCreatureIndex % #helperCreatures + 1
+    end
+
+    if (helperCreaturesWerePassed == false) then
+        Buffbot.DespawnCreaturesFromTable(helperCreatures)
+    end
+end
+
+function Buffbot.SpawnHelperCreatures(creature, amount)
+    local helperCreatures = {}
+
+    for i = 1, amount do
+        helperCreatures[#helperCreatures+1] = Buffbot.SpawnHelperCreature(creature)
+    end
+
+    return helperCreatures
+end
+
+function Buffbot.DespawnCreaturesFromTable(creatures)
+    for key, creature in ipairs(creatures) do
+        creature:DespawnOrUnsummon()
+    end
+end
+
+function Buffbot.SpawnHelperCreature(creature)
+    return creature:SpawnCreature(NPC_BUFFBOT_HELPER_ENTRY, creature:GetX(), creature:GetY(), creature:GetZ(), creature:GetO())
 end
 
 function Buffbot.BuffGroup(creature, player)
@@ -101,10 +140,14 @@ function Buffbot.BuffGroup(creature, player)
     end
 
     local members = group:GetMembers()
+    -- Create and pass helperCreatures so that creatures are not spawned and despawned for every single player in the party
+    local helperCreatures = Buffbot.SpawnHelperCreatures(creature, AMOUNT_HELPER_CREATURES)
 
     for key, member in pairs(members) do
-        Buffbot.Buff(creature, member)
+        Buffbot.Buff(creature, member, helperCreatures)
     end 
+
+    Buffbot.DespawnCreaturesFromTable(helperCreatures)
 end
 
 local function OnGossipHello(event, player, unit)
@@ -121,5 +164,5 @@ local function OnGossipSelect(event, player, object, sender, intid, code, menu_i
     player:GossipComplete()
 end
 
-RegisterCreatureGossipEvent(NPC_ENTRY, GOSSIP_EVENT_ON_HELLO, OnGossipHello)
-RegisterCreatureGossipEvent(NPC_ENTRY, GOSSIP_EVENT_ON_SELECT, OnGossipSelect)
+RegisterCreatureGossipEvent(NPC_BUFFBOT_ENTRY, GOSSIP_EVENT_ON_HELLO, OnGossipHello)
+RegisterCreatureGossipEvent(NPC_BUFFBOT_ENTRY, GOSSIP_EVENT_ON_SELECT, OnGossipSelect)

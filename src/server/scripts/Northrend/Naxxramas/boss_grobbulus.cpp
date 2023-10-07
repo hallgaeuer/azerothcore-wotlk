@@ -101,9 +101,9 @@ public:
             BossAI::JustEngagedWith(who);
             PullChamberAdds();
             me->SetInCombatWithZone();
-            events.ScheduleEvent(EVENT_POISON_CLOUD, 15s);
-            events.ScheduleEvent(EVENT_MUTATING_INJECTION, 20s);
-            events.ScheduleEvent(EVENT_SLIME_SPRAY, 10s);
+            events.ScheduleEvent(EVENT_POISON_CLOUD, 5s, 10s);
+            events.ScheduleEvent(EVENT_MUTATING_INJECTION, 12s, 15s);
+            events.ScheduleEvent(EVENT_SLIME_SPRAY, 30s);
             events.ScheduleEvent(EVENT_BERSERK, RAID_MODE(720000, 540000));
         }
 
@@ -174,14 +174,14 @@ public:
                 case EVENT_SLIME_SPRAY:
                     Talk(EMOTE_SLIME);
                     me->CastSpell(me->GetVictim(), RAID_MODE(SPELL_SLIME_SPRAY_10, SPELL_SLIME_SPRAY_25), false);
-                    events.Repeat(20s);
+                    events.Repeat(30s);
                     break;
                 case EVENT_MUTATING_INJECTION:
                     if (Unit* target = SelectTarget(SelectTargetMethod::Random, 1, 100.0f, true, true, -SPELL_MUTATING_INJECTION))
                     {
                         me->CastSpell(target, SPELL_MUTATING_INJECTION, false);
                     }
-                    events.RepeatEvent(6000 + uint32(120 * me->GetHealthPct()));
+                    events.RepeatEvent(8000 + uint32(120 * me->GetHealthPct()));
                     break;
             }
             DoMeleeAttackIfReady();

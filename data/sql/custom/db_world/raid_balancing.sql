@@ -55,7 +55,7 @@ values  (12056, 0, 0.5, 0.3, 1, 1, 'Molten Core - Baron Geddon'),
         (15932, 0, 0.8, 0.5, 1, 1, 'Naxxramas 10 - Gluth'),
         (16360, 0, 0.5, 0.4, 1, 1, 'Naxxramas 10 - Gluth Zombie'),
         (15931, 0, 0.8, 0.5, 1, 1, 'Naxxramas 10 - Grobbulus'),
-        (16290, 0, 0.4, 0.5, 1, 1, 'Naxxramas 10 - Grobbulus Fallout Slime'),
+        (16290, 0, 0.4, 0.25, 1, 1, 'Naxxramas 10 - Grobbulus Fallout Slime'),
         (15990, 0, 0.8, 0.5, 1, 1, 'Naxxramas 10 - Kel Thuzad'),
         (16441, 0, 0.7, 0.5, 1, 1, 'Naxxramas 10 - Kel Thuzad - Guardian of Icecrown'),
         (16011, 0, 0.75, 0.5, 1, 1, 'Naxxramas 10 - Loatheb'),
@@ -73,7 +73,7 @@ values  (12056, 0, 0.5, 0.3, 1, 1, 'Molten Core - Baron Geddon'),
 REPLACE INTO mod_quickbalance_modifier_spell (Spell, DamageModifier, Comment)
 values  (27808, 0.5, 'Naxxramas 10 - Kel Thuzad - Frost Blast'),
         (28478, 0.65, 'Naxxramas 10 - Kel Thuzad - Frost Bolt'),
-        (41926, 0.05, 'Naxxramas 10 - Patchwerk - Hateful Strike'),
+        (41926, 0.15, 'Naxxramas 10 - Patchwerk - Hateful Strike'),
         (28836, 0.1, 'Naxxramas - Four Horseman - Mark Damage')
 ;
 

@@ -113,6 +113,9 @@ Currently done:
 * Only casts ice bolt on one person
 * Ice bolt does not target lowest threat target
 
+#### Patchwerk
+* Hateful Strike damage significantly reduced
+
 #### Gluth
 * Disabled Mortal Wound
 * Zombie movement speed reduced by 70%

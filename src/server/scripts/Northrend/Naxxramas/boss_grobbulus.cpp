@@ -181,7 +181,8 @@ public:
                     {
                         me->CastSpell(target, SPELL_MUTATING_INJECTION, false);
                     }
-                    events.RepeatEvent(8000 + uint32(120 * me->GetHealthPct()));
+                    // Hasn custom change: Don't increase mutating injection frequency below 25% health
+                    events.RepeatEvent(8000 + uint32(120 * std::max(me->GetHealthPct(), 25.f)));
                     break;
             }
             DoMeleeAttackIfReady();

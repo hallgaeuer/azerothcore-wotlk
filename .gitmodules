@@ -22,3 +22,6 @@
 [submodule "modules/mod-ptr-template"]
 	path = modules/mod-ptr-template
 	url = git@github.com:heyitsbench/mod-ptr-template.git
+[submodule "modules/mod-dynamic-loot-rates"]
+	path = modules/mod-dynamic-loot-rates
+	url = git@github.com:hallgaeuer/mod-dynamic-loot-rates.git

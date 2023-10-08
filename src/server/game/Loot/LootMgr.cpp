@@ -497,10 +497,26 @@ void Loot::AddItem(LootStoreItem const& item)
     if (!proto)
         return;
 
-    uint32 count = urand(item.mincount, item.maxcount);
-    uint32 stacks = count / proto->GetMaxStackSize() + (count % proto->GetMaxStackSize() ? 1 : 0);
-
     std::vector<LootItem>& lootItems = item.needs_quest ? quest_items : items;
+    uint32 count = urand(item.mincount, item.maxcount);
+
+    // Try to add items to existing unfilled stacks
+    // When settings like Rate.Drop.Item.ReferencedAmount are raised, it can happen that creatures drop multiple small amounts of the same item
+    // If these items are stackable they should be combined
+    for (auto& lootItem : lootItems) {
+        if (lootItem.itemid == item.itemid && lootItem.count < proto->GetMaxStackSize()) {
+            uint32 addCount = std::min(proto->GetMaxStackSize() - lootItem.count, count);
+
+            lootItem.count += addCount;
+            count -= addCount;
+        }
+    }
+
+    if (count == 0) {
+        return;
+    }
+
+    uint32 stacks = count / proto->GetMaxStackSize() + (count % proto->GetMaxStackSize() ? 1 : 0);
     uint32 limit = item.needs_quest ? MAX_NR_QUEST_ITEMS : MAX_NR_LOOT_ITEMS;
 
     for (uint32 i = 0; i < stacks && lootItems.size() < limit; ++i)
@@ -509,6 +525,7 @@ void Loot::AddItem(LootStoreItem const& item)
         generatedLoot.count = std::min(count, proto->GetMaxStackSize());
         generatedLoot.itemIndex = lootItems.size();
         lootItems.push_back(generatedLoot);
+
         count -= proto->GetMaxStackSize();
 
         // In some cases, a dropped item should be visible/lootable only for some players in group

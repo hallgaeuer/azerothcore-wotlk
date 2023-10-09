@@ -2,11 +2,11 @@
 -- Rezbot will revive all dead players in the instance after all combat drops. So either after a wipe or after combat where some players died.
 -- It will also immediately buff revived player with buffbot buffs
 
-local base64 = require ("Buffbot")
+require ("Buffbot")
 
 local ITEM_ENTRY = 701135
 local NPC_ENTRY = 9000011
-local DESPAWN_TIME_MS = 1800000 -- in ms
+local DESPAWN_TIME_MS = 7200000 -- 2hrs in ms
 local TEMPSUMMON_TIMED_DESPAWN = 3
 
 local ITEM_EVENT_ON_USE = 2

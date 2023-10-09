@@ -32,16 +32,19 @@
 - Cross faction
 - Instant 80
 - No durability loss
+- Auctionhouse bot is running
 
 ## Mall in Dalaran (Krasus Landing)
 
 * Class trainers
-* Vendors with free green quality quest gear
-* Green quality gem vendors
+* Vendors with free uncommon quality gear (sourced from quest rewards)
+* Uncommon / Rare / Epic Gem vendors with according gem prices
 * Glyph vendors
 * Neutral auctioneer with ahbot
-* Food and drink vendor with free food and potions
-* Buffbot. Summonable via item sold for free by the food and drink vendor
+* Food and drink vendor with potions and special items:
+* * `Endless Bowl of Tasty Ramen`: Infinitely usable Food/Drink item 
+* * `Book of Buffing`: Summons a Buffbot that can buff you with typical raid buffs
+* * `Book of Rezzing`: Summons a Rezbot that automatically revives dead players after combat is dropped. Only usable in dungeons or raids
 
 ## Class Changes
 
@@ -78,7 +81,9 @@
 
 * Dungeon finder item level requirements removed
 * ICC dungeons completely locked for now
+* ToC dungeon locked for now
 * Random dungeons via dungeon finder reward Emblems of Triumph instead of Emblems of Frost
+* Heroic dungeon bosses and raid bosses drop appropriate emblems for the item level of the raid / dungeon
 * Heroic dungeon bosses and raid bosses drop appropriate emblems for the item level of the raid / dungeon
 
 ## Raid Changes
@@ -86,7 +91,7 @@
 Health and Damage values were readjusted for all raids
 Specific values can be seen in the mod_quickbalance_* tables.
 
-The 25man version of raids can be seen as "challenge modes".
+The 25man versions of raids are planned to be more challenging modes.
 
 Currently done:
 
@@ -100,7 +105,7 @@ Currently done:
 ### Naxxramas
 
 #### Noth
-* Only casts 1 curse
+* Curse only targets one player
 
 #### Anub'Rekhan
 * Reduced movement speed of Anub'Rekhan during Locust Swarm by 80% instead of 40%. This way the tank should still be able to pick up Crypt Guard adds
@@ -112,10 +117,10 @@ Currently done:
 #### Sapphiron
 * Only cast 1 life drain in 10 man mode (instead of 2)
 * Only casts ice bolt on one person
-* Ice bolt does not target lowest threat target
+* Ice bolt does not target lowest threat target (which should usually be the healer)
 
 #### Patchwerk
-* Hateful Strike damage significantly reduced
+* Hateful Strike damage significantly reduced.
 
 #### Gluth
 * Disabled Mortal Wound

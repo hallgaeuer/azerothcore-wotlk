@@ -106,7 +106,8 @@ Currently done:
 * Reduced movement speed of Anub'Rekhan during Locust Swarm by 80% instead of 40%. This way the tank should still be able to pick up Crypt Guard adds
 
 #### Thaddius
-* Reduced damage of Feugen and Stalagg _severely_ to accommodate only 1 healer.
+* Reduced damage of Feugen and Stalagg _severely_. This way damage dealers are able to tank one side.
+* Reduced Thaddius HP to compensate for lower possible polarity shift stacks
 
 #### Sapphiron
 * Only cast 1 life drain in 10 man mode (instead of 2)

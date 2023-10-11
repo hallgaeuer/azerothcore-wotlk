@@ -541,9 +541,9 @@ public:
         return GetNaxxramasAI<npc_boss_gothik_minionAI>(pCreature);
     }
 
-    struct npc_boss_gothik_minionAI : public CombatAI
+    struct npc_boss_gothik_minionAI : public ScriptedAI
     {
-        explicit npc_boss_gothik_minionAI(Creature* c) : CombatAI(c)
+        explicit npc_boss_gothik_minionAI(Creature* c) : ScriptedAI(c)
         {
             livingSide = IN_LIVE_SIDE(me);
         }
@@ -613,6 +613,10 @@ public:
 
         void UpdateAI(uint32 diff) override
         {
+            if (!UpdateVictim()) {
+                return;
+            }
+
             events.Update(diff);
             if (me->GetUnitState() == UNIT_STATE_CASTING)
                 return;

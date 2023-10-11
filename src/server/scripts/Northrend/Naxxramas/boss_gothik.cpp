@@ -229,7 +229,8 @@ public:
             me->SetImmuneToPC(false);
             me->SetReactState(REACT_PASSIVE);
             secondPhase = false;
-            gateOpened = false;
+            // Hasn custom change: Gate is always open
+            gateOpened = true;
             waveCount = 0;
             me->NearTeleportTo(2642.139f, -3386.959f, 285.492f, 6.265f);
             if (pInstance)
@@ -268,7 +269,8 @@ public:
                 }
                 if (GameObject* go = me->GetMap()->GetGameObject(pInstance->GetGuidData(DATA_GOTHIK_INNER_GATE)))
                 {
-                    go->SetGoState(GO_STATE_READY);
+                    // Hasn custom change: Gate is always open
+                    //go->SetGoState(GO_STATE_READY);
                 }
             }
         }
@@ -276,7 +278,8 @@ public:
         void JustSummoned(Creature* summon) override
         {
             summons.Summon(summon);
-            if (Unit* target = SelectTarget(SelectTargetMethod::MinDistance, 0, 200.0f))
+            
+            if (Unit* target = SelectTarget(SelectTargetMethod::Random, 0, 200.0f))
             {
                 if (gateOpened)
                 {
@@ -541,9 +544,9 @@ public:
         return GetNaxxramasAI<npc_boss_gothik_minionAI>(pCreature);
     }
 
-    struct npc_boss_gothik_minionAI : public CombatAI
+    struct npc_boss_gothik_minionAI : public ScriptedAI
     {
-        explicit npc_boss_gothik_minionAI(Creature* c) : CombatAI(c)
+        explicit npc_boss_gothik_minionAI(Creature* c) : ScriptedAI(c)
         {
             livingSide = IN_LIVE_SIDE(me);
         }
@@ -613,6 +616,9 @@ public:
 
         void UpdateAI(uint32 diff) override
         {
+            if (!UpdateVictim())
+                    return;
+
             events.Update(diff);
             if (me->GetUnitState() == UNIT_STATE_CASTING)
                 return;

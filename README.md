@@ -59,6 +59,7 @@
 ### Priest
 
 * Added `Cleanse Spirit` spell, only usable in raids
+* `Misery` now also Triggers `Curse of the Elements`
 
 ### Paladin
 

@@ -130,6 +130,12 @@ Currently done:
 #### Maexxna
 * Web Wrap will not target lowest threat target (usually the healer)
 
+#### Gothik
+* Gate is always open
+
+#### The Four Horsemen
+* Damage of Horsemen and Marks reduced so all can be tanked at once
+
 ### Vault of Archavon
 
 ##### Archavon

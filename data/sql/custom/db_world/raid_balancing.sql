@@ -63,7 +63,8 @@ values  (12056, 0, 0.5, 0.3, 1, 1, 'Molten Core - Baron Geddon'),
         (16441, 0, 0.7, 0.5, 1, 1, 'Naxxramas 10 - Kel Thuzad - Guardian of Icecrown'),
         (16011, 0, 0.75, 0.3, 1, 1, 'Naxxramas 10 - Loatheb'),
         (15989, 0, 0.75, 0.5, 1, 1, 'Naxxramas 10 - Sapphiron'),
-        (31219, 0, 0.5, 0.5, 1, 1, 'Obsidian Sanctum 10 - Acolyte of Vesperon'),
+        (31219, 0, 0.25, 0.25, 1, 1, 'Obsidian Sanctum 10 - Acolyte of Vesperon'),
+        (30688, 0, 0.25, 0.25, 1, 1, 'Obsidian Sanctum 10 - Disciple of Shadron'),
         (28860, 0, 0.8, 0.5, 1, 1, 'Obsidian Sanctum 10 - Sartharion'),
         (28859, 0, 0.7, 0.5, 1, 1, 'Eye of Eternity 10 - Malygos'),
         (30249, 0, 0.4, 0.35, 1, 1, 'Eye of Eternity 10 - Scion of Eternity'),
@@ -77,7 +78,8 @@ REPLACE INTO mod_quickbalance_modifier_spell (Spell, DamageModifier, Comment)
 values  (27808, 0.5, 'Naxxramas 10 - Kel Thuzad - Frost Blast'),
         (28478, 0.65, 'Naxxramas 10 - Kel Thuzad - Frost Bolt'),
         (41926, 0.15, 'Naxxramas 10 - Patchwerk - Hateful Strike'),
-        (28836, 0.1, 'Naxxramas - Four Horseman - Mark Damage')
+        (28836, 0.1, 'Naxxramas - Four Horseman - Mark Damage'),
+        (57874, 0.25, 'Obsidian Sanctum 10 - Twilight Shift')
 ;
 
 /* Deactivate some creatures in MC */

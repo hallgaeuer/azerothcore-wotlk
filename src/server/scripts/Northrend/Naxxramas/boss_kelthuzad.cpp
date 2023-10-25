@@ -306,9 +306,9 @@ public:
             me->SetReactState(REACT_PASSIVE);
             me->CastSpell(me, SPELL_KELTHUZAD_CHANNEL, false);
             events.ScheduleEvent(EVENT_SPAWN_POOL, 5s);
-            events.ScheduleEvent(EVENT_SUMMON_SOLDIER, 6400ms);
-            events.ScheduleEvent(EVENT_SUMMON_UNSTOPPABLE_ABOMINATION, 10s);
-            events.ScheduleEvent(EVENT_SUMMON_SOUL_WEAVER, 12s);
+            events.ScheduleEvent(EVENT_SUMMON_SOLDIER, 5s);
+            events.ScheduleEvent(EVENT_SUMMON_UNSTOPPABLE_ABOMINATION, 15s);
+            events.ScheduleEvent(EVENT_SUMMON_SOUL_WEAVER, 30s);
             events.ScheduleEvent(EVENT_PHASE_2, 228s);
             events.ScheduleEvent(EVENT_ENRAGE, 15min);
             if (pInstance)
@@ -368,15 +368,15 @@ public:
                     break;
                 case EVENT_SUMMON_SOLDIER:
                     SummonHelper(NPC_SOLDIER_OF_THE_FROZEN_WASTES, 1);
-                    events.Repeat(3100ms);
+                    events.Repeat(5s);
                     break;
                 case EVENT_SUMMON_UNSTOPPABLE_ABOMINATION:
                     SummonHelper(NPC_UNSTOPPABLE_ABOMINATION, 1);
-                    events.Repeat(18s + 500ms);
+                    events.Repeat(20s);
                     break;
                 case EVENT_SUMMON_SOUL_WEAVER:
                     SummonHelper(NPC_SOUL_WEAVER, 1);
-                    events.Repeat(30s);
+                    events.Repeat(35s);
                     break;
                 case EVENT_PHASE_2:
                     Talk(EMOTE_PHASE_TWO);

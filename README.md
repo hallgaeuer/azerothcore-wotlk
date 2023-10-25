@@ -136,6 +136,9 @@ Currently done:
 #### The Four Horsemen
 * Damage of Horsemen and Marks reduced so all can be tanked at once
 
+#### Kel'Thuzad
+* Frost Bolt is cast less frequently
+
 ### Vault of Archavon
 
 ##### Archavon

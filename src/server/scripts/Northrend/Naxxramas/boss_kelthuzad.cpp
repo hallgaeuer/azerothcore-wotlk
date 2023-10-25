@@ -403,7 +403,7 @@ public:
                     break;
                 case EVENT_FROST_BOLT_SINGLE:
                     me->CastSpell(me->GetVictim(), RAID_MODE(SPELL_FROST_BOLT_SINGLE_10, SPELL_FROST_BOLT_SINGLE_25), false);
-                    events.Repeat(2s, 10s);
+                    events.Repeat(12s, 20s);
                     break;
                 case EVENT_FROST_BOLT_MULTI:
                     me->CastSpell(me, RAID_MODE(SPELL_FROST_BOLT_MULTI_10, SPELL_FROST_BOLT_MULTI_25), false);

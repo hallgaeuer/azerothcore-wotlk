@@ -151,7 +151,7 @@ values  (@vendorId, 0, 0, 0, 0, 0, 2029, 0, 0, 0, 'Gear Vendor', 'Weapons', '', 
 
 DELETE FROM npc_vendor WHERE entry = @vendorId;
 INSERT INTO npc_vendor (entry, slot, item)
-SELECT @vendorId, InventoryType, entry FROM item_template WHERE ItemLevel = 174 AND RandomSuffix = 0 AND Quality = 2 AND InventoryType IN (13,14,15,17,21,22,25,26) AND entry NOT IN (43922);
+SELECT @vendorId, InventoryType, entry FROM item_template WHERE (ItemLevel = 174 AND RandomSuffix = 0 AND Quality = 2 AND InventoryType IN (13,14,15,17,21,22,25,26) AND entry NOT IN (43922)) OR entry IN (42796);
 
 /*------------------------------*/
 /* Neck, Rings, Trinkets vendor */

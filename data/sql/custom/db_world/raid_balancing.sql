@@ -17,7 +17,9 @@ values  (509, 0, 0.7, 0.4, 1, 1, 'AQ20'),
 ;
 
 REPLACE into mod_quickbalance_modifier_creature (CreatureEntry, Difficulty, DamageModifier, HealthModifier, ManaModifier, ArmorModifier, Comment)
-values  (12056, 0, 0.5, 0.3, 1, 1, 'Molten Core - Baron Geddon'),
+values  
+        -- Molten Core (lvl 60)
+        (12056, 0, 0.5, 0.3, 1, 1, 'Molten Core - Baron Geddon'),
         (11671, 0, 0.65, 0.35, 1, 1, 'Molten Core - Core Hound (Groups)'),
         (11672, 0, 0.3, 0.3, 1, 1, 'Molten Core - Core Rager (Golemagg)'),
         (12099, 0, 0.3, 0.3, 1, 1, 'Molten Core - Firesworn (Garr)'),
@@ -33,6 +35,7 @@ values  (12056, 0, 0.5, 0.3, 1, 1, 'Molten Core - Baron Geddon'),
         (11982, 0, 0.75, 0.3, 1, 1, 'Molten Core - Magmadar'),
         (11502, 0, 0.55, 0.2, 1, 1, 'Molten Core - Ragnaros'),
         (12143, 0, 0.5, 0.5, 1, 1, 'Molten Core - Son of Flame (Ragnaros)'),
+        -- Naxxramas 10
         (15956, 0, 0.85, 0.5, 1, 1, 'Naxxramas 10 - Anub Rekhan'),
         (16573, 0, 0.7, 0.5, 1, 1, 'Naxxramas 10 - Anub Rekhan - Crypt Guard'),
         (16698, 0, 0.8, 0.5, 1, 1, 'Naxxramas 10 - Anub Rekhan - Scarab'),
@@ -49,7 +52,7 @@ values  (12056, 0, 0.5, 0.3, 1, 1, 'Molten Core - Baron Geddon'),
         (16803, 0, 1, 1, 1, 1, 'Naxxramas 10 - Instructor Razuvious Understudy'),
         (15930, 0, 0.05, 0.25, 1, 1, 'Naxxramas 10 - Feugen'),
         (15929, 0, 0.05, 0.25, 1, 1, 'Naxxramas 10 - Stalagg'),
-        (15928, 0, 0.8, 1, 1, 1, 'Naxxramas 10 - Thaddius - Health is reduces in creature_template'),
+        (15928, 0, 0.8, 0.35, 1, 1, 'Naxxramas 10 - Thaddius'),
         (15936, 0, 0.65, 0.5, 1, 1, 'Naxxramas 10 - Heigan'),
         (30549, 0, 0.35, 0.5, 1, 1, 'Naxxramas 10 - Four Horsemen - Baron Rivendare'),
         (16065, 0, 0.5, 0.5, 1, 1, 'Naxxramas 10 - Four Horsemen - Lady Blaumeux'),
@@ -63,16 +66,31 @@ values  (12056, 0, 0.5, 0.3, 1, 1, 'Molten Core - Baron Geddon'),
         (16441, 0, 0.7, 0.5, 1, 1, 'Naxxramas 10 - Kel Thuzad - Guardian of Icecrown'),
         (16011, 0, 0.75, 0.3, 1, 1, 'Naxxramas 10 - Loatheb'),
         (15989, 0, 0.75, 0.5, 1, 1, 'Naxxramas 10 - Sapphiron'),
+        -- Obsidian Sanctum 10
         (31219, 0, 0.25, 0.25, 1, 1, 'Obsidian Sanctum 10 - Acolyte of Vesperon'),
         (30688, 0, 0.25, 0.25, 1, 1, 'Obsidian Sanctum 10 - Disciple of Shadron'),
         (28860, 0, 0.8, 0.5, 1, 1, 'Obsidian Sanctum 10 - Sartharion'),
+        -- Eye of Eternity 10
         (28859, 0, 0.7, 0.5, 1, 1, 'Eye of Eternity 10 - Malygos'),
         (30249, 0, 0.4, 0.35, 1, 1, 'Eye of Eternity 10 - Scion of Eternity'),
         (30245, 0, 0.6, 0.35, 1, 1, 'Eye of Eternity 10 - Nexus Lord'),
         (30161, 0, 1, 1, 1, 1, 'Eye of Eternity 10 - Wyrmrest Skytalon (Phase 3 Friendly)'),
+        -- Ulduar 10
         (33121, 0, 0.9, 0.5, 1, 1, 'Ulduar 10 - Ignis'),
         (33121, 0, 0.5, 0.5, 1, 1, 'Ulduar 10 - Ignis - Iron Construct')
 ;
+
+/* Auto generate 25 man versions for now */
+REPLACE INTO mod_quickbalance_modifier_creature (CreatureEntry, Difficulty, DamageModifier, HealthModifier, ManaModifier, ArmorModifier, Comment)
+SELECT 
+    CreatureEntry, "1", DamageModifier, HealthModifier * 2 / 5, ManaModifier, ArmorModifier, REPLACE(Comment, " 10 ", " 25 ")
+FROM 
+    mod_quickbalance_modifier_creature 
+WHERE 
+    Difficulty = 0
+    AND
+    Comment LIKE "% 10 %";
+
 
 REPLACE INTO mod_quickbalance_modifier_spell (Spell, DamageModifier, Comment)
 values  (27808, 0.5, 'Naxxramas 10 - Kel Thuzad - Frost Blast'),

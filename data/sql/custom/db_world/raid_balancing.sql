@@ -4,16 +4,16 @@ values  (509, 0, 0.7, 0.4, 1, 1, 'AQ20'),
         (469, 0, 0.7, 0.2, 1, 1, 'BWL'),
         (409, 0, 0.95, 0.4, 1, 1, 'Molten Core'),
         (533, 0, 1, 0.5, 1, 1, 'Naxxramas 10'),
-        (533, 1, 1, 0.2, 1, 1, 'Naxxramas 25'),
+        (533, 1, 1, 0.25, 1, 1, 'Naxxramas 25'),
         (615, 0, 1, 0.5, 1, 1, 'Obsidian Sanctum 10'),
-        (615, 1, 1, 0.2, 1, 1, 'Obsidian Sanctum 25'),
+        (615, 1, 1, 0.25, 1, 1, 'Obsidian Sanctum 25'),
         (309, 0, 0.7, 0.6, 1, 1, 'Zul Gurub'),
         (624, 0, 1, 0.5, 1, 1, 'Vault of Archavon 10'),
-        (624, 1, 1, 0.2, 1, 1, 'Vault of Archavon 25'),
+        (624, 1, 1, 0.25, 1, 1, 'Vault of Archavon 25'),
         (616, 0, 0.8, 0.5, 1, 1, 'Eye of Eternity 10'),
-        (616, 1, 0.8, 0.2, 1, 1, 'Eye of Eternity 25'),
+        (616, 1, 0.8, 0.25, 1, 1, 'Eye of Eternity 25'),
         (603, 0, 1, 0.5, 1, 1, 'Ulduar 10'),
-        (603, 1, 1, 0.2, 1, 1, 'Ulduar 25')
+        (603, 1, 1, 0.25, 1, 1, 'Ulduar 25')
 ;
 
 REPLACE into mod_quickbalance_modifier_creature (CreatureEntry, Difficulty, DamageModifier, HealthModifier, ManaModifier, ArmorModifier, Comment)
@@ -83,7 +83,7 @@ values
 /* Auto generate 25 man versions for now */
 REPLACE INTO mod_quickbalance_modifier_creature (CreatureEntry, Difficulty, DamageModifier, HealthModifier, ManaModifier, ArmorModifier, Comment)
 SELECT 
-    CreatureEntry, "1", DamageModifier, HealthModifier * 2 / 5, ManaModifier, ArmorModifier, REPLACE(Comment, " 10 ", " 25 ")
+    CreatureEntry, "1", DamageModifier, HealthModifier * 2 / 4, ManaModifier, ArmorModifier, REPLACE(Comment, " 10 ", " 25 ")
 FROM 
     mod_quickbalance_modifier_creature 
 WHERE 
@@ -93,9 +93,11 @@ WHERE
 
 
 REPLACE INTO mod_quickbalance_modifier_spell (Spell, DamageModifier, Comment)
-values  (27808, 0.5, 'Naxxramas 10 - Kel Thuzad - Frost Blast'),
+values  (27808, 0.5, 'Naxxramas 10/25 - Kel Thuzad - Frost Blast'),
         (28478, 0.65, 'Naxxramas 10 - Kel Thuzad - Frost Bolt'),
+        (55802, 0.65, 'Naxxramas 25 - Kel Thuzad - Frost Bolt'),
         (41926, 0.15, 'Naxxramas 10 - Patchwerk - Hateful Strike'),
+        (59192, 0.1, 'Naxxramas 25 - Patchwerk - Hateful Strike'),
         (28836, 0.1, 'Naxxramas - Four Horseman - Mark Damage'),
         (57874, 0.25, 'Obsidian Sanctum 10 - Twilight Shift')
 ;

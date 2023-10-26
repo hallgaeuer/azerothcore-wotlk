@@ -49,9 +49,9 @@ void SpellMgr::LoadSpellInfoCorrections()
     {
         spellInfo->AttributesCu |= SPELL_ATTR0_CU_IGNORE_ARMOR;
         spellInfo->AttributesEx7 |= SPELL_ATTR7_DONT_CAUSE_SPELL_PUSHBACK;
-        spellInfo->RangeEntry = sSpellRangeStore.LookupEntry(5); // 40 yards
-        spellInfo->Effects[EFFECT_0].BasePoints = spellInfo->Id == 41926 ? 999 : 1499;
-        spellInfo->Effects[EFFECT_0].DieSides = spellInfo->Id == 41926 ? 301 : 501;
+        spellInfo->RangeEntry = sSpellRangeStore.LookupEntry(6); // 100 yards
+        spellInfo->Effects[EFFECT_0].BasePoints = spellInfo->Id == 41926 ? 699 : 1099;
+        spellInfo->Effects[EFFECT_0].DieSides = spellInfo->Id == 1;
     });
     // ------------------------------------------------------------
     // Custom spell adjustments end

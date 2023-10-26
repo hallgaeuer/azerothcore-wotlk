@@ -167,7 +167,7 @@ public:
                         */
 
                         // Cast Hateful strike on closest player (that is not tank)
-                        Unit* finalTarget = SelectTarget(SelectTargetMethod::MinDistance, 0, 100, false);
+                        Unit* finalTarget = SelectTarget(SelectTargetMethod::MinDistance, 0, 100, true, false);
 
                         // If there is no second target, fall back to the tank
                         if (!finalTarget) 

@@ -121,7 +121,7 @@ Currently done:
 * Ice bolt does not target lowest threat target (which should usually be the healer)
 
 #### Patchwerk
-* Hateful Strike damage significantly reduced.
+* Hateful Strike always strikes the closest target that is not the tank (not only melee range). Damage significantly reduced. Ignores Armor. Does not cause spell pushback.
 
 #### Gluth
 * Disabled Mortal Wound

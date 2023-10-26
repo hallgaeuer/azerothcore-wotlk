@@ -124,6 +124,7 @@ public:
             {
                 case EVENT_HATEFUL_STRIKE:
                     {
+                        /* 
                         // Cast Hateful strike on the player with the highest amount of HP within melee distance, and second threat amount
                         std::list<Unit*> meleeRangeTargets;
                         Unit* finalTarget = nullptr;
@@ -163,10 +164,22 @@ public:
                                     break;
                             }
                         }
+                        */
+
+                        // Cast Hateful strike on closest player (that is not tank)
+                        Unit* finalTarget = SelectTarget(SelectTargetMethod::MinDistance, 0, 100, false);
+
+                        // If there is no second target, fall back to the tank
+                        if (!finalTarget) 
+                        {
+                            finalTarget = me->GetVictim();
+                        }
+
                         if (finalTarget)
                         {
                             me->CastSpell(finalTarget, RAID_MODE(SPELL_HATEFUL_STRIKE_10, SPELL_HATEFUL_STRIKE_25), false);
                         }
+
                         events.Repeat(1s);
                         break;
                     }

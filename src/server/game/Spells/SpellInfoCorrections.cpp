@@ -40,6 +40,23 @@ void SpellMgr::LoadSpellInfoCorrections()
 {
     uint32 oldMSTime = getMSTime();
 
+    // ------------------------------------------------------------
+    // Custom spell adjustments
+    // ------------------------------------------------------------
+    // Naxxramas
+    // Patchwerk: Hateful Strike ignores armor, does no pushback, has greater range and does reduced damage
+    ApplySpellFix({ 41926, 59192 }, [](SpellInfo* spellInfo)
+    {
+        spellInfo->AttributesCu |= SPELL_ATTR0_CU_IGNORE_ARMOR;
+        spellInfo->AttributesEx7 |= SPELL_ATTR7_DONT_CAUSE_SPELL_PUSHBACK;
+        spellInfo->RangeEntry = sSpellRangeStore.LookupEntry(5); // 40 yards
+        spellInfo->Effects[EFFECT_0].BasePoints = spellInfo->Id == 41926 ? 999 : 1499;
+        spellInfo->Effects[EFFECT_0].DieSides = spellInfo->Id == 41926 ? 301 : 501;
+    });
+    // ------------------------------------------------------------
+    // Custom spell adjustments end
+    // ------------------------------------------------------------
+
     ApplySpellFix({
         467,    // Thorns (Rank 1)
         782,    // Thorns (Rank 2)

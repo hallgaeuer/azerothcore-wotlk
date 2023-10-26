@@ -82,7 +82,7 @@ VALUES
         -- Eye of Eternity 25
         (30161, 1, 1, 1, 1, 1, 'Eye of Eternity 25 - Wyrmrest Skytalon (Phase 3 Friendly)'),
         -- Ulduar 10
-        (33121, 0, 0.9, 0.5, 1, 1, 'Ulduar 10 - Ignis'),
+        (33118, 0, 0.9, 0.5, 1, 1, 'Ulduar 10 - Ignis'),
         (33121, 0, 0.5, 0.5, 1, 1, 'Ulduar 10 - Ignis - Iron Construct')
 ;
 
@@ -103,8 +103,6 @@ INSERT INTO mod_quickbalance_modifier_spell (Spell, DamageModifier, Comment)
 values  (27808, 0.5, 'Naxxramas 10/25 - Kel Thuzad - Frost Blast'),
         (28478, 0.65, 'Naxxramas 10 - Kel Thuzad - Frost Bolt'),
         (55802, 0.65, 'Naxxramas 25 - Kel Thuzad - Frost Bolt'),
-        (41926, 0.15, 'Naxxramas 10 - Patchwerk - Hateful Strike'),
-        (59192, 0.1, 'Naxxramas 25 - Patchwerk - Hateful Strike'),
         (28836, 0.1, 'Naxxramas - Four Horseman - Mark Damage'),
         (57874, 0.25, 'Obsidian Sanctum 10 - Twilight Shift')
 ;

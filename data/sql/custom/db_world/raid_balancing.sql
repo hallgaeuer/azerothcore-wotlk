@@ -1,4 +1,5 @@
-REPLACE INTO mod_quickbalance_modifier_map (Map, Difficulty, DamageModifier, HealthModifier, ManaModifier, ArmorModifier, Comment)
+TRUNCATE mod_quickbalance_modifier_map;
+INSERT INTO mod_quickbalance_modifier_map (Map, Difficulty, DamageModifier, HealthModifier, ManaModifier, ArmorModifier, Comment)
 values  (509, 0, 0.7, 0.4, 1, 1, 'AQ20'),
         (531, 0, 0.7, 0.2, 1, 1, 'AQ40'),
         (469, 0, 0.7, 0.2, 1, 1, 'BWL'),
@@ -16,8 +17,9 @@ values  (509, 0, 0.7, 0.4, 1, 1, 'AQ20'),
         (603, 1, 1, 0.25, 1, 1, 'Ulduar 25')
 ;
 
-REPLACE into mod_quickbalance_modifier_creature (CreatureEntry, Difficulty, DamageModifier, HealthModifier, ManaModifier, ArmorModifier, Comment)
-values  
+TRUNCATE mod_quickbalance_modifier_creature;
+INSERT INTO mod_quickbalance_modifier_creature (CreatureEntry, Difficulty, DamageModifier, HealthModifier, ManaModifier, ArmorModifier, Comment)
+VALUES  
         -- Molten Core (lvl 60)
         (12056, 0, 0.5, 0.3, 1, 1, 'Molten Core - Baron Geddon'),
         (11671, 0, 0.65, 0.35, 1, 1, 'Molten Core - Core Hound (Groups)'),
@@ -66,6 +68,8 @@ values
         (16441, 0, 0.7, 0.5, 1, 1, 'Naxxramas 10 - Kel Thuzad - Guardian of Icecrown'),
         (16011, 0, 0.75, 0.3, 1, 1, 'Naxxramas 10 - Loatheb'),
         (15989, 0, 0.75, 0.5, 1, 1, 'Naxxramas 10 - Sapphiron'),
+        -- Naxxramas 25
+        (16803, 1, 1, 1, 1, 1, 'Naxxramas 25 - Instructor Razuvious Understudy'),
         -- Obsidian Sanctum 10
         (31219, 0, 0.25, 0.25, 1, 1, 'Obsidian Sanctum 10 - Acolyte of Vesperon'),
         (30688, 0, 0.25, 0.25, 1, 1, 'Obsidian Sanctum 10 - Disciple of Shadron'),
@@ -75,13 +79,15 @@ values
         (30249, 0, 0.4, 0.35, 1, 1, 'Eye of Eternity 10 - Scion of Eternity'),
         (30245, 0, 0.6, 0.35, 1, 1, 'Eye of Eternity 10 - Nexus Lord'),
         (30161, 0, 1, 1, 1, 1, 'Eye of Eternity 10 - Wyrmrest Skytalon (Phase 3 Friendly)'),
+        -- Eye of Eternity 25
+        (30161, 1, 1, 1, 1, 1, 'Eye of Eternity 25 - Wyrmrest Skytalon (Phase 3 Friendly)'),
         -- Ulduar 10
         (33121, 0, 0.9, 0.5, 1, 1, 'Ulduar 10 - Ignis'),
         (33121, 0, 0.5, 0.5, 1, 1, 'Ulduar 10 - Ignis - Iron Construct')
 ;
 
-/* Auto generate 25 man versions for now */
-REPLACE INTO mod_quickbalance_modifier_creature (CreatureEntry, Difficulty, DamageModifier, HealthModifier, ManaModifier, ArmorModifier, Comment)
+/* Auto generate missing 25 man versions */
+INSERT IGNORE INTO mod_quickbalance_modifier_creature (CreatureEntry, Difficulty, DamageModifier, HealthModifier, ManaModifier, ArmorModifier, Comment)
 SELECT 
     CreatureEntry, "1", DamageModifier, HealthModifier * 2 / 4, ManaModifier, ArmorModifier, REPLACE(Comment, " 10 ", " 25 ")
 FROM 
@@ -92,7 +98,8 @@ WHERE
     Comment LIKE "% 10 %";
 
 
-REPLACE INTO mod_quickbalance_modifier_spell (Spell, DamageModifier, Comment)
+TRUNCATE mod_quickbalance_modifier_spell;
+INSERT INTO mod_quickbalance_modifier_spell (Spell, DamageModifier, Comment)
 values  (27808, 0.5, 'Naxxramas 10/25 - Kel Thuzad - Frost Blast'),
         (28478, 0.65, 'Naxxramas 10 - Kel Thuzad - Frost Bolt'),
         (55802, 0.65, 'Naxxramas 25 - Kel Thuzad - Frost Bolt'),
@@ -102,7 +109,15 @@ values  (27808, 0.5, 'Naxxramas 10/25 - Kel Thuzad - Frost Blast'),
         (57874, 0.25, 'Obsidian Sanctum 10 - Twilight Shift')
 ;
 
-/* Deactivate some creatures in MC */
+/********************************************************/
+/* Creature Adjustments */
+/********************************************************/
+/* Reduce movement speed of Gluth zombie by 70% */
+UPDATE `creature_template` SET `speed_run` = 0.255 WHERE (`entry` = 16360);
+
+/********************************************************/
+/* Deactivate Creatures */
+/********************************************************/
 UPDATE creature SET phaseMask = 16384 WHERE guid IN(
     56606, -- Flamewaker Protector
     56685, -- Core Rager
@@ -110,7 +125,9 @@ UPDATE creature SET phaseMask = 16384 WHERE guid IN(
     56682 -- Flamewaker Priest
 );
 
-/* Delete some summons */
+/********************************************************/
+/* Remove Summons */
+/********************************************************/
 /* Majordomo */
 DELETE FROM creature_summon_groups WHERE summonerId = 12018;
 insert into creature_summon_groups (summonerId, summonerType, groupId, entry, position_x, position_y, position_z, orientation, summonType, summonTime, Comment)
@@ -133,12 +150,6 @@ values  (12018, 0, 1, 11663, 757.364, -1198.31, -118.652, 2.3095, 7, 10000, ''),
         (12018, 0, 1, 11664, 752.349, -1159.19, -119.261, 3.6032, 7, 10000, ''),
         (12018, 0, 1, 11664, 738.015, -1152.22, -119.512, 4.0792, 7, 10000, '');
 */
-
-/********************************************************/
-/* Creature  Adjustments */
-/********************************************************/
-/* Reduce movement speed of Gluth zombie by 70% */
-UPDATE `creature_template` SET `speed_run` = 0.255 WHERE (`entry` = 16360);
 
 /********************************************************/
 /* Spell Adjustments */
@@ -169,6 +180,9 @@ INSERT IGNORE INTO spell_dbc (`ID`,`Category`,`DispelType`,`Mechanic`,`Attribute
 VALUES (54021,1152,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14,0,20000,9,0,0,0,101,0,0,0,0,18,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1,0,0,6,6,0,0,1,0,0,0,0,0,-26,0,0,0,0,1,1,0,0,0,0,0,0,0,23,33,0,2000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,54022,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7621,0,1771,0,0,'Locust Swarm','','','','','','','','','','','','','','','',16712190,'','','','','','','','','','','','','','','','',16712172,'Anub\'Rekhan releases a locust swarm, slowing his movement by $s2\% and damaging all nearby enemies. Nearby enemies are unable to attack or cast spells.','','','','','','','','','','','','','','','',16712190,'Movement speed slowed by $s2\%.','','','','','','','','','','','','','','','',16712190,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0);
 UPDATE spell_dbc SET EffectBasePoints_2 = -80 WHERE ID = 54021;
 
+/********************************************************/
+/* Gameobject Adjustments */
+/********************************************************/
 /* Half Ulduar Tower HP */
 UPDATE gameobject_template SET Data0 = 15000, Data5 = 15000 WHERE entry IN (194370, 194371, 194375,194377);
 /* Half Ulduar Storm Beacon HP */

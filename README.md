@@ -1,4 +1,4 @@
-# AzerothCore modified for 5 man raids
+# AzerothCore modified for 5 man raid multiboxing
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -138,6 +138,12 @@ Currently done:
 
 #### Kel'Thuzad
 * Frost Bolt is cast less frequently
+
+
+### Eye of Eternity
+
+#### Malygos
+* Reduced damage of phase 3 Surge of Power by a huge amount, making the dragon shield ability obsolete. I didn't see any other way to make this viable for multiboxing otherwise
 
 ### Vault of Archavon
 

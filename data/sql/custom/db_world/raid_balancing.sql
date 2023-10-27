@@ -74,9 +74,10 @@ VALUES
         (31219, 0, 0.25, 0.25, 1, 1, 'Obsidian Sanctum 10 - Acolyte of Vesperon'),
         (30688, 0, 0.25, 0.25, 1, 1, 'Obsidian Sanctum 10 - Disciple of Shadron'),
         (28860, 0, 0.8, 0.5, 1, 1, 'Obsidian Sanctum 10 - Sartharion'),
+        (30643, 0, 0.35, 0.5, 1, 1, 'Obsidian Sanctum 10 - Lava Blaze'),
         -- Eye of Eternity 10
         (28859, 0, 0.7, 0.5, 1, 1, 'Eye of Eternity 10 - Malygos'),
-        (30249, 0, 0.4, 0.35, 1, 1, 'Eye of Eternity 10 - Scion of Eternity'),
+        (30249, 0, 0.4, 0.25, 1, 1, 'Eye of Eternity 10 - Scion of Eternity'),
         (30245, 0, 0.6, 0.35, 1, 1, 'Eye of Eternity 10 - Nexus Lord'),
         (30161, 0, 1, 1, 1, 1, 'Eye of Eternity 10 - Wyrmrest Skytalon (Phase 3 Friendly)'),
         -- Eye of Eternity 25
@@ -104,7 +105,10 @@ values  (27808, 0.5, 'Naxxramas 10/25 - Kel Thuzad - Frost Blast'),
         (28478, 0.65, 'Naxxramas 10 - Kel Thuzad - Frost Bolt'),
         (55802, 0.65, 'Naxxramas 25 - Kel Thuzad - Frost Bolt'),
         (28836, 0.1, 'Naxxramas - Four Horseman - Mark Damage'),
-        (57874, 0.25, 'Obsidian Sanctum 10 - Twilight Shift')
+        (57874, 0.25, 'Obsidian Sanctum 10 - Twilight Shift'),
+        (56256, 0.5, 'Eye of Eternity - Vortex'),
+        (57407, 0.2, 'Eye of Eternity 10 - Surge of Power'),
+        (60936, 0.2, 'Eye of Eternity 25 - Surge of Power')
 ;
 
 /********************************************************/

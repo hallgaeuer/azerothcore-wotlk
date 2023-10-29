@@ -461,7 +461,7 @@ public:
                         summons.DoAction(2, pred); // stop following
                         me->SetUnitFlag(UNIT_FLAG_PACIFIED);
 
-                        me->SendMeleeAttackStop(me->GetVictim());
+                        me->AttackStop();
                         me->SetTarget();
 
                         me->GetMotionMaster()->MoveIdle();
@@ -477,7 +477,7 @@ public:
                     break;
                 case EVENT_START_VORTEX_REAL:
                     {
-                        me->SendMeleeAttackStop(me->GetVictim());
+                        me->AttackStop();
                         me->SetUInt32Value(UNIT_NPC_EMOTESTATE, EMOTE_STATE_CUSTOM_SPELL_01);
                         me->HandleEmoteCommand(EMOTE_STATE_CUSTOM_SPELL_01);
 
@@ -568,7 +568,7 @@ public:
                     events.SetPhase(PHASE_TWO);
                     Talk(SAY_END_P1);
                     me->SetUnitFlag(UNIT_FLAG_PACIFIED);
-                    me->SendMeleeAttackStop();
+                    me->AttackStop();
                     me->SetTarget();
                     me->GetMotionMaster()->MoveIdle();
                     me->DisableSpline();
@@ -577,7 +577,7 @@ public:
                     break;
                 case EVENT_START_PHASE_2_FLY_UP:
                     {
-                        me->SendMeleeAttackStop(me->GetVictim());
+                        me->AttackStop();
                         me->GetMotionMaster()->MoveIdle();
                         me->DisableSpline();
                         me->SetDisableGravity(true);
@@ -667,7 +667,7 @@ public:
                     events.RescheduleEvent(EVENT_CHECK_TRASH_DEAD, 3s, 1);
                     break;
                 case EVENT_CLEAR_TARGET:
-                    me->SendMeleeAttackStop();
+                    me->AttackStop();
                     me->SetTarget();
                     break;
                 case EVENT_CHECK_TRASH_DEAD:
@@ -676,7 +676,7 @@ public:
                             events.RepeatEvent(3000);
                         else
                         {
-                            me->SendMeleeAttackStop();
+                            me->AttackStop();
                             me->SetTarget();
                             events.CancelEventGroup(1);
                             summons.DespawnAll();
@@ -706,7 +706,7 @@ public:
                     break;
                 case EVENT_MOVE_TO_PHASE_3_POSITION:
                     {
-                        me->SendMeleeAttackStop(me->GetVictim());
+                        me->AttackStop();
                         me->GetMotionMaster()->MoveTakeoff(MI_POINT_PH_3_FIGHT_POSITION, CenterPos.GetPositionX(), CenterPos.GetPositionY(), CenterPos.GetPositionZ() - 5.0f, me->GetSpeed(MOVE_RUN));
 
                         me->GetThreatMgr().ClearAllThreat(); // players on vehicle are unattackable -> leads to EnterEvadeMode() because target is not acceptable!

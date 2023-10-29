@@ -509,7 +509,6 @@ public:
 
                                         if (Creature* c = me->SummonCreature(NPC_VORTEX, plrpos, TEMPSUMMON_TIMED_DESPAWN, 15000))
                                         {
-                                            pPlayer->CastSpell(pPlayer, SPELL_FREEZE_ANIM, true);
                                             pPlayer->CastSpell(c, SPELL_VORTEX_CONTROL_VEHICLE, true);
                                             if (!pPlayer->GetVehicle()) // didn't work somehow, try again with a different way, if fails - break
                                             {

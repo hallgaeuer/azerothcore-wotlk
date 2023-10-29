@@ -22,6 +22,7 @@ CMakeLists.txt.user
 *.BACKUP.*
 *.BASE.*
 *.LOCAL.*
+deno
 
 #
 # IDE & other softwares

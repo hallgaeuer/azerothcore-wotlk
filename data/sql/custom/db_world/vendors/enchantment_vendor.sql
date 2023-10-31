@@ -29,4 +29,38 @@ WHERE entry BETWEEN 701010 AND 701134
   AND entry NOT IN (701019, 701021, 701024)
   AND name LIKE "Scroll of Enchant%"
   AND name NOT LIKE "Scroll of Enchant Ring%";
+
+INSERT INTO npc_vendor (entry, slot, item)
+SELECT @vendorId, 1, entry
+FROM item_template
+WHERE
+    entry IN (
+        /* Weapons: */
+        42500,
+        41976,
+        41167,
+        44739,
+        41146,
+        /* Head Slot: */
+        44140,
+        44141,
+        44139,
+        44137,
+        44138,
+        50370,
+        50368,
+        50369,
+        50367,
+        /* Shoulder: */
+        50335,
+        50336,
+        50337,
+        50338,
+        /* Legs: */
+        44963,
+        38373,
+        38374,
+        41602,
+        41604
+    );
   

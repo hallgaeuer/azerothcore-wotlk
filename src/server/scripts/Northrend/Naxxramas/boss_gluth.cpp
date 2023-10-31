@@ -202,22 +202,7 @@ public:
                     break;
                 case EVENT_SUMMON_ZOMBIE:
                     {
-                        uint8 rand = urand(0, 2);
-                        for (int32 i = 0; i < RAID_MODE(1, 2); ++i)
-                        {
-                            // In 10 man raid, normal mode - should spawn only from mid gate
-                            // \1 |0 /2 pos
-                            // In 25 man raid - should spawn from all 3 gates
-                            if (me->GetMap()->GetDifficulty() == RAID_DIFFICULTY_10MAN_NORMAL)
-                            {
-                                me->SummonCreature(NPC_ZOMBIE_CHOW, zombiePos[0]);
-                            }
-                            else
-                            {
-                                me->SummonCreature(NPC_ZOMBIE_CHOW, zombiePos[urand(0, 2)]);
-                            }
-                            (rand == 2 ? rand = 0 : rand++);
-                        }
+                        me->SummonCreature(NPC_ZOMBIE_CHOW, zombiePos[0]);
                         events.Repeat(10s);
                         break;
                     }

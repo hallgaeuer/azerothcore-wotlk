@@ -96,11 +96,11 @@ The 25man versions of raids are planned to be more challenging modes.
 
 Currently done:
 
-- [x] Naxxramas 10 (not playtested)
+- [x] Naxxramas 10
 - [ ] Naxxramas 25
-- [x] Obsidian Sanctum 10 (not playtested yet)
+- [x] Obsidian Sanctum 10 
 - [ ] Obsidian Sanctum 25
-- [x] Eye of Eternity 10 (not playtested yet)
+- [x] Eye of Eternity 10
 - [ ] Eye of Eternity 25
 
 ### Naxxramas
@@ -143,7 +143,7 @@ Currently done:
 ### Eye of Eternity
 
 #### Malygos
-* Reduced damage of phase 3 Surge of Power by a huge amount, making the dragon shield ability obsolete. I didn't see any other way to make this viable for multiboxing otherwise
+* Reduced damage of phase 3 Surge of Power by 80%, making the dragon shield ability obsolete. Didn't see any other way to make this viable for multiboxing otherwise (without client unlocks or anything)
 
 ### Vault of Archavon
 

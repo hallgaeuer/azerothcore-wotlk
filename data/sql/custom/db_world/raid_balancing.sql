@@ -69,7 +69,7 @@ VALUES
         (16011, 0, 0.75, 0.3, 1, 1, 'Naxxramas 10 - Loatheb'),
         (15989, 0, 0.75, 0.5, 1, 1, 'Naxxramas 10 - Sapphiron'),
         -- Naxxramas 25
-        (16803, 1, 1, 1, 1, 1, 'Naxxramas 25 - Instructor Razuvious Understudy'),
+        (15932, 1, 0.5, 0.25, 1, 1, 'Naxxramas 25 - Gluth'),
         -- Obsidian Sanctum 10
         (31219, 0, 0.25, 0.25, 1, 1, 'Obsidian Sanctum 10 - Acolyte of Vesperon'),
         (30688, 0, 0.25, 0.25, 1, 1, 'Obsidian Sanctum 10 - Disciple of Shadron'),
@@ -80,8 +80,6 @@ VALUES
         (30249, 0, 0.4, 0.25, 1, 1, 'Eye of Eternity 10 - Scion of Eternity'),
         (30245, 0, 0.6, 0.35, 1, 1, 'Eye of Eternity 10 - Nexus Lord'),
         (30161, 0, 1, 1, 1, 1, 'Eye of Eternity 10 - Wyrmrest Skytalon (Phase 3 Friendly)'),
-        -- Eye of Eternity 25
-        (30161, 1, 1, 1, 1, 1, 'Eye of Eternity 25 - Wyrmrest Skytalon (Phase 3 Friendly)'),
         -- Ulduar 10
         (33118, 0, 0.9, 0.5, 1, 1, 'Ulduar 10 - Ignis'),
         (33121, 0, 0.5, 0.5, 1, 1, 'Ulduar 10 - Ignis - Iron Construct')
@@ -90,7 +88,7 @@ VALUES
 /* Auto generate missing 25 man versions */
 INSERT IGNORE INTO mod_quickbalance_modifier_creature (CreatureEntry, Difficulty, DamageModifier, HealthModifier, ManaModifier, ArmorModifier, Comment)
 SELECT 
-    CreatureEntry, "1", DamageModifier, HealthModifier * 2 / 4, ManaModifier, ArmorModifier, REPLACE(Comment, " 10 ", " 25 ")
+    CreatureEntry, "1", DamageModifier, IF(HealthModifier = 1, 1, HealthModifier * 2 / 4), ManaModifier, ArmorModifier, REPLACE(Comment, " 10 ", " 25 ")
 FROM 
     mod_quickbalance_modifier_creature 
 WHERE 
@@ -115,7 +113,7 @@ values  (27808, 0.5, 'Naxxramas 10/25 - Kel Thuzad - Frost Blast'),
 /* Creature Adjustments */
 /********************************************************/
 /* Reduce movement speed of Gluth zombie by 70% */
-UPDATE `creature_template` SET `speed_run` = 0.255 WHERE (`entry` = 16360);
+UPDATE `creature_template` SET `speed_run` = 0.255 WHERE `entry` IN (16360, 30303);
 
 /********************************************************/
 /* Deactivate Creatures */

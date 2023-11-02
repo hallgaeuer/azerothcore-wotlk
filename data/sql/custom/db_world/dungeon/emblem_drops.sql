@@ -18,6 +18,8 @@ WHERE `item` = 47241
 
 
 /* Tier 7 Raid bosses should drop Emblem of Valor */
+REPLACE INTO reference_loot_template (Entry, Item, Reference, Chance, QuestRequired, LootMode, GroupId, MinCount, MaxCount, Comment) VALUES(1500000, 47241, 0, 100.0, 0, 1, 0, 1, 1, 'Emblem of Valor');
+
 UPDATE `creature_loot_template`
 SET `item` = 40753
 WHERE `item` = 47241
@@ -26,8 +28,8 @@ WHERE `item` = 47241
                   29701, 29718, 29932, 29940, 29955, 29991, 30061);
 
 UPDATE `creature_loot_template`
-SET `Reference` = 60001
-WHERE `Reference` = 34349
+SET `Reference` = 1500000
+WHERE `Reference` IN (34349, 60001)
   AND `entry` = 31311;
 
 UPDATE `gameobject_loot_template`

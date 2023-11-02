@@ -2423,7 +2423,7 @@ INSERT INTO `creature` (`guid`, `id1`, `map`, `spawnMask`, `phaseMask`, `equipme
 
 -- Armor
 DELETE FROM `creature` WHERE `guid`=1977854;
-INSERT INTO `creature` (`guid`, `id1`, `map`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`) VALUES (1977854, 601003, 1, 1, 1, 1, 16225.7, 16241.9, 11.4356, 2.70249, 300, 0, 5342, 0, 0, 0, 0, 0);
+/*INSERT INTO `creature` (`guid`, `id1`, `map`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`) VALUES (1977854, 601003, 1, 1, 1, 1, 16225.7, 16241.9, 11.4356, 2.70249, 300, 0, 5342, 0, 0, 0, 0, 0);*/
 
 -- Potions
 DELETE FROM `creature` WHERE `guid`=1977853;

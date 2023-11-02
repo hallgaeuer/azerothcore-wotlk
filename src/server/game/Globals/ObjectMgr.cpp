@@ -2903,7 +2903,7 @@ void ObjectMgr::LoadItemTemplates()
             }
         }
         else
-            LOG_ERROR("sql.sql", "Item (Entry: {}) does not exist in item.dbc! (not correct id?).", entry);
+            LOG_INFO("sql.sql", "Item (Entry: {}) does not exist in item.dbc! (not correct id?).", entry);
 
         if (itemTemplate.Quality >= MAX_ITEM_QUALITY)
         {

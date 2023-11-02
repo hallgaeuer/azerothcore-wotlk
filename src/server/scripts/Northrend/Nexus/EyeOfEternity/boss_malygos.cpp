@@ -327,6 +327,8 @@ public:
             events.Reset();
             DoZoneInCombat();
 
+            LOG_INFO("scripts.raids", "boss_malygos: Malygos engaged");
+
             Talk(SAY_PHASE_1);
 
             events.RescheduleEvent(EVENT_INTRO_MOVE_CENTER, 0ms, 1);
@@ -500,14 +502,7 @@ public:
                                         if (!pPlayer->IsAlive() || pPlayer->IsGameMaster())
                                             continue;
 
-                                        Position plrpos;
-                                        float playerAngle = CenterPos.GetAngle(pPlayer);
-                                        plrpos.m_positionX = CenterPos.GetPositionX() + cos(playerAngle) * 5.0f;
-                                        plrpos.m_positionY = CenterPos.GetPositionY() + std::sin(playerAngle) * 5.0f;
-                                        plrpos.m_positionZ = CenterPos.GetPositionZ() + 18.0f;
-                                        plrpos.SetOrientation(plrpos.GetAngle(&CenterPos));
-
-                                        if (Creature* c = me->SummonCreature(NPC_VORTEX, plrpos, TEMPSUMMON_TIMED_DESPAWN, 15000))
+                                        if (Creature* c = me->SummonCreature(NPC_VORTEX, pPlayer->GetPosition(), TEMPSUMMON_TIMED_DESPAWN, 15000))
                                         {
                                             pPlayer->CastSpell(c, SPELL_VORTEX_CONTROL_VEHICLE, true);
                                             if (!pPlayer->GetVehicle()) // didn't work somehow, try again with a different way, if fails - break
@@ -516,27 +511,9 @@ public:
                                                 if (!pPlayer->GetVehicle())
                                                     continue;
                                             }
-                                            //pPlayer->ClearUnitState(UNIT_STATE_ONVEHICLE);
 
-                                            Movement::MoveSplineInit init(pPlayer);
-                                            init.MoveTo(CenterPos.GetPositionX(), CenterPos.GetPositionY(), CenterPos.GetPositionZ());
-                                            init.SetFacing(pPlayer->GetOrientation());
-                                            init.SetTransportExit();
-                                            init.Launch();
+                                            LOG_INFO("scripts.raids", "boss_malygos: Player {} put in to vortex vehicle", pPlayer->GetName());
 
-                                            pPlayer->SetUnitMovementFlags(MOVEMENTFLAG_NONE);
-                                            pPlayer->SetDisableGravity(true, true);
-
-                                            sScriptMgr->AnticheatSetCanFlybyServer(pPlayer, true);
-
-                                            WorldPacket data(SMSG_SPLINE_MOVE_UNROOT, 8);
-                                            data << pPlayer->GetPackGUID();
-                                            pPlayer->SendMessageToSet(&data, true);
-
-                                            sScriptMgr->AnticheatSetUnderACKmount(pPlayer);
-                                            sScriptMgr->AnticheatSetSkipOnePacketForASH(pPlayer, true);
-
-                                            pPlayer->SetGuidValue(PLAYER_FARSIGHT, vp->GetGUID());
                                             c->SetUnitFlag(UNIT_FLAG_NOT_SELECTABLE);
                                         }
                                     }
@@ -881,81 +858,49 @@ public:
             pos.m_positionZ = CenterPos.GetPositionZ() + h;
             pos.SetOrientation(pos.GetAngle(&CenterPos));
             me->SetPosition(pos);
-            timer = 0;
             despawnTimer = 9500;
-            bUpdatedFlying = false;
+            LOG_INFO("scripts.raids", "boss_malygos: npc_vortex_ride: Initialized");
         }
 
-        uint32 timer;
         uint32 despawnTimer;
-        bool bUpdatedFlying;
         float VORTEX_RADIUS;
 
         void PassengerBoarded(Unit* pass, int8  /*seat*/, bool apply) override
         {
-            if (pass && !apply && pass->GetTypeId() == TYPEID_PLAYER)
+            if (!pass || pass->GetTypeId() != TYPEID_PLAYER) 
             {
-                Player* plr = pass->ToPlayer();
-                float speed = plr->GetDistance(me->GetPositionX(), me->GetPositionY(), me->GetPositionZ()) / (1.0f * 0.001f);
-                plr->MonsterMoveWithSpeed(me->GetPositionX(), me->GetPositionY(), me->GetPositionZ(), speed);
-                plr->RemoveAura(SPELL_FREEZE_ANIM);
-                plr->SetDisableGravity(false, true);
-                plr->SetGuidValue(PLAYER_FARSIGHT, ObjectGuid::Empty);
-
-                sScriptMgr->AnticheatSetCanFlybyServer(plr, false);
-                sScriptMgr->AnticheatSetUnderACKmount(plr);
-                sScriptMgr->AnticheatSetSkipOnePacketForASH(plr, true);
+                return;
             }
+
+            Player* player = pass->ToPlayer();
+
+            if (apply) {
+                LOG_INFO("scripts.raids", "boss_malygos: npc_vortex_ride: Boarded {}", player->GetName());
+            }
+            else {
+                LOG_INFO("scripts.raids", "boss_malygos: npc_vortex_ride: Unboarded {}", player->GetName());
+            }
+           
         }
 
         void UpdateAI(uint32 diff) override
         {
-            /*      here: if player has some aura that should make him exit vehicle (eg. ice block) -> exit
-                    or make it another way (dunno how)                                                          */
-
             if (despawnTimer <= diff)
             {
+                LOG_INFO("scripts.raids", "boss_malygos: npc_vortex_ride: Despawn timer exceeded");
                 despawnTimer = 0;
                 me->UpdatePosition(CenterPos.GetPositionX(), CenterPos.GetPositionY(), CenterPos.GetPositionZ() + 18.0f, 0.0f, true);
                 me->StopMovingOnCurrentPos();
-                if (Vehicle* vehicle = me->GetVehicleKit())
+                if (Vehicle* vehicle = me->GetVehicleKit()) {
+                    LOG_INFO("scripts.raids", "boss_malygos: npc_vortex_ride: Ejecting players");
                     vehicle->RemoveAllPassengers();
+                }
                 me->DespawnOrUnsummon();
                 return;
             }
-            else
+            else {
                 despawnTimer -= diff;
-
-            if (timer <= diff)
-            {
-                float angle = CenterPos.GetAngle(me);
-                float newangle = angle + 2 * M_PI / ((float)VORTEX_TRAVEL_TIME / VORTEX_DEFAULT_DIFF);
-                if (newangle >= 2 * M_PI)
-                    newangle -= 2 * M_PI;
-                float newx = CenterPos.GetPositionX() + VORTEX_RADIUS * cos(newangle);
-                float newy = CenterPos.GetPositionY() + VORTEX_RADIUS * std::sin(newangle);
-                float arcangle = me->GetAngle(newx, newy);
-                float dist = 2 * me->GetDistance2d(newx, newy);
-                if (me->GetVehicleKit()) if (Unit* pass = me->GetVehicleKit()->GetPassenger(0)) if (Player* plr = pass->ToPlayer())
-                        {
-                            if (!bUpdatedFlying && timer)
-                            {
-                                bUpdatedFlying = true;
-                                plr->SetDisableGravity(true, true);
-
-                                sScriptMgr->AnticheatSetCanFlybyServer(plr, true);
-                                sScriptMgr->AnticheatSetSkipOnePacketForASH(plr, true);
-                                sScriptMgr->AnticheatSetUnderACKmount(plr);
-                            }
-
-                            plr->SendMonsterMove(me->GetPositionX() + dist * cos(arcangle), me->GetPositionY() + dist * std::sin(arcangle), me->GetPositionZ(), VORTEX_DEFAULT_DIFF * 2, SPLINEFLAG_FLYING);
-                            me->Relocate(newx, newy);
-                        }
-
-                timer = (diff - timer <= VORTEX_DEFAULT_DIFF) ? VORTEX_DEFAULT_DIFF - (diff - timer) : 0;
             }
-            else
-                timer -= diff;
         }
 
         void AttackStart(Unit*  /*who*/) override {}

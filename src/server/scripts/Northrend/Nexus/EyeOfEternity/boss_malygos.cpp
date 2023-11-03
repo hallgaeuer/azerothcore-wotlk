@@ -427,9 +427,9 @@ public:
 
                         events.SetPhase(PHASE_ONE);
                         events.RescheduleEvent(EVENT_BERSERK, 10min, 0);
-                        events.RescheduleEvent(EVENT_SPELL_ARCANE_BREATH, 9s, 12s, 1);
-                        events.RescheduleEvent(EVENT_SPELL_ARCANE_STORM, 2s, 5s, 1);
-                        events.RescheduleEvent(EVENT_SUMMON_POWER_SPARK, 10s, 15s, 1);
+                        events.RescheduleEvent(EVENT_SPELL_ARCANE_BREATH, 8s, 10s, 1);
+                        events.RescheduleEvent(EVENT_SPELL_ARCANE_STORM, 3s, 6s, 1);
+                        events.RescheduleEvent(EVENT_SUMMON_POWER_SPARK, 20s, 30s, 1);
                         events.RescheduleEvent(EVENT_START_VORTEX_0, 30s, 1);
                         break;
                     }
@@ -926,80 +926,64 @@ public:
             pInstance = me->GetInstanceScript();
             me->CastSpell(me, SPELL_POWER_SPARK_VISUAL, false);
             CheckTimer = 1000;
-            MoveTimer = 0;
         }
 
         InstanceScript* pInstance;
         uint16 CheckTimer;
-        uint16 MoveTimer;
 
         void DoAction(int32 param) override
         {
             switch(param)
             {
                 case 1:
-                    MoveTimer = 1;
+                    LOG_INFO("scripts.raids", "boss_malygos: Power Spark: Moving to malygos");
+                    MoveToMalygos();
+                    
                     break;
                 case 2:
-                    MoveTimer = 0;
-                    me->GetMotionMaster()->MoveIdle();
-                    me->DisableSpline();
-                    me->MonsterMoveWithSpeed(me->GetPositionX(), me->GetPositionY(), me->GetPositionZ() + 0.05f, 7.0f);
+                    LOG_INFO("scripts.raids", "boss_malygos: Power Spark: Stopping movement");
+                    me->AddUnitState(UNIT_STATE_ROOT);
                     break;
             }
         }
 
-        void DamageTaken(Unit*, uint32& damage, DamageEffectType, SpellSchoolMask) override
+        void MoveToMalygos()
         {
-            if (damage >= me->GetHealth())
-            {
-                damage = 0;
-                if (!me->HasUnitFlag(UNIT_FLAG_NON_ATTACKABLE))
-                {
-                    MoveTimer = 0;
-                    me->GetMotionMaster()->MoveIdle();
-                    me->DisableSpline();
-                    me->MonsterMoveWithSpeed(me->GetPositionX(), me->GetPositionY(), CenterPos.GetPositionZ(), 100.0f);
-                    me->SetPosition(me->GetPositionX(), me->GetPositionY(), CenterPos.GetPositionZ(), me->GetOrientation());
-                    me->ReplaceAllUnitFlags(UNIT_FLAG_NOT_SELECTABLE | UNIT_FLAG_NON_ATTACKABLE | UNIT_FLAG_DISABLE_MOVE);
-                    me->RemoveAura(SPELL_POWER_SPARK_VISUAL);
-                    me->CastSpell(me, SPELL_POWER_SPARK_GROUND_BUFF, true);
-                    me->DespawnOrUnsummon(60000);
-                }
-            }
+            me->GetMotionMaster()->MoveIdle();
+            me->ClearUnitState(UNIT_STATE_ROOT);
+
+            if (Creature* malygos = ObjectAccessor::GetCreature(*me, pInstance->GetGuidData(DATA_MALYGOS_GUID)))
+                me->GetMotionMaster()->MoveFollow(malygos, 0.0f, 0.0f);
+        }
+
+        void JustDied(Unit* /*killer*/) override
+        {
+            me->MonsterMoveWithSpeed(me->GetPositionX(), me->GetPositionY(), CenterPos.GetPositionZ(), 100.0f);
+            me->SetPosition(me->GetPositionX(), me->GetPositionY(), CenterPos.GetPositionZ(), me->GetOrientation());
+            me->CastSpell(me, SPELL_POWER_SPARK_GROUND_BUFF, true);
+            me->DespawnOrUnsummon();
         }
 
         void UpdateAI(uint32 diff) override
         {
-            if (me->HasUnitFlag(UNIT_FLAG_NON_ATTACKABLE))
+            if (!pInstance) {
                 return;
+            }
 
             if (CheckTimer <= diff)
             {
-                if (pInstance)
-                    if (Creature* c = pInstance->instance->GetCreature(pInstance->GetGuidData(DATA_MALYGOS_GUID)))
-                        if (me->IsWithinDist3d(c, 12.0f))
-                        {
-                            me->CastSpell(c, SPELL_POWER_SPARK_MALYGOS_BUFF, true);
-                            me->DespawnOrUnsummon();
-                            return;
-                        }
+                if (Creature* malygos = ObjectAccessor::GetCreature(*me, pInstance->GetGuidData(DATA_MALYGOS_GUID))) {
+                    if (me->IsWithinDist3d(malygos, 12.0f))
+                    {
+                        me->CastSpell(malygos, SPELL_POWER_SPARK_MALYGOS_BUFF, true);
+                        me->DespawnOrUnsummon();
+                        return;
+                    }
+                }
                 CheckTimer = 1000;
             }
-            else
+            else {
                 CheckTimer -= diff;
-
-            if (MoveTimer)
-            {
-                if (MoveTimer <= diff)
-                {
-                    if (pInstance)
-                        if (Creature* c = pInstance->instance->GetCreature(pInstance->GetGuidData(DATA_MALYGOS_GUID)))
-                            me->GetMotionMaster()->MovePoint(0, *c);
-                    MoveTimer = 2000;
-                }
-                else
-                    MoveTimer -= diff;
             }
         }
     };

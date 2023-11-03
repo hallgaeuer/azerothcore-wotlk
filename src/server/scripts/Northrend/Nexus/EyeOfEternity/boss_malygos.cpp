@@ -857,7 +857,7 @@ public:
             pos.m_positionY = CenterPos.GetPositionY() + VORTEX_RADIUS * std::sin(angle);
             pos.m_positionZ = CenterPos.GetPositionZ() + h;
             pos.SetOrientation(pos.GetAngle(&CenterPos));
-            me->SetPosition(pos);
+            me->NearTeleportTo(pos, false, true);
             despawnTimer = 9500;
             LOG_INFO("scripts.raids", "boss_malygos: npc_vortex_ride: Initialized");
         }
@@ -880,7 +880,7 @@ public:
             else {
                 LOG_INFO("scripts.raids", "boss_malygos: npc_vortex_ride: Unboarded {}", player->GetName());
             }
-           
+
         }
 
         void UpdateAI(uint32 diff) override
@@ -889,8 +889,7 @@ public:
             {
                 LOG_INFO("scripts.raids", "boss_malygos: npc_vortex_ride: Despawn timer exceeded");
                 despawnTimer = 0;
-                me->UpdatePosition(CenterPos.GetPositionX(), CenterPos.GetPositionY(), CenterPos.GetPositionZ() + 18.0f, 0.0f, true);
-                me->StopMovingOnCurrentPos();
+                me->NearTeleportTo(CenterPos.GetPositionX(), CenterPos.GetPositionY(), CenterPos.GetPositionZ() + 18.0f, 0.0f, false, true);
                 if (Vehicle* vehicle = me->GetVehicleKit()) {
                     LOG_INFO("scripts.raids", "boss_malygos: npc_vortex_ride: Ejecting players");
                     vehicle->RemoveAllPassengers();

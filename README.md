@@ -29,10 +29,12 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## General Info
+- Made for 5 man multiboxing
 - Cross faction
 - Instant 80
 - No durability loss
-- Auctionhouse bot is running
+- Auctionhouse bot
+- Mall in Dalaran (Krasus Landing)
 
 ## Mall in Dalaran (Krasus Landing)
 
@@ -92,16 +94,13 @@
 Health and Damage values were readjusted for all raids
 Specific values can be seen in the mod_quickbalance_* tables.
 
-The 25man versions of raids are planned to be more challenging modes.
+The 25man versions of raids are currently disabled. Drops from 25 mans are found in 10 man versions.
 
 Currently done:
 
 - [x] Naxxramas 10
-- [ ] Naxxramas 25
 - [x] Obsidian Sanctum 10 
-- [ ] Obsidian Sanctum 25
 - [x] Eye of Eternity 10
-- [ ] Eye of Eternity 25
 
 ### Naxxramas
 

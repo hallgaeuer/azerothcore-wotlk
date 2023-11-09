@@ -54,6 +54,13 @@ void SpellMgr::LoadSpellInfoCorrections()
         spellInfo->Effects[EFFECT_0].DieSides = spellInfo->Id == 1;
     });
 
+    // Kel Thuzad:
+    // Shadow Fissure's Void Blast: Slightly reduce radius so it matches the visual more
+    ApplySpellFix({ 27812 }, [](SpellInfo* spellInfo)
+    {
+        spellInfo->Effects[EFFECT_0].RadiusEntry = sSpellRadiusStore.LookupEntry(EFFECT_RADIUS_3_YARDS);
+    });
+
     // Ulduar XT-002 Deconstructor
     // Gravity Bomb should only pull in people within 12 yards, not 20 (same radius as damage component)
     ApplySpellFix({ 63025, 64233 }, [](SpellInfo* spellInfo)

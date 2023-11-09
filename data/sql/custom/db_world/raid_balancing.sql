@@ -86,7 +86,11 @@ VALUES
         (33186, 0, 0.9, 0.5, 1, 1, 'Ulduar 10 - Razorscale'),
         (33846, 0, 0.5, 0.8, 1, 1, 'Ulduar 10 - Razorscale Dark Rune Sentinel'),
         (33388, 0, 0.5, 0.8, 1, 1, 'Ulduar 10 - Razorscale Dark Rune Guardian'),
-        (33453, 0, 0.5, 0.8, 1, 1, 'Ulduar 10 - Razorscale Dark Rune Watcher')
+        (33453, 0, 0.5, 0.8, 1, 1, 'Ulduar 10 - Razorscale Dark Rune Watcher'),
+        (33293, 0, 0.9, 0.5, 1, 1, 'Ulduar 10 - XT-002 Deconstructor'),
+        (32927, 0, 0.65, 0.5, 1, 1, 'Ulduar 10 - Assembly of Iron - Runemaster Molgeim'),
+        (32867, 0, 0.65, 0.5, 1, 1, 'Ulduar 10 - Assembly of Iron - Steelbreaker'),
+        (32857, 0, 0.65, 0.5, 1, 1, 'Ulduar 10 - Assembly of Iron - Stormcaller Brundir')
 ;
 
 /* Auto generate missing 25 man versions */

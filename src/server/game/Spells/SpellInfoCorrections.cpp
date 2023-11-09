@@ -53,6 +53,15 @@ void SpellMgr::LoadSpellInfoCorrections()
         spellInfo->Effects[EFFECT_0].BasePoints = spellInfo->Id == 41926 ? 699 : 1099;
         spellInfo->Effects[EFFECT_0].DieSides = spellInfo->Id == 1;
     });
+
+    // Ulduar XT-002 Deconstructor
+    // Gravity Bomb should only pull in people within 12 yards, not 20 (same radius as damage component)
+    ApplySpellFix({ 63025, 64233 }, [](SpellInfo* spellInfo)
+    {
+        auto radiusEntry = sSpellRadiusStore.LookupEntry(EFFECT_RADIUS_12_YARDS);
+        spellInfo->Effects[EFFECT_0].RadiusEntry = radiusEntry;
+        spellInfo->Effects[EFFECT_1].RadiusEntry = radiusEntry;
+    });
     // ------------------------------------------------------------
     // Custom spell adjustments end
     // ------------------------------------------------------------

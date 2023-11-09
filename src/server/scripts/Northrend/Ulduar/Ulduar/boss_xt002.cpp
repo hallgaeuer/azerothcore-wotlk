@@ -202,7 +202,7 @@ public:
         {
             me->SetUInt32Value(UNIT_NPC_EMOTESTATE, EMOTE_ONESHOT_NONE);
             events.ScheduleEvent(EVENT_ENRAGE, 10min, 0, 0);
-            events.ScheduleEvent(EVENT_CHECK_ROOM, 5s, 0, 0);
+            //events.ScheduleEvent(EVENT_CHECK_ROOM, 5s, 0, 0);
             RescheduleEvents(); // Other events are scheduled here
 
             me->setActive(true);
@@ -472,7 +472,8 @@ public:
         void SendEnergyToCorner()
         {
             Unit* pile = nullptr;
-            uint8 num = urand(1, 4);
+            // Hasn custom change: Only send energy to one corners
+            uint8 num = 1;
             for (SummonList::const_iterator itr = summons.begin(); itr != summons.end(); ++itr)
                 if (Creature* summon = ObjectAccessor::GetCreature(*me, *itr))
                     if (summon->GetEntry() == NPC_PILE_TRIGGER)
@@ -507,7 +508,7 @@ public:
                         _spawnSelection++;
                         break;
                     case 3:
-                        if(_pummelerCount < 2)
+                        if(_pummelerCount < 1)
                             me->SummonCreature(NPC_XM024_PUMMELLER, target->GetPositionX(), target->GetPositionY(), target->GetPositionZ() + 2, 0, TEMPSUMMON_CORPSE_TIMED_DESPAWN, 5000);
 
                         _pummelerCount++;

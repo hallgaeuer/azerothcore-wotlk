@@ -166,3 +166,9 @@ Currently done:
 
 * Minions are not random. Always one of each type spawns. Only one mole machine.
 * Fuse Armor will fall off after 2 stacks
+
+#### XT-002 Deconstructor
+
+* Only one scrap heap spawns adds
+
+#### Assembly of Iron

@@ -82,7 +82,11 @@ VALUES
         (30161, 0, 1, 1, 1, 1, 'Eye of Eternity 10 - Wyrmrest Skytalon (Phase 3 Friendly)'),
         -- Ulduar 10
         (33118, 0, 0.9, 0.5, 1, 1, 'Ulduar 10 - Ignis'),
-        (33121, 0, 0.5, 0.5, 1, 1, 'Ulduar 10 - Ignis - Iron Construct')
+        (33121, 0, 0.5, 0.5, 1, 1, 'Ulduar 10 - Ignis - Iron Construct'),
+        (33186, 0, 0.9, 0.5, 1, 1, 'Ulduar 10 - Razorscale'),
+        (33846, 0, 0.5, 0.8, 1, 1, 'Ulduar 10 - Razorscale Dark Rune Sentinel'),
+        (33388, 0, 0.5, 0.8, 1, 1, 'Ulduar 10 - Razorscale Dark Rune Guardian'),
+        (33453, 0, 0.5, 0.8, 1, 1, 'Ulduar 10 - Razorscale Dark Rune Watcher')
 ;
 
 /* Auto generate missing 25 man versions */
@@ -106,7 +110,8 @@ values  (27808, 0.5, 'Naxxramas 10/25 - Kel Thuzad - Frost Blast'),
         (57874, 0.25, 'Obsidian Sanctum 10 - Twilight Shift'),
         (56256, 0.5, 'Eye of Eternity - Vortex'),
         (57407, 0.2, 'Eye of Eternity 10 - Surge of Power'),
-        (60936, 0.2, 'Eye of Eternity 25 - Surge of Power')
+        (60936, 0.2, 'Eye of Eternity 25 - Surge of Power'),
+        (64704, 0.75, 'Ulduar - Razorscale - Devouring Flame');
 ;
 
 /********************************************************/

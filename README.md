@@ -159,3 +159,10 @@ Currently done:
 #### Festergut
 
 *  Disabled Gastric Bloat
+
+### Ulduar
+
+#### Razorscale
+
+* Minions are not random. Always one of each type spawns. Only one mole machine.
+* Fuse Armor will fall off after 2 stacks

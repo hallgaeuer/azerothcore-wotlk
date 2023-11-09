@@ -143,6 +143,13 @@ enum Misc
 const Position CORDS_GROUND                 = {588.0f, -166.0f, 391.1f};
 const Position CORDS_AIR                    = {588.0f, -178.0f, 490.0f};
 
+uint32 const Minions[3] =
+{
+    NPC_DARK_RUNE_SENTINEL,
+    NPC_DARK_RUNE_GUARDIAN,
+    NPC_DARK_RUNE_WATCHER
+};
+
 class boss_razorscale : public CreatureScript
 {
 public:
@@ -408,8 +415,8 @@ public:
                 case EVENT_SUMMON_MOLE_MACHINES:
                     {
                         memset(cords, '\0', sizeof(cords));
-                        uint8 num = RAID_MODE( urand(2, 3), urand(2, 4) );
-                        for( int i = 0; i < num; ++i )
+                        // Hasn Custom Change: Only spawn one mole machine
+                        for( int i = 0; i < 1; ++i )
                         {
                             // X: (550, 625) Y: (-185, -230)
                             cords[i][0] = urand(550, 625);
@@ -429,59 +436,16 @@ public:
                     }
                     break;
                 case EVENT_SUMMON_ADDS:
-                    for( int i = 0; i < 4; ++i )
+                    // Hasn Custom Change: No randomness, always spawn one of each minion at the one mole machine
+                    for( int i = 0; i < 3; ++i )
                     {
-                        if( !cords[i][0] )
-                            break;
+                        uint32 npc_entry = Minions[i];
 
-                        uint8 opt;
-                        uint8 r = urand(1, 100);
-                        if( r <= 30 ) opt = 1;
-                        else if( r <= 65 ) opt = 2;
-                        else opt = 3;
+                        float x = cords[0][0] + 4.0f * cos((i + 1) * M_PI / 2);
+                        float y = cords[0][1] + 4.0f * std::sin((i + 1) * M_PI / 2);
 
-                        for( int j = 0; j < 4; ++j )
-                        {
-                            float x = cords[i][0] + 4.0f * cos(j * M_PI / 2);
-                            float y = cords[i][1] + 4.0f * std::sin(j * M_PI / 2);
-
-                            uint32 npc_entry = 0;
-                            switch( opt )
-                            {
-                                case 1:
-                                    if( j == 1 ) npc_entry = NPC_DARK_RUNE_SENTINEL;
-                                    break;
-                                case 2:
-                                    switch( j )
-                                    {
-                                        case 1:
-                                            npc_entry = NPC_DARK_RUNE_WATCHER;
-                                            break;
-                                        case 2:
-                                            npc_entry = NPC_DARK_RUNE_GUARDIAN;
-                                            break;
-                                    }
-                                    break;
-                                default: // case 3:
-                                    switch( j )
-                                    {
-                                        case 1:
-                                            npc_entry = NPC_DARK_RUNE_WATCHER;
-                                            break;
-                                        case 2:
-                                            npc_entry = NPC_DARK_RUNE_GUARDIAN;
-                                            break;
-                                        case 3:
-                                            npc_entry = NPC_DARK_RUNE_GUARDIAN;
-                                            break;
-                                    }
-                                    break;
-                            }
-
-                            if( npc_entry )
-                                if (Creature* c = me->SummonCreature(npc_entry, x, y, 391.1f, j * M_PI / 2, TEMPSUMMON_CORPSE_TIMED_DESPAWN, 5000))
-                                    DoZoneInCombat(c);
-                        }
+                        if (Creature* c = me->SummonCreature(npc_entry, x, y, 391.1f, (i + 1) * M_PI / 2, TEMPSUMMON_CORPSE_TIMED_DESPAWN, 5000))
+                            DoZoneInCombat(c);
                     }
                     break;
                 case EVENT_WARN_DEEP_BREATH:
@@ -575,10 +539,13 @@ public:
                     if (Unit* victim = me->GetVictim())
                         if (me->IsWithinMeleeRange(victim))
                         {
-                            me->CastSpell(victim, SPELL_FUSEARMOR, false);
-                            if (Aura* aur = victim->GetAura(SPELL_FUSEARMOR))
-                                if (aur->GetStackAmount() == 5)
-                                    victim->CastSpell(victim, SPELL_FUSED_ARMOR, true);
+                            Aura* aur = victim->GetAura(SPELL_FUSEARMOR);
+                            
+                            // Hasn custom change: Let fuse armor fall off after 2 stacks
+                            if (!aur || aur->GetStackAmount() < 2) {
+                                me->CastSpell(victim, SPELL_FUSEARMOR, false);
+                            }
+
                             events.Repeat(10s);
                             break;
                         }

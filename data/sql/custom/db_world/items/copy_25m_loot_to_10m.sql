@@ -8,7 +8,8 @@ WHERE creature_template.difficulty_entry_1 > 0;
 /* Copy over Chests */ 
 /* Four Horsemen Chest */
 UPDATE `gameobject_template` SET `Data1` = 25193 WHERE (`entry` = 181366);
-UPDATE `gameobject_template` SET `Data1` = 26929 WHERE (`entry` = 195046);
+
+/* Ulduar Chests are switched in the ulduar.h script */
 
 /* Sapphiron should also drop the regular key to the focusing iris */
 DELETE FROM `creature_loot_template` WHERE (`Entry` = 29991) AND (`Item` IN (44569));

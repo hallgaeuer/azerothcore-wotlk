@@ -95,7 +95,25 @@ VALUES
         (33768, 0, 0.25, 0.5, 1, 1, 'Ulduar 10 - Kologarn - Rubble'),
         (33515, 0, 0.75, 0.5, 1, 1, 'Ulduar 10 - Auriaya'),
         (34014, 0, 0.7, 0.5, 1, 1, 'Ulduar 10 - Auriaya - Sanctum Sentry'),
-        (34035, 0, 0.3, 0.5, 1, 1, 'Ulduar 10 - Auriaya - Feral Defender')
+        (34035, 0, 0.3, 0.5, 1, 1, 'Ulduar 10 - Auriaya - Feral Defender'),
+        (32845, 0, 1, 0.4, 1, 1, 'Ulduar 10 - Hodir'),
+        (32897, 0, 1, 1, 1, 1, 'Ulduar 10 - Hodir - NPC'),
+        (32901, 0, 1, 1, 1, 1, 'Ulduar 10 - Hodir - NPC'),
+        (32900, 0, 1, 1, 1, 1, 'Ulduar 10 - Hodir - NPC'),
+        (32893, 0, 1, 1, 1, 1, 'Ulduar 10 - Hodir - NPC'),
+        (33326, 0, 1, 1, 1, 1, 'Ulduar 10 - Hodir - NPC'),
+        (33325, 0, 1, 1, 1, 1, 'Ulduar 10 - Hodir - NPC'),
+        (33328, 0, 1, 1, 1, 1, 'Ulduar 10 - Hodir - NPC'),
+        (33327, 0, 1, 1, 1, 1, 'Ulduar 10 - Hodir - NPC'),
+        (32948, 0, 1, 1, 1, 1, 'Ulduar 10 - Hodir - NPC'),
+        (32941, 0, 1, 1, 1, 1, 'Ulduar 10 - Hodir - NPC'),
+        (32950, 0, 1, 1, 1, 1, 'Ulduar 10 - Hodir - NPC'),
+        (32946, 0, 1, 1, 1, 1, 'Ulduar 10 - Hodir - NPC'),
+        (33330, 0, 1, 1, 1, 1, 'Ulduar 10 - Hodir - NPC'),
+        (33333, 0, 1, 1, 1, 1, 'Ulduar 10 - Hodir - NPC'),
+        (33332, 0, 1, 1, 1, 1, 'Ulduar 10 - Hodir - NPC'),
+        (33331, 0, 1, 1, 1, 1, 'Ulduar 10 - Hodir - NPC'),
+        (32865, 0, 0.9, 0.5, 1, 1, 'Ulduar 10 - Thorim')
 ;
 
 /* Auto generate missing 25 man versions */

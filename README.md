@@ -171,4 +171,13 @@ Currently done:
 
 * Only one scrap heap spawns adds
 
-#### Assembly of Iron
+#### Hodir
+
+* Icicles fall less frequently
+* Frozen Blows frost damage reduced
+
+#### Thorim
+
+* Players do not need to remain in the arena: 
+* * Arena mobs don't continously spawn
+* * Thorim doesn't summon Lightning Orbs when no one is in the arena

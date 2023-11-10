@@ -176,21 +176,21 @@ enum UlduarNPCs
 enum UlduarGameObjects
 {
     // Chests
-    GO_KOLOGARN_CHEST                       = 195046,
+    GO_KOLOGARN_CHEST                       = 195047,
     GO_KOLOGARN_CHEST_HERO                  = 195047,
-    GO_THORIM_CHEST                         = 194312,
+    GO_THORIM_CHEST                         = 194314,
     GO_THORIM_CHEST_HERO                    = 194314,
-    GO_HODIR_CHEST_NORMAL                   = 194307,
+    GO_HODIR_CHEST_NORMAL                   = 194308,
     GO_HODIR_CHEST_NORMAL_HERO              = 194308,
-    GO_HODIR_CHEST_HARD                     = 194200,
+    GO_HODIR_CHEST_HARD                     = 194201,
     GO_HODIR_CHEST_HARD_HERO                = 194201,
-    GO_FREYA_CHEST                          = 194330, // Normal, -2 - elder offset
+    GO_FREYA_CHEST                          = 194331, // Normal, -2 - elder offset
     GO_FREYA_CHEST_HERO                     = 194331, // Hero, -2 - elder offset
-    GO_MIMIRON_CHEST                        = 194789,
-    GO_MIMIRON_CHEST_HARD                   = 194957,
+    GO_MIMIRON_CHEST                        = 194956,
     GO_MIMIRON_CHEST_HERO                   = 194956,
+    GO_MIMIRON_CHEST_HARD                   = 194958,
     GO_MIMIRON_CHEST_HERO_HARD              = 194958,
-    GO_ALGALON_CHEST                        = 194821,
+    GO_ALGALON_CHEST                        = 194822,
     GO_ALGALON_CHEST_HERO                   = 194822,
 
     // Flame Leviathan

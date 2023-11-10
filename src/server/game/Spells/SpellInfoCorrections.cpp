@@ -76,6 +76,13 @@ void SpellMgr::LoadSpellInfoCorrections()
     {
         spellInfo->Effects[EFFECT_0].Amplitude = 8000;
     });
+
+    // Reduce Frozen Blows Frost damage
+    ApplySpellFix({ 62867 }, [](SpellInfo* spellInfo)
+    {
+        spellInfo->Effects[EFFECT_0].BasePoints = 15530;
+    });
+    
     // ------------------------------------------------------------
     // Custom spell adjustments end
     // ------------------------------------------------------------

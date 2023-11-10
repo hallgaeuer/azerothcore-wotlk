@@ -55,7 +55,7 @@ VALUES
         (15930, 0, 0.05, 0.25, 1, 1, 'Naxxramas 10 - Feugen'),
         (15929, 0, 0.05, 0.25, 1, 1, 'Naxxramas 10 - Stalagg'),
         (15928, 0, 0.8, 0.35, 1, 1, 'Naxxramas 10 - Thaddius'),
-        (15936, 0, 0.65, 0.5, 1, 1, 'Naxxramas 10 - Heigan'),
+        (15936, 0, 0.75, 0.5, 1, 1, 'Naxxramas 10 - Heigan'),
         (30549, 0, 0.35, 0.5, 1, 1, 'Naxxramas 10 - Four Horsemen - Baron Rivendare'),
         (16065, 0, 0.5, 0.5, 1, 1, 'Naxxramas 10 - Four Horsemen - Lady Blaumeux'),
         (16063, 0, 0.5, 0.5, 1, 1, 'Naxxramas 10 - Four Horsemen - Sir Zeliak'),
@@ -88,9 +88,14 @@ VALUES
         (33388, 0, 0.5, 0.8, 1, 1, 'Ulduar 10 - Razorscale Dark Rune Guardian'),
         (33453, 0, 0.5, 0.8, 1, 1, 'Ulduar 10 - Razorscale Dark Rune Watcher'),
         (33293, 0, 0.9, 0.5, 1, 1, 'Ulduar 10 - XT-002 Deconstructor'),
-        (32927, 0, 0.65, 0.5, 1, 1, 'Ulduar 10 - Assembly of Iron - Runemaster Molgeim'),
-        (32867, 0, 0.65, 0.5, 1, 1, 'Ulduar 10 - Assembly of Iron - Steelbreaker'),
-        (32857, 0, 0.65, 0.5, 1, 1, 'Ulduar 10 - Assembly of Iron - Stormcaller Brundir')
+        (32927, 0, 0.6, 0.4, 1, 1, 'Ulduar 10 - Assembly of Iron - Runemaster Molgeim'),
+        (32867, 0, 0.6, 0.4, 1, 1, 'Ulduar 10 - Assembly of Iron - Steelbreaker'),
+        (32857, 0, 0.6, 0.4, 1, 1, 'Ulduar 10 - Assembly of Iron - Stormcaller Brundir'),
+        (32930, 0, 0.9, 0.5, 1, 1, 'Ulduar 10 - Kologarn'),
+        (33768, 0, 0.25, 0.5, 1, 1, 'Ulduar 10 - Kologarn - Rubble'),
+        (33515, 0, 0.75, 0.5, 1, 1, 'Ulduar 10 - Auriaya'),
+        (34014, 0, 0.7, 0.5, 1, 1, 'Ulduar 10 - Auriaya - Sanctum Sentry'),
+        (34035, 0, 0.3, 0.5, 1, 1, 'Ulduar 10 - Auriaya - Feral Defender')
 ;
 
 /* Auto generate missing 25 man versions */
@@ -115,7 +120,10 @@ values  (27808, 0.5, 'Naxxramas 10/25 - Kel Thuzad - Frost Blast'),
         (56256, 0.5, 'Eye of Eternity - Vortex'),
         (57407, 0.2, 'Eye of Eternity 10 - Surge of Power'),
         (60936, 0.2, 'Eye of Eternity 25 - Surge of Power'),
-        (64704, 0.75, 'Ulduar - Razorscale - Devouring Flame');
+        (64704, 0.75, 'Ulduar - Razorscale - Devouring Flame'),
+        (62269, 0.5, 'Ulduar - Assembly of Iron - Rune of Death'),
+        (64422, 0.5, 'Ulduar - Auriaya - Sonic Screech'),
+        (64459, 0.75, 'Ulduar - Auriaya - Seeping Feral Essence')
 ;
 
 /********************************************************/

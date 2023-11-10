@@ -1,1 +1,1 @@
-UPDATE `item_template` SET `maxcount` = 0, `stackable` = 200 WHERE (`entry` = 6265);
+UPDATE `item_template` SET `maxcount` = 400, `stackable` = 200 WHERE (`entry` = 6265);

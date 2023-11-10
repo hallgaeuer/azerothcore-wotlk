@@ -69,6 +69,13 @@ void SpellMgr::LoadSpellInfoCorrections()
         spellInfo->Effects[EFFECT_0].RadiusEntry = radiusEntry;
         spellInfo->Effects[EFFECT_1].RadiusEntry = radiusEntry;
     });
+
+    // Ulduar Hodir
+    // Make icicles less frequent
+    ApplySpellFix({ 62227 }, [](SpellInfo* spellInfo)
+    {
+        spellInfo->Effects[EFFECT_0].Amplitude = 8000;
+    });
     // ------------------------------------------------------------
     // Custom spell adjustments end
     // ------------------------------------------------------------

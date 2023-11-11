@@ -12847,6 +12847,13 @@ int32 Player::CalculateCorpseReclaimDelay(bool load)
 
     bool pvp = corpse ? corpse->GetType() == CORPSE_RESURRECTABLE_PVP : m_ExtraFlags & PLAYER_EXTRA_PVP_DEATH;
 
+    if ((pvp && !sWorld->getBoolConfig(CONFIG_DEATH_CORPSE_RECLAIM_DELAY_PVP)) 
+        ||
+        (!pvp && !sWorld->getBoolConfig(CONFIG_DEATH_CORPSE_RECLAIM_DELAY_PVE))
+    ) {
+        return -1;
+    }
+
     uint32 delay;
 
     if (load)

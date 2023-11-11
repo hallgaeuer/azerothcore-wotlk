@@ -96,7 +96,7 @@ VALUES
         (33515, 0, 0.75, 0.5, 1, 1, 'Ulduar 10 - Auriaya'),
         (34014, 0, 0.7, 0.5, 1, 1, 'Ulduar 10 - Auriaya - Sanctum Sentry'),
         (34035, 0, 0.3, 0.5, 1, 1, 'Ulduar 10 - Auriaya - Feral Defender'),
-        (32845, 0, 1, 0.4, 1, 1, 'Ulduar 10 - Hodir'),
+        (32845, 0, 1, 0.3, 1, 1, 'Ulduar 10 - Hodir'),
         (32897, 0, 1, 1, 1, 1, 'Ulduar 10 - Hodir - NPC'),
         (32901, 0, 1, 1, 1, 1, 'Ulduar 10 - Hodir - NPC'),
         (32900, 0, 1, 1, 1, 1, 'Ulduar 10 - Hodir - NPC'),
@@ -141,7 +141,10 @@ values  (27808, 0.5, 'Naxxramas 10/25 - Kel Thuzad - Frost Blast'),
         (64704, 0.75, 'Ulduar - Razorscale - Devouring Flame'),
         (62269, 0.5, 'Ulduar - Assembly of Iron - Rune of Death'),
         (64422, 0.5, 'Ulduar - Auriaya - Sonic Screech'),
-        (64459, 0.75, 'Ulduar - Auriaya - Seeping Feral Essence')
+        (64459, 0.75, 'Ulduar - Auriaya - Seeping Feral Essence'),
+        (64544, 0.5, 'Ulduar - Hodir - Frozen Blows Raid Damage'),
+        (62457, 0.75, 'Ulduar - Hodir - Icicle'),
+        (65370, 0.75, 'Ulduar - Hodir - Big Icicle')
 ;
 
 /********************************************************/

@@ -1250,7 +1250,8 @@ public:
                 {
                     if (prev)
                     {
-                        ModStackAmount(-1);
+                        // Hasn custom change: Remove more biting cold stacks at once
+                        ModStackAmount(-3);
                         prev = false;
                     }
                     else

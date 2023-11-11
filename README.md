@@ -29,7 +29,7 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## General Info
-- Made for 5 man multiboxing
+- Made for 5 man multiboxing. Everything should be double without any client unlocks and automation shenanigans.
 - Cross faction
 - Instant 80
 - No durability loss
@@ -174,7 +174,8 @@ Currently done:
 #### Hodir
 
 * Icicles fall less frequently
-* Frozen Blows frost damage reduced
+* Frozen Blows frost damage reduced, so no Frost Resistence is required
+* Biting cold: When moving or near a fire 3 stacks are removed instead of just one
 
 #### Thorim
 

@@ -182,7 +182,6 @@ public:
         {
             me->SetDisableGravity(true);
             me->setActive(true);
-            me->SetFarVisible(true);
             Reset();
         }
 

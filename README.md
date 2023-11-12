@@ -31,9 +31,6 @@
     - [Malygos](#malygos)
   - [Vault of Archavon](#vault-of-archavon)
       - [Archavon](#archavon)
-  - [Icecrown Citadel](#icecrown-citadel)
-    - [Stinky / Precious](#stinky--precious)
-    - [Festergut](#festergut)
   - [Ulduar](#ulduar)
     - [Flame Leviathan](#flame-leviathan)
     - [Razorscale](#razorscale)
@@ -41,6 +38,9 @@
     - [Hodir](#hodir)
     - [Thorim](#thorim)
     - [Freya](#freya)
+  - [Icecrown Citadel](#icecrown-citadel)
+    - [Stinky / Precious](#stinky--precious)
+    - [Festergut](#festergut)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -171,16 +171,6 @@ Currently done:
 
 * Disabled Impale
 
-### Icecrown Citadel
-
-#### Stinky / Precious
-
-* Disabled Mortal Wound
-
-#### Festergut
-
-* Disabled Gastric Bloat
-
 ### Ulduar
 
 #### Flame Leviathan
@@ -213,3 +203,13 @@ Currently done:
 
 * Freya will neither autoattack nor chase in the first phase
 * Threat resets at the beginning of the second phase
+
+### Icecrown Citadel
+
+#### Stinky / Precious
+
+* Disabled Mortal Wound
+
+#### Festergut
+
+* Disabled Gastric Bloat

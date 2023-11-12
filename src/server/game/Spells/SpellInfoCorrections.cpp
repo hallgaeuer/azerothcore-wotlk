@@ -42,6 +42,7 @@ void SpellMgr::LoadSpellInfoCorrections()
 
     // ------------------------------------------------------------
     // Custom spell adjustments
+    // TODO: Put into module?
     // ------------------------------------------------------------
     // Naxxramas
     // Patchwerk: Hateful Strike ignores armor, does no pushback, has greater range and does reduced damage

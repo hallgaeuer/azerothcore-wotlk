@@ -29,21 +29,26 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## General Info
-- Made for 5 man multiboxing. Everything should be double without any client unlocks and automation shenanigans.
+- Made for 5 man multiboxing. The goal is for everything to be doable with regular multiboxer tools like ISBoxer or HKN. No client unlocking required.
 - Cross faction
 - Instant 80
 - No durability loss
-- Auctionhouse bot
+- AHbot
+- Buffbot
+- Resurrection-Bot or "Rezbot"
 - Mall in Dalaran (Krasus Landing)
+- Free riding / flying
+- Free dual-spec
 
 ## Mall in Dalaran (Krasus Landing)
 
 * Class trainers
 * Vendors with free uncommon quality gear (sourced from quest rewards)
 * Uncommon / Rare / Epic Gem vendors with according gem prices
+* Enchantment scroll vendors
 * Glyph vendors
 * Neutral auctioneer with ahbot
-* Food and drink vendor with potions and special items:
+* Food and drink vendor with health / mana potions and special items:
 * * `Endless Bowl of Tasty Ramen`: Infinitely usable Food/Drink item 
 * * `Book of Buffing`: Summons a Buffbot that can buff you with typical raid buffs
 * * `Book of Rezzing`: Summons a Rezbot that automatically revives dead players after combat is dropped. Only usable in dungeons or raids

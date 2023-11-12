@@ -82,6 +82,13 @@ void SpellMgr::LoadSpellInfoCorrections()
     {
         spellInfo->Effects[EFFECT_0].BasePoints = 15530;
     });
+
+    // Thorim
+    // Unbalancing Strike: Don't reduce defense skill
+    ApplySpellFix({ 62867 }, [](SpellInfo* spellInfo)
+    {
+        spellInfo->Effects[EFFECT_1].Effect = 0;
+    });
     
     // ------------------------------------------------------------
     // Custom spell adjustments end

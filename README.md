@@ -180,8 +180,9 @@ Currently done:
 #### Thorim
 
 * Players do not need to remain in the arena: 
-* * Arena mobs don't continously spawn
+* * Only the first batch of arena mobs will spawn
 * * Thorim doesn't summon Lightning Orbs when no one is in the arena
+* Unbalancing Strike: Doesn't reduce defense skill (even though the client still displays the defence reduction)
 
 #### Freya
 

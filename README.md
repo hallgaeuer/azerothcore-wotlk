@@ -12,8 +12,8 @@
   - [Priest](#priest)
   - [Paladin](#paladin)
   - [Warlock](#warlock)
-- [Mage](#mage)
-- [Hunter](#hunter)
+  - [Mage](#mage)
+  - [Hunter](#hunter)
 - [General Dungeon / Raid changes](#general-dungeon--raid-changes)
 - [Raid Changes](#raid-changes)
   - [Naxxramas](#naxxramas)
@@ -93,11 +93,11 @@
 * Soul Shards stackable up to 200, unlimited amount
 * `Drain Soul` creates 10 soul shards instead of 1
 
-## Mage
+### Mage
 
 * Added `Heroism` / `Bloodlust` spell, only usable in raids
 
-## Hunter
+### Hunter
 
 * Added `Heroism` / `Bloodlust` spell, only usable in raids
 

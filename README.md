@@ -35,6 +35,7 @@
     - [Stinky / Precious](#stinky--precious)
     - [Festergut](#festergut)
   - [Ulduar](#ulduar)
+    - [Flame Leviathan](#flame-leviathan)
     - [Razorscale](#razorscale)
     - [XT-002 Deconstructor](#xt-002-deconstructor)
     - [Hodir](#hodir)
@@ -178,9 +179,13 @@ Currently done:
 
 #### Festergut
 
-*  Disabled Gastric Bloat
+* Disabled Gastric Bloat
 
 ### Ulduar
+
+#### Flame Leviathan
+
+* No adjustments except for health yet. Can be skipped by using the teleporter at the beginning of Ulduar, which is always unlocked.
 
 #### Razorscale
 

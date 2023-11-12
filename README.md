@@ -182,3 +182,8 @@ Currently done:
 * Players do not need to remain in the arena: 
 * * Arena mobs don't continously spawn
 * * Thorim doesn't summon Lightning Orbs when no one is in the arena
+
+#### Freya
+
+* Freya will neither autoattack nor chase in the first phase
+* Threat resets at the beginning of the second phase

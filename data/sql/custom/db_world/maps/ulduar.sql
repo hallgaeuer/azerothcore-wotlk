@@ -3,3 +3,6 @@ DELETE FROM conditions WHERE SourceTypeOrReferenceId=22 AND SourceGroup=2 AND So
 
 /* Always activate teleporter option to colossal forge */
 DELETE FROM conditions WHERE SourceTypeOrReferenceId=15 AND SourceGroup=10389 AND SourceEntry=2;
+
+/* Freya: Reduce movement speed detonating lashers */
+UPDATE `creature_template` SET `speed_run` = 0.25 WHERE `entry` IN (32918);

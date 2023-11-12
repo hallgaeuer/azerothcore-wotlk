@@ -283,6 +283,8 @@ public:
 
             events.Reset();
             summons.DespawnAll();
+            me->RemoveUnitFlag(UNIT_FLAG_PACIFIED);
+            me->ClearUnitState(UNIT_STATE_ROOT);
 
             for (uint8 i = 0; i < 3; ++i)
             {
@@ -447,6 +449,11 @@ public:
                     aur->SetStackAmount(aur->GetStackAmount() - param);
                 else // Aura out of stack
                 {
+                    // Custom change: Freya does not attack in Phase 1
+                    me->RemoveUnitFlag(UNIT_FLAG_PACIFIED);
+                    me->ClearUnitState(UNIT_STATE_ROOT);
+                    DoResetThreatList();
+                    
                     events.ScheduleEvent(EVENT_FREYA_NATURE_BOMB, 5s);
                     events.SetPhase(EVENT_PHASE_FINAL);
                     aur->Remove();
@@ -479,6 +486,7 @@ public:
             me->setActive(true);
             me->SetInCombatWithZone();
             me->CastSpell(me, SPELL_TOUCH_OF_EONAR, true);
+
             if (Aura* aur = me->AddAura(SPELL_ATTUNED_TO_NATURE, me))
                 aur->SetStackAmount(150);
 
@@ -487,6 +495,10 @@ public:
             events.ScheduleEvent(EVENT_FREYA_SUNBEAM, 17s);
             events.ScheduleEvent(EVENT_FREYA_BERSERK, 10min);
             events.SetPhase(EVENT_PHASE_ADDS);
+
+            // Custom change: Freya does not attack in Phase 1
+            me->SetUnitFlag(UNIT_FLAG_PACIFIED);
+            me->AddUnitState(UNIT_STATE_ROOT);
 
             if( !m_pInstance )
                 return;
@@ -561,6 +573,11 @@ public:
                     else if (me->GetAura(SPELL_ATTUNED_TO_NATURE))
                     {
                         me->RemoveAura(SPELL_ATTUNED_TO_NATURE);
+                        // Custom change: Freya does not attack in Phase 1
+                        me->RemoveUnitFlag(UNIT_FLAG_PACIFIED);
+                        me->ClearUnitState(UNIT_STATE_ROOT);
+                        DoResetThreatList();
+
                         events.ScheduleEvent(EVENT_FREYA_NATURE_BOMB, 5s);
                         events.SetPhase(EVENT_PHASE_FINAL);
                         return;

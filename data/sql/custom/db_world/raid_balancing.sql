@@ -113,7 +113,8 @@ VALUES
         (33333, 0, 1, 1, 1, 1, 'Ulduar 10 - Hodir - NPC'),
         (33332, 0, 1, 1, 1, 1, 'Ulduar 10 - Hodir - NPC'),
         (33331, 0, 1, 1, 1, 1, 'Ulduar 10 - Hodir - NPC'),
-        (32865, 0, 0.9, 0.5, 1, 1, 'Ulduar 10 - Thorim')
+        (32865, 0, 0.9, 0.5, 1, 1, 'Ulduar 10 - Thorim'),
+        (33228, 0, 1, 0.25, 1, 1, 'Ulduar 10 - Freya - Eonars Gift')
 ;
 
 /* Auto generate missing 25 man versions */
@@ -146,12 +147,6 @@ values  (27808, 0.5, 'Naxxramas 10/25 - Kel Thuzad - Frost Blast'),
         (62457, 0.75, 'Ulduar - Hodir - Icicle'),
         (65370, 0.75, 'Ulduar - Hodir - Big Icicle')
 ;
-
-/********************************************************/
-/* Creature Adjustments */
-/********************************************************/
-/* Reduce movement speed of Gluth zombie by 70% */
-UPDATE `creature_template` SET `speed_run` = 0.255 WHERE `entry` IN (16360, 30303);
 
 /********************************************************/
 /* Deactivate Creatures */

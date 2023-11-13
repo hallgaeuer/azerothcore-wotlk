@@ -709,9 +709,10 @@ public:
                         LMK2->AI()->SetData(1, 4);
                         VX001->AI()->SetData(1, 4);
                         ACU->AI()->SetData(1, 4);
-                        LMK2->CastSpell(LMK2, SPELL_SELF_REPAIR, true); //LMK2->SetHealth( LMK2->GetMaxHealth()/2 );
-                        VX001->CastSpell(VX001, SPELL_SELF_REPAIR, true); //VX001->SetHealth( VX001->GetMaxHealth()/2 );
-                        ACU->CastSpell(ACU, SPELL_SELF_REPAIR, true); //ACU->SetHealth( ACU->GetMaxHealth()/2 );
+                        // Custom Change: Make sure they actually all start with half health
+                        LMK2->SetHealth( LMK2->GetMaxHealth()/2 );
+                        VX001->SetHealth( VX001->GetMaxHealth()/2 );
+                        ACU->SetHealth( ACU->GetMaxHealth()/2 );
                         if( hardmode )
                         {
                             LMK2->CastSpell(LMK2, SPELL_EMERGENCY_MODE, true);
@@ -1051,6 +1052,7 @@ public:
         {
             if (damage >= me->GetHealth() || me->GetHealth() < 15000)
             {
+                LOG_INFO("scripts.raids", " {}: Health below threshold", me->GetName());
                 damage = 0;
                 if (me->GetReactState() == REACT_PASSIVE)
                     return;
@@ -1075,12 +1077,14 @@ public:
                 }
                 else if (Phase == 4)
                 {
+                    LOG_INFO("scripts.raids", "{}: Checking if NON_ATTACKABLE", me->GetName());
                     if (!me->HasUnitFlag(UNIT_FLAG_NON_ATTACKABLE))
                     {
                         me->SetUnitFlag(UNIT_FLAG_NON_ATTACKABLE);
                         me->InterruptNonMeleeSpells(false);
                         me->RemoveAllAurasExceptType(SPELL_AURA_CONTROL_VEHICLE);
                         me->CastSpell(me, SPELL_SELF_REPAIR, false);
+                        LOG_INFO("scripts.raids", "{}: Casting Self Repair", me->GetName());
                         if (Creature* c = GetMimiron())
                         {
                             if (c->AI()->GetData(1))
@@ -1147,7 +1151,8 @@ public:
                     events.ScheduleEvent(EVENT_PROXIMITY_MINES_1, 8s);
                     break;
                 case EVENT_PROXIMITY_MINES_1:
-                    for (uint8 i = 0; i < 10; ++i)
+                    // Custom change: Less proximity mines are spawned
+                    for (uint8 i = 0; i < 4; ++i)
                     {
                         me->CastSpell(me, SPELL_SUMMON_PROXIMITY_MINE, true);
                     }
@@ -1291,6 +1296,7 @@ public:
                             }
                         break;
                     case 4:
+                        me->SetReactState(REACT_AGGRESSIVE);
                         Phase = 4;
                         fighting = true;
                         me->RemoveUnitFlag(UNIT_FLAG_NOT_SELECTABLE);
@@ -1326,6 +1332,7 @@ public:
         {
             if (damage >= me->GetHealth() || me->GetHealth() < 15000)
             {
+                LOG_INFO("scripts.raids", " {}: Health below threshold", me->GetName());
                 damage = 0;
                 if (me->GetReactState() == REACT_PASSIVE)
                     return;
@@ -1347,12 +1354,14 @@ public:
                 }
                 else if (Phase == 4)
                 {
+                    LOG_INFO("scripts.raids", "{}: Checking if NON_ATTACKABLE", me->GetName());
                     if (!me->HasUnitFlag(UNIT_FLAG_NON_ATTACKABLE))
                     {
                         me->SetUnitFlag(UNIT_FLAG_NON_ATTACKABLE);
                         me->InterruptNonMeleeSpells(false);
                         me->RemoveAllAurasExceptType(SPELL_AURA_CONTROL_VEHICLE);
                         me->CastSpell(me, SPELL_SELF_REPAIR, false);
+                        LOG_INFO("scripts.raids", "{}: Casting Self Repair", me->GetName());
                         if (Creature* c = GetMimiron())
                         {
                             if (c->AI()->GetData(1))
@@ -1400,23 +1409,23 @@ public:
                 case EVENT_SPELL_ROCKET_STRIKE:
                     if( Vehicle* vk = me->GetVehicleKit() )
                     {
-                        for( int i = 0; i < (Phase / 2); ++i )
+                        // Custom change: Rocket strike should always only target one player, not 2 in phase 4 (removed for loop)
+                        uint8 index = rand() % 2;
+                        if( Unit* r = vk->GetPassenger(5 + index) ) 
                         {
-                            uint8 index = (Phase == 2 ? rand() % 2 : i);
-                            if( Unit* r = vk->GetPassenger(5 + index) )
-                                if (Player* temp = SelectTargetFromPlayerList(100.0f))
-                                {
-                                    if( Creature* trigger = me->SummonCreature(NPC_ROCKET_STRIKE_N, temp->GetPositionX(), temp->GetPositionY(), temp->GetPositionZ(), 0.0f, TEMPSUMMON_TIMED_DESPAWN, 6000) )
-                                        trigger->CastSpell(trigger, SPELL_ROCKET_STRIKE_AURA, true);
-                                    Position exitPos = r->GetPosition();
-                                    exitPos.m_positionX += cos(me->GetOrientation()) * 2.35f;
-                                    exitPos.m_positionY += std::sin(me->GetOrientation()) * 2.35f;
-                                    exitPos.m_positionZ += 2.0f * Phase;
-                                    r->_ExitVehicle(&exitPos);
-                                    me->RemoveAurasByType(SPELL_AURA_CONTROL_VEHICLE, r->GetGUID());
-                                    if (r->GetTypeId() == TYPEID_UNIT)
-                                        r->ToCreature()->AI()->SetData(0, 0);
-                                }
+                            if (Player* temp = SelectTargetFromPlayerList(100.0f))
+                            {
+                                if( Creature* trigger = me->SummonCreature(NPC_ROCKET_STRIKE_N, temp->GetPositionX(), temp->GetPositionY(), temp->GetPositionZ(), 0.0f, TEMPSUMMON_TIMED_DESPAWN, 6000) )
+                                    trigger->CastSpell(trigger, SPELL_ROCKET_STRIKE_AURA, true);
+                                Position exitPos = r->GetPosition();
+                                exitPos.m_positionX += cos(me->GetOrientation()) * 2.35f;
+                                exitPos.m_positionY += std::sin(me->GetOrientation()) * 2.35f;
+                                exitPos.m_positionZ += 2.0f * Phase;
+                                r->_ExitVehicle(&exitPos);
+                                me->RemoveAurasByType(SPELL_AURA_CONTROL_VEHICLE, r->GetGUID());
+                                if (r->GetTypeId() == TYPEID_UNIT)
+                                    r->ToCreature()->AI()->SetData(0, 0);
+                            }
                         }
                         events.Repeat(20s);
                         events.ScheduleEvent(EVENT_REINSTALL_ROCKETS, 10s);
@@ -1640,6 +1649,7 @@ public:
         {
             if (damage >= me->GetHealth() || me->GetHealth() < 15000)
             {
+                LOG_INFO("scripts.raids", " {}: Health below threshold", me->GetName());
                 damage = 0;
                 if (me->GetReactState() == REACT_PASSIVE)
                     return;
@@ -1666,12 +1676,14 @@ public:
                 }
                 else if (Phase == 4)
                 {
+                    LOG_INFO("scripts.raids", "{}: Checking if NON_ATTACKABLE", me->GetName());
                     if (!me->HasUnitFlag(UNIT_FLAG_NON_ATTACKABLE))
                     {
                         me->SetUnitFlag(UNIT_FLAG_NON_ATTACKABLE);
                         me->InterruptNonMeleeSpells(false);
                         me->RemoveAllAurasExceptType(SPELL_AURA_CONTROL_VEHICLE);
                         me->CastSpell(me, SPELL_SELF_REPAIR, false);
+                        LOG_INFO("scripts.raids", "{}: Casting Self Repair", me->GetName());
                         if (Creature* c = GetMimiron())
                         {
                             if (c->AI()->GetData(1))

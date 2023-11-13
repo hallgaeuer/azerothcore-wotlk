@@ -204,6 +204,13 @@ Currently done:
 * Freya will neither autoattack nor chase in the first phase
 * Threat resets at the beginning of the second phase
 
+#### Mimiron
+
+* Phase 1 and 4: Fewer proximity mines
+* Phase 3: Bomb-Bots movement speed is reduced
+* Phase 4: Rocket strike only targets one player instead of two
+* Phase 4: Repair-Spell cast time raised to 5 minutes, effectively removing the need of killing all 3 parts at the same time
+
 ### Icecrown Citadel
 
 #### Stinky / Precious

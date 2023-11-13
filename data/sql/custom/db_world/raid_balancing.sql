@@ -114,7 +114,9 @@ VALUES
         (33332, 0, 1, 1, 1, 1, 'Ulduar 10 - Hodir - NPC'),
         (33331, 0, 1, 1, 1, 1, 'Ulduar 10 - Hodir - NPC'),
         (32865, 0, 0.9, 0.5, 1, 1, 'Ulduar 10 - Thorim'),
-        (33228, 0, 1, 0.25, 1, 1, 'Ulduar 10 - Freya - Eonars Gift')
+        (33228, 0, 1, 0.25, 1, 1, 'Ulduar 10 - Freya - Eonars Gift'),
+        (33432, 0, 0.9, 0.5, 1, 1, 'Ulduar 10 - Mimiron - Flame Leviathan MK II'),
+        (33651, 0, 0.9, 0.5, 1, 1, 'Ulduar 10 - Mimiron - VX-001')
 ;
 
 /* Auto generate missing 25 man versions */
@@ -145,7 +147,16 @@ values  (27808, 0.5, 'Naxxramas 10/25 - Kel Thuzad - Frost Blast'),
         (64459, 0.75, 'Ulduar - Auriaya - Seeping Feral Essence'),
         (64544, 0.5, 'Ulduar - Hodir - Frozen Blows Raid Damage'),
         (62457, 0.75, 'Ulduar - Hodir - Icicle'),
-        (65370, 0.75, 'Ulduar - Hodir - Big Icicle')
+        (65370, 0.75, 'Ulduar - Hodir - Big Icicle'),
+        (66351, 0.3, 'Ulduar - Mimiron - Proximity Mine Explosion'),
+        (63666, 0.75, 'Ulduar - Mimiron - Napalm Shell'),
+        (62997, 0.5, 'Ulduar - Mimiron - Plasma Blast'),
+        (63387, 0.5, 'Ulduar - Mimiron - Rapid Burst'),
+        (64019, 0.5, 'Ulduar - Mimiron - Rapid Burst 2'),
+        (64533, 0.5, 'Ulduar - Mimiron - Heat Wave'),
+        (63689, 0.75, 'Ulduar - Mimiron - Plasma Ball'),
+        (64352, 0.6, 'Ulduar - Mimiron - Hand Pulse'),
+        (64348, 0.6, 'Ulduar - Mimiron - Hand Pulse 2')
 ;
 
 /********************************************************/

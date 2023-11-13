@@ -90,6 +90,13 @@ void SpellMgr::LoadSpellInfoCorrections()
     {
         spellInfo->Effects[EFFECT_1].Effect = 0;
     });
+
+    // Mimiron
+    // Self Repair: Set cast time absurdly high to effectively disable this mechanic
+    ApplySpellFix({ 64383 }, [](SpellInfo* spellInfo)
+    {
+        spellInfo->CastTimeEntry = sSpellCastTimesStore.LookupEntry(70); // 300s = 5m
+    });
     
     // ------------------------------------------------------------
     // Custom spell adjustments end

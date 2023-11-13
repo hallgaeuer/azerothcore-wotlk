@@ -6,3 +6,6 @@ DELETE FROM conditions WHERE SourceTypeOrReferenceId=15 AND SourceGroup=10389 AN
 
 /* Freya: Reduce movement speed detonating lashers */
 UPDATE `creature_template` SET `speed_run` = 0.25 WHERE `entry` IN (32918);
+
+/* Mimiron: Reduce movement speed of bomb-bots */
+UPDATE `creature_template` SET `speed_run` = 0.25 WHERE `entry` IN (33836);

@@ -20,6 +20,10 @@ DELETE FROM npc_vendor WHERE entry = @vendorId;
 INSERT INTO npc_vendor (entry, slot, item)
 SELECT @vendorId, 0, entry FROM item_template WHERE class = 3 AND Quality = 3 AND ItemLevel >= 75 AND RequiredSkill = 0 AND description LIKE "Matches%" AND name NOT LIKE "%Unused%";
 
+/* Meta Gems added to Rare Gems vendor */
+INSERT INTO npc_vendor (entry, slot, item)
+SELECT @vendorId, 1, entry FROM item_template WHERE entry IN (41398, 41401, 41285, 41380, 41377, 41333, 41381, 41382, 41400, 41376, 41385, 41339, 41396, 41389, 41307, 41375, 41395, 44087, 44076, 44078, 41397, 41378, 44081, 44088, 44089, 41335, 44084, 41379, 44082);
+
 /* Epic Gems */
 SET @vendorId = 9000014;
 

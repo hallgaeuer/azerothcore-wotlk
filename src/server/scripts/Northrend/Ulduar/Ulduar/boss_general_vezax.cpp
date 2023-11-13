@@ -151,7 +151,7 @@ public:
             me->setActive(false);
         }
 
-        void JustEngagedWith(Unit*  /*pWho*/) override
+        void JustEngagedWith(Unit* /*unit*/) override
         {
             me->setActive(true);
             me->SetInCombatWithZone();
@@ -169,7 +169,8 @@ public:
             if (pInstance)
                 pInstance->SetData(TYPE_VEZAX, IN_PROGRESS);
 
-            me->CastSpell(me, SPELL_AURA_OF_DESPAIR_1, true);
+            // Custom Change: Disabled aura of despair
+            //me->CastSpell(me, SPELL_AURA_OF_DESPAIR_1, true);           
         }
 
         void DoAction(int32 param) override
@@ -228,7 +229,8 @@ public:
                     break;
                 case EVENT_SPELL_VEZAX_SHADOW_CRASH:
                     {
-                        events.Repeat(10s);
+                        // Custom Change: Reduced frequency
+                        events.Repeat(20s);
 
                         std::vector<Player*> players;
                         Map::PlayerList const& pl = me->GetMap()->GetPlayers();
@@ -255,7 +257,8 @@ public:
                 case EVENT_SPELL_SEARING_FLAMES:
                     if(!me->HasAura(SPELL_SARONITE_BARRIER))
                         me->CastSpell(me->GetVictim(), SPELL_SEARING_FLAMES, false);
-                    events.Repeat(me->GetMap()->Is25ManRaid() ? 8s : 15s);
+                    // Custom Change: Reduced frequency
+                    events.Repeat(me->GetMap()->Is25ManRaid() ? 16s : 30s);
                     break;
                 case EVENT_SPELL_SURGE_OF_DARKNESS:
                     Talk(SAY_SURGE_OF_DARKNESS);
@@ -478,12 +481,24 @@ public:
     {
         PrepareAuraScript(spell_aura_of_despair_AuraScript)
 
+        bool CheckAreaTarget(Unit* target)
+        {
+            Unit* caster = GetCaster();
+
+            // Custom change: Don't apply to current target of the boss
+            return caster->GetTarget() != target->GetGUID();
+        }
+
         void OnApply(AuraEffect const*  /*aurEff*/, AuraEffectHandleModes  /*mode*/)
         {
             if (Unit* caster = GetCaster())
                 if (Unit* target = GetTarget())
                 {
                     if (target->GetTypeId() != TYPEID_PLAYER)
+                        return;
+
+                    // Custom change: Don't apply to current target of the boss
+                    if (caster->GetTarget() == target->GetGUID())
                         return;
 
                     target->CastSpell(target, SPELL_AURA_OF_DESPAIR_2, true);
@@ -506,6 +521,7 @@ public:
 
         void Register() override
         {
+            DoCheckAreaTarget += AuraCheckAreaTargetFn(spell_aura_of_despair_AuraScript::CheckAreaTarget);
             OnEffectApply += AuraEffectApplyFn(spell_aura_of_despair_AuraScript::OnApply, EFFECT_0, SPELL_AURA_PREVENT_REGENERATE_POWER, AURA_EFFECT_HANDLE_REAL);
             AfterEffectRemove += AuraEffectRemoveFn(spell_aura_of_despair_AuraScript::OnRemove, EFFECT_0, SPELL_AURA_PREVENT_REGENERATE_POWER, AURA_EFFECT_HANDLE_REAL);
         }

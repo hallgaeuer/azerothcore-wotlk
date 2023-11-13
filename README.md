@@ -211,6 +211,13 @@ Currently done:
 * Phase 4: Rocket strike only targets one player instead of two
 * Phase 4: Repair-Spell cast time raised to 5 minutes, effectively removing the need of killing all 3 parts at the same time
 
+#### General Vezax
+
+* Searing Flames: Is cast less frequently (but still needs to be interrupted)
+* Shadow Crash: Added cast time to allow for some time to run out and reduced frequency
+* Mark of the Faceless: Added cast time to allow for some time to run out
+* Aura of despair is disabled, effectively removing the need to stand in vapor puddles
+
 ### Icecrown Citadel
 
 #### Stinky / Precious

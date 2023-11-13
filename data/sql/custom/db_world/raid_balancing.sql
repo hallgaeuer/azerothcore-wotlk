@@ -116,7 +116,12 @@ VALUES
         (32865, 0, 0.9, 0.5, 1, 1, 'Ulduar 10 - Thorim'),
         (33228, 0, 1, 0.25, 1, 1, 'Ulduar 10 - Freya - Eonars Gift'),
         (33432, 0, 0.9, 0.5, 1, 1, 'Ulduar 10 - Mimiron - Flame Leviathan MK II'),
-        (33651, 0, 0.9, 0.5, 1, 1, 'Ulduar 10 - Mimiron - VX-001')
+        (33651, 0, 0.9, 0.5, 1, 1, 'Ulduar 10 - Mimiron - VX-001'),
+        (33822, 0, 0.75, 0.5, 1, 1, 'Ulduar 10 - Mimiron - Twilight Trash'),
+        (33819, 0, 0.75, 0.5, 1, 1, 'Ulduar 10 - Mimiron - Twilight Trash'),
+        (33820, 0, 0.75, 0.5, 1, 1, 'Ulduar 10 - Mimiron - Twilight Trash'),
+        (33838, 0, 0.75, 0.5, 1, 1, 'Ulduar 10 - Mimiron - Twilight Trash'),
+        (33824, 0, 0.75, 0.5, 1, 1, 'Ulduar 10 - Mimiron - Twilight Trash')
 ;
 
 /* Auto generate missing 25 man versions */

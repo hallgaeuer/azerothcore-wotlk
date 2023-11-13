@@ -97,6 +97,26 @@ void SpellMgr::LoadSpellInfoCorrections()
     {
         spellInfo->CastTimeEntry = sSpellCastTimesStore.LookupEntry(70); // 300s = 5m
     });
+
+    // General Vezax
+    // Mark of the Faceless: Added cast time to allow for some time to run out
+    ApplySpellFix({ 63276 }, [](SpellInfo* spellInfo)
+    {
+        spellInfo->CastTimeEntry = sSpellCastTimesStore.LookupEntry(14); // 3s
+    });
+    
+    // Shadow Crash: Added cast time to allow for some time to run out + Remove Knockback
+    ApplySpellFix({ 62660 }, [](SpellInfo* spellInfo)
+    {
+        spellInfo->CastTimeEntry = sSpellCastTimesStore.LookupEntry(5); // 2s
+    });
+    
+    // Shadow Crash Triggered Spell: Remove Knockback
+    //ApplySpellFix({ 62659 }, [](SpellInfo* spellInfo)
+    //{
+    //    spellInfo->Effects[EFFECT_1].Effect = 0;
+    //});
+    
     
     // ------------------------------------------------------------
     // Custom spell adjustments end

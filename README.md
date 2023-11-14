@@ -215,8 +215,10 @@ Currently done:
 
 * Searing Flames: Is cast less frequently (but still needs to be interrupted)
 * Shadow Crash: Added cast time to allow for some time to run out and reduced frequency
+* Shadow Crash: No knockback
 * Mark of the Faceless: Added cast time to allow for some time to run out
-* Aura of despair is disabled, effectively removing the need to stand in vapor puddles
+* Aura of despair is not applied to tank
+* Saronite Vapors: Affects the whole raid, you don't need to stand in a puddle. Max stacks limited. Duration reduced.
 
 ### Icecrown Citadel
 

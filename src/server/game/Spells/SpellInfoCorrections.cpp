@@ -111,11 +111,30 @@ void SpellMgr::LoadSpellInfoCorrections()
         spellInfo->CastTimeEntry = sSpellCastTimesStore.LookupEntry(5); // 2s
     });
     
+    // Saronite Vapors (Dummy): Limit maximum stacks, increase radius by a lot
+    ApplySpellFix({ 63322 }, [](SpellInfo* spellInfo)
+    {
+        spellInfo->StackAmount = 6;
+        spellInfo->Effects[EFFECT_0].RadiusEntry = sSpellRadiusStore.LookupEntry(EFFECT_RADIUS_150_YARDS);
+    });
+    
+    // Saronite Vapors: Reduce duration
+    ApplySpellFix({ 63323 }, [](SpellInfo* spellInfo)
+    {
+        spellInfo->DurationEntry = sSpellDurationStore.LookupEntry(29); // 12s
+    });
+    
+    // Saronite Vapors damage / energize: Increase range to match radius
+    ApplySpellFix({ 63338, 63337 }, [](SpellInfo* spellInfo)
+    {
+        spellInfo->RangeEntry = sSpellRangeStore.LookupEntry(152); // 150 yards
+    });
+    
     // Shadow Crash Triggered Spell: Remove Knockback
-    //ApplySpellFix({ 62659 }, [](SpellInfo* spellInfo)
-    //{
-    //    spellInfo->Effects[EFFECT_1].Effect = 0;
-    //});
+    ApplySpellFix({ 62659 }, [](SpellInfo* spellInfo)
+    {
+        spellInfo->Effects[EFFECT_1].Effect = 0;
+    });
     
     
     // ------------------------------------------------------------

@@ -169,8 +169,7 @@ public:
             if (pInstance)
                 pInstance->SetData(TYPE_VEZAX, IN_PROGRESS);
 
-            // Custom Change: Disabled aura of despair
-            //me->CastSpell(me, SPELL_AURA_OF_DESPAIR_1, true);           
+            me->CastSpell(me, SPELL_AURA_OF_DESPAIR_1, true);           
         }
 
         void DoAction(int32 param) override

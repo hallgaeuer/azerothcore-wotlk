@@ -121,7 +121,9 @@ VALUES
         (33819, 0, 0.75, 0.5, 1, 1, 'Ulduar 10 - Mimiron - Twilight Trash'),
         (33820, 0, 0.75, 0.5, 1, 1, 'Ulduar 10 - Mimiron - Twilight Trash'),
         (33838, 0, 0.75, 0.5, 1, 1, 'Ulduar 10 - Mimiron - Twilight Trash'),
-        (33824, 0, 0.75, 0.5, 1, 1, 'Ulduar 10 - Mimiron - Twilight Trash')
+        (33824, 0, 0.75, 0.5, 1, 1, 'Ulduar 10 - Mimiron - Twilight Trash'),
+        (33134, 0, 0.8, 0.5, 1, 1, 'Ulduar 10 - Yogg - Sara'),
+        (33136, 0, 0.8, 0.5, 1, 1, 'Ulduar 10 - Yogg - Sara Minion')
 ;
 
 /* Auto generate missing 25 man versions */

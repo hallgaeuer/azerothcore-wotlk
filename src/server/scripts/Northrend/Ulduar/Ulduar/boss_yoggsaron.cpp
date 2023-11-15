@@ -877,7 +877,8 @@ public:
                     SpawnTentacle(NPC_CRUSHER_TENTACLE);
                     SpawnTentacle(NPC_CONSTRICTOR_TENTACLE);
                     SpawnTentacle(NPC_CORRUPTOR_TENTACLE);
-                    SpawnTentacle(NPC_CORRUPTOR_TENTACLE);
+                    // Custom change
+                    //SpawnTentacle(NPC_CORRUPTOR_TENTACLE);
 
                     events.ScheduleEvent(EVENT_SARA_P2_MALADY, 7s, 0, EVENT_PHASE_TWO);
                     events.ScheduleEvent(EVENT_SARA_P2_PSYCHOSIS, 3s, 0, EVENT_PHASE_TWO);
